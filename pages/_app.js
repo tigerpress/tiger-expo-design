@@ -1,4 +1,5 @@
 import { SWRConfig } from "swr";
+import AppShell from "../components/AppShell";
 import { fetcher } from "../lib/fetcher";
 import "../styles/globals.css";
 
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
 				fetcher,
 			}}
 		>
-			<Component {...pageProps} />
+			<AppShell>
+				<Component {...pageProps} />
+			</AppShell>
 		</SWRConfig>
 	);
 }

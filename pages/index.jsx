@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { useProducts } from "../hooks/useProducts";
+
 export default function Home() {
 	const { products, loading, error } = useProducts();
 	console.log(products);
 	return (
 		<div>
-			<h1>TigerExpoDesign</h1>
 			{loading && <p>Loading products...</p>}
 			{error && <p>{error.info.message}</p>}
 			{products && (
