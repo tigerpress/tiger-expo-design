@@ -1,29 +1,34 @@
+import Image from "next/future/image";
 import Link from "next/link";
-import { useProducts } from "../hooks/useProducts";
+import products from "./api/products.json";
 
-export default function Home() {
-	const { products, loading, error } = useProducts();
-	console.log(products);
+export default function Home({ products }) {
 	return (
 		<div>
-			{loading && <p>Loading products...</p>}
-			{error && <p>{error.info.message}</p>}
 			{products && (
-				<div>
-					<ul>
-						{products.map((product) => (
-							<li key={product.id}>
-								<Link href={`/products/${product.id}`}>
-									<a>
-										<img src={`data:image/jpeg;base64, ${product.picture}`} alt={product.product} />
-										<h3>{product.product}</h3>
-									</a>
-								</Link>
-							</li>
-						))}
-					</ul>
-				</div>
+				<ul className="grid grid-cols-6 gap-8">
+					{products.map((product) => (
+						<li key={product.id} className="group mt-8 border border-slate-400">
+							<Link href={`/products/${product.id}`}>
+								<a>
+									<div className="relative aspect-square">
+										<Image src={product.image} fill alt={product.name} />
+									</div>
+									<h3 className="relative mt-4 font-bold after:ml-2 after:transition-all after:content-['\2192'] group-hover:after:ml-6">
+										{product.name}
+									</h3>
+								</a>
+							</Link>
+						</li>
+					))}
+				</ul>
 			)}
 		</div>
 	);
+}
+
+export async function getStaticProps() {
+	return {
+		props: { products },
+	};
 }

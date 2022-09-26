@@ -1,0 +1,788 @@
+[
+	{
+		"id": "TSB5X10",
+		"name": "Tradeshow Booth, 5' x 10'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB5X10E",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB5X10EO1",
+						"description": "2 Pop-Up banners angled at back wall",
+						"price": "399"
+					},
+					{
+						"id": "TSB5X10EO2",
+						"description": "1 Large Pop-Up Banner",
+						"price": "382"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB5X10EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB5X10EU3",
+						"description": "Tabletop Pop-Up Banner",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB5X10S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB5X10SO1",
+						"description": "5 ft. Hop-Up straight display, fabric front only",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB5X10SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB5X10SU3",
+						"description": "Tabletop Pop-Up Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10SU4",
+						"description": "Podium Artwork Wrap",
+						"price": "124"
+					},
+					{
+						"id": "TSB5X10SU5",
+						"description": "5' Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10SU6",
+						"description": "5' Sign",
+						"price": "87"
+					}
+				]
+			},
+			{
+				"id": "TSB5X10P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB5X10PO1",
+						"description": "2 Pop-Up banners angled at back wall",
+						"price": "399"
+					},
+					{
+						"id": "TSB5X10PO2",
+						"description": "1 Large Pop-Up Banner",
+						"price": "382"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB5X10PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB5X10PU3",
+						"description": "Tabletop Pop-Up Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10PU4",
+						"description": "Podium Artwork Wrap",
+						"price": "124"
+					},
+					{
+						"id": "TSB5X10PU5",
+						"description": "5' Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB5X10PU6",
+						"description": "5' Sign",
+						"price": "87"
+					},
+					{
+						"id": "TSB5X10PU7",
+						"description": "Backlight",
+						"price": "52"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "TSB10X10",
+		"name": "Tradeshow Booth, 10' x 10'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB10X10E",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB10X10EO1",
+						"description": "3 pop-up banners along back wall",
+						"price": "599"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X10EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X10EU3",
+						"description": "Podium + 10 foot entrance vinyl banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10EU4",
+						"description": "Podium + 10 foot entrance rigid sign",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X10S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB10X10SO1",
+						"description": "Hop-up lite straight, fabric front only",
+						"price": "399"
+					},
+					{
+						"id": "TSB10X10SO2",
+						"description": "Hop-up lite straight, full graphics",
+						"price": "399"
+					},
+					{
+						"id": "TSB10X10SO3",
+						"description": "Hop-up straight, fabric front only",
+						"price": "399"
+					},
+					{
+						"id": "TSB10X10SO4",
+						"description": "Hop-up straight, full graphics",
+						"price": "399"
+					},
+					{
+						"id": "TSB10X10SO5",
+						"description": "Hop-up curved, full graphics",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X10SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X10SU3",
+						"description": "Podium + 10 foot entrance vinyl banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10SU4",
+						"description": "Podium + 10 foot entrance rigid sign",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10SU5",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10SU6",
+						"description": "Flag",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10SU7",
+						"description": "Literature Rack",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X10P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB10X10PO1",
+						"description": "10' Vector Frame Master Modular Backwall Kit 10",
+						"price": "799"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X10PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X10PU3",
+						"description": "Podium + 10 foot entrance vinyl banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10PU4",
+						"description": "Podium + 10 foot entrance rigid sign",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10PU5",
+						"description": "Hanging Header",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X10PU6",
+						"description": "Backlight",
+						"price": "83"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "TSB10X15",
+		"name": "Tradeshow Booth, 10' x 15'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB10X15E",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB10X15EO1",
+						"description": "5' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
+						"price": "899"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X15EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X15EU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15EU4",
+						"description": "15' entrance vinyl banner",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X15S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB10X15SO1",
+						"description": "10' Hop-Up straight display (fabric front only) plus 2-pop-up banners",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X15SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X15SU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15SU4",
+						"description": "15' entrance vinyl banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15SU5",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15SU6",
+						"description": "Pop-up banner",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X15P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB10X15PO1",
+						"description": "Modular Display",
+						"price": "799"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X15PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X15PU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15PU4",
+						"description": "15' Entrance Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15PU5",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15PU6",
+						"description": "Shelving",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X15PU7",
+						"description": "Charging Station",
+						"price": "83"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "TSB10X20",
+		"name": "Tradeshow Booth, 10' x 20'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB10X20",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB10X20EO1",
+						"description": "Waveline Originals 20' Straight Serpentine Display",
+						"price": "899"
+					},
+					{
+						"id": "TSB10X20EO2",
+						"description": "Formulate Tension Fabric Display",
+						"price": "899"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X20EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X20EU3",
+						"description": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X20S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB10X20SO1",
+						"description": "Waveline Media Display",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X20SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X20SU3",
+						"description": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20SU4",
+						"description": "Backlight",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB10X20P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB10X20PO1",
+						"description": "Exhibitline Display",
+						"price": "799"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB10X20PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB10X20PU3",
+						"description": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20PU4",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20PU5",
+						"description": "Hanging Header",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20PU6",
+						"description": "Shelving",
+						"price": "83"
+					},
+					{
+						"id": "TSB10X20PU7",
+						"description": "Charging Station",
+						"price": "83"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "TSB15X15",
+		"name": "Tradeshow Booth, 15' x 15'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB15X15E",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB15X15EO1",
+						"description": "5' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
+						"price": "899"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB15X15EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB15X15EU3",
+						"description": "Podium",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB15X15S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB15X15SO1",
+						"description": "10' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB15X15SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB15X15SU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15SU4",
+						"description": "Pop-up banners",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15SU5",
+						"description": "Extra Podium",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB15X15P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB15X15PO1",
+						"description": "Modular Display",
+						"price": "799"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB15X15PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB15X15PU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15PU4",
+						"description": "Hanging Header",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15PU5",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15PU6",
+						"description": "Shelving",
+						"price": "83"
+					},
+					{
+						"id": "TSB15X15PU7",
+						"description": "Charging Station",
+						"price": "83"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "TSB20X20",
+		"name": "Tradeshow Booth, 20' x 20'",
+		"image": "/TSB5X10.webp",
+		"configs": [
+			{
+				"id": "TSB20X20",
+				"grade": "Economy",
+				"options": [
+					{
+						"id": "TSB20X20EO1",
+						"description": "Waveline Media Island",
+						"price": "899"
+					},
+					{
+						"id": "TSB20X20EO2",
+						"description": "Waveline Media Peninsula",
+						"price": "899"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20X20EU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20EU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20X20EU3",
+						"description": "Podium",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB20X20S",
+				"grade": "Standard",
+				"options": [
+					{
+						"id": "TSB20X20SO1",
+						"description": "Orbital Truss Display",
+						"price": "399"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20X20SU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20SU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20X20SU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20SU4",
+						"description": "Backlight",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB20X20P",
+				"grade": "Premium",
+				"options": [
+					{
+						"id": "TSB20X20PO1",
+						"description": "XVLine Modular Display",
+						"price": "799"
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20X20PU1",
+						"description": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU2",
+						"description": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20X20PU3",
+						"description": "Podium",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU4",
+						"description": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU5",
+						"description": "Hanging Header",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU6",
+						"description": "Shelving",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU7",
+						"description": "Charging Station",
+						"price": "83"
+					},
+					{
+						"id": "TSB20X20PU8",
+						"description": "20' Entrance Banner",
+						"price": "83"
+					}
+				]
+			}
+		]
+	}
+]

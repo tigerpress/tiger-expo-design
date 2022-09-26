@@ -5,15 +5,15 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<SWRConfig
-			value={{
-				fetcher,
-			}}
-		>
-			<AppShell>
-				<Component {...pageProps} />
-			</AppShell>
-		</SWRConfig>
+		// <SWRConfig
+		// 	value={{
+		// 		fetcher,
+		// 	}}
+		// >
+		<AppShell>
+			<Component {...pageProps} />
+		</AppShell>
+		// </SWRConfig>
 	);
 }
 
