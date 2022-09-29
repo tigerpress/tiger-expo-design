@@ -1,7 +1,7 @@
 [
 	{
 		"id": "TSB5X10",
-		"name": "Tradeshow Booth, 5' x 10'",
+		"name": "Booth, 5' x 10'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{
@@ -44,7 +44,7 @@
 					{
 						"id": "TSB5X10SO1",
 						"description": "5 ft. Hop-Up straight display, fabric front only",
-						"price": "399"
+						"price": "562"
 					}
 				],
 				"upgrades": [
@@ -86,13 +86,8 @@
 				"options": [
 					{
 						"id": "TSB5X10PO1",
-						"description": "2 Pop-Up banners angled at back wall",
-						"price": "399"
-					},
-					{
-						"id": "TSB5X10PO2",
-						"description": "1 Large Pop-Up Banner",
-						"price": "382"
+						"description": "5 ft. Hop-Up curved display, fabric full graphics",
+						"price": "847"
 					}
 				],
 				"upgrades": [
@@ -137,7 +132,7 @@
 	},
 	{
 		"id": "TSB10X10",
-		"name": "Tradeshow Booth, 10' x 10'",
+		"name": "Booth, 10' x 10'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{
@@ -185,22 +180,22 @@
 					{
 						"id": "TSB10X10SO2",
 						"description": "Hop-up lite straight, full graphics",
-						"price": "399"
+						"price": "499"
 					},
 					{
 						"id": "TSB10X10SO3",
 						"description": "Hop-up straight, fabric front only",
-						"price": "399"
+						"price": "549"
 					},
 					{
 						"id": "TSB10X10SO4",
 						"description": "Hop-up straight, full graphics",
-						"price": "399"
+						"price": "648"
 					},
 					{
 						"id": "TSB10X10SO5",
 						"description": "Hop-up curved, full graphics",
-						"price": "399"
+						"price": "500"
 					}
 				],
 				"upgrades": [
@@ -288,7 +283,7 @@
 	},
 	{
 		"id": "TSB10X15",
-		"name": "Tradeshow Booth, 10' x 15'",
+		"name": "Booth, 10' x 15'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{
@@ -419,7 +414,7 @@
 	},
 	{
 		"id": "TSB10X20",
-		"name": "Tradeshow Booth, 10' x 20'",
+		"name": "Booth, 10' x 20'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{
@@ -540,7 +535,7 @@
 	},
 	{
 		"id": "TSB15X15",
-		"name": "Tradeshow Booth, 15' x 15'",
+		"name": "Booth, 15' x 15'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{
@@ -661,7 +656,7 @@
 	},
 	{
 		"id": "TSB20X20",
-		"name": "Tradeshow Booth, 20' x 20'",
+		"name": "Booth, 20' x 20'",
 		"image": "/TSB5X10.webp",
 		"configs": [
 			{

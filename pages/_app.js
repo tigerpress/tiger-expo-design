@@ -1,19 +1,17 @@
-import { SWRConfig } from "swr";
+import "@fontsource/raleway/400.css";
+import "@fontsource/raleway/500.css";
+import "@fontsource/raleway/600.css";
+import "@fontsource/raleway/700.css";
+import "@fontsource/raleway/800.css";
+import "@fontsource/raleway/900.css";
 import AppShell from "../components/AppShell";
-import { fetcher } from "../lib/fetcher";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		// <SWRConfig
-		// 	value={{
-		// 		fetcher,
-		// 	}}
-		// >
 		<AppShell>
 			<Component {...pageProps} />
 		</AppShell>
-		// </SWRConfig>
 	);
 }
 

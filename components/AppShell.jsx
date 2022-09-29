@@ -4,7 +4,7 @@ export default function AppShell({ children }) {
 	return (
 		<>
 			<Header />
-			<main>{children}</main>
+			<main className="container mx-auto mt-16">{children}</main>
 		</>
 	);
 }

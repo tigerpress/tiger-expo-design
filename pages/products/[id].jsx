@@ -1,75 +1,87 @@
 import Image from "next/future/image";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import products from "../api/products.json";
 
 export default function ProductPage({ product }) {
-	const [config, setConfig] = useState(0);
-	const [option, setOption] = useState(0);
-	const [optionPrice, setOptionPrice] = useState(product.configs[config].options[option].price);
-	const [upgradePrice, setUpgradePrice] = useState(0);
+	const [selectedGrade, setSelectedGrade] = useState(0);
+	const [selectedOption, setSelectedOption] = useState(0);
+	const [selectedUpgrades, setSelectedUpgrades] = useState([]);
+	const options = product.configs[selectedGrade].options;
+	const upgrades = product.configs[selectedGrade].upgrades;
 
-	const handleConfigChange = (e) => {
-		setConfig(e.target.value);
-		setOption(0);
-		setOptionPrice(product.configs[e.target.value].options[0].price);
-		setUpgradePrice(0);
-	};
+	const upgradesPrice = selectedUpgrades
+		.map((upgrade) => upgrades[upgrade])
+		.reduce((a, c) => a + +c.price, 0);
 
-	const handleUpgradeChange = (e, i) => {
-		setUpgradePrice((prevPrice) => {
-			if (e.target.checked) {
-				return (prevPrice += parseFloat(e.target.value));
-			} else {
-				return (prevPrice -= parseFloat(e.target.value));
-			}
-		});
+	const subtotal = upgradesPrice + +product.configs[selectedGrade].options[selectedOption].price;
+
+	const handleUpgrades = (e) => {
+		const isChecked = e.target.checked;
+
+		if (isChecked) {
+			setSelectedUpgrades([...selectedUpgrades, e.target.value]);
+		}
+		if (!isChecked) {
+			setSelectedUpgrades(
+				selectedUpgrades.filter((_, i) => selectedUpgrades[i] !== e.target.value)
+			);
+		}
 	};
 
 	return (
 		<div>
 			{product && (
-				<div>
-					<div className="relative aspect-square w-96">
-						<Image src={product.image} alt={product.name} fill />
-					</div>
-					<h1>{product.name}</h1>
-					<form>
-						<div>
-							<label htmlFor="budget">Budget</label>
-							<select name="budget" id="budget" onChange={handleConfigChange}>
-								{product.configs.map((config, i) => (
-									<option key={config.id} value={i}>
-										{config.grade}
-									</option>
-								))}
-							</select>
-							<label htmlFor="option">Option</label>
-							<select name="option" id="option" onChange={(e) => setOption(e.target.value)}>
-								{product.configs[config].options.map((option, i) => (
-									<option key={option.id} value={i}>
-										{option.description} - $ {option.price}
-									</option>
-								))}
-							</select>
-							<div>
-								<h2>Addon Upgrades</h2>
-								{product.configs[config].upgrades.map((upgrade, i) => (
-									<div key={upgrade.id}>
+				<>
+					<div className="grid gap-4 lg:grid-cols-2">
+						<div className="relative aspect-square w-96">
+							<Image src={product.image} alt={product.name} fill />
+						</div>
+						<form className="grid gap-4">
+							<h1 className="text-3xl font-bold">{product.name}</h1>
+							<label htmlFor="grade">
+								<span className="block">Grade</span>
+								<select name="grade" id="grade" onChange={(e) => setSelectedGrade(e.target.value)}>
+									{product.configs.map((config, i) => (
+										<option key={config.id} value={i}>
+											{config.grade}
+										</option>
+									))}
+								</select>
+							</label>
+							<label>
+								<span className="block">Option</span>
+								<select
+									name="option"
+									id="option"
+									onChange={(e) => setSelectedOption(e.target.value)}
+								>
+									{options.map((option, i) => (
+										<option key={option.id} value={i}>
+											{option.description} - $ {option.price}
+										</option>
+									))}
+								</select>
+							</label>
+							<fieldset>
+								<legend>Addon Upgrades</legend>
+								{upgrades.map((upgrade, i) => (
+									<label htmlFor={upgrade.id} key={upgrade.id} className="block">
 										<input
 											type="checkbox"
 											name={upgrade.id}
 											id={upgrade.id}
-											value={upgrade.price}
-											onChange={(e) => handleUpgradeChange(e, i)}
+											value={i}
+											onChange={handleUpgrades}
 										/>
-										<label htmlFor={upgrade.id}>{upgrade.description}</label>
-									</div>
+										<span className="ml-2">{upgrade.description}</span>
+									</label>
 								))}
-							</div>
-						</div>
-					</form>
-					Subtotal: {optionPrice} - {upgradePrice}
-				</div>
+							</fieldset>
+							<button className="bg-slate-900 text-white">Add to Cart</button>
+							Price: {subtotal}
+						</form>
+					</div>
+				</>
 			)}
 		</div>
 	);
