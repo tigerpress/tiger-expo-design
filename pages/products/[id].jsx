@@ -8,24 +8,63 @@ export default function ProductPage({ product }) {
 	const [selectedUpgrades, setSelectedUpgrades] = useState([]);
 	const options = product.configs[selectedGrade].options;
 	const upgrades = product.configs[selectedGrade].upgrades;
-
+	const currentConfig = { ...options[selectedOption], selectedUpgrades };
 	const upgradesPrice = selectedUpgrades
-		.map((upgrade) => upgrades[upgrade])
-		.reduce((a, c) => a + +c.price, 0);
+		.map((upgrade) => upgrade.price)
+		.reduce((a, c) => a + parseFloat(c), 0);
 
-	const subtotal = upgradesPrice + +product.configs[selectedGrade].options[selectedOption].price;
+	console.log(product);
+
+	const subtotal = upgradesPrice + parseFloat(options[selectedOption].price);
+
+	const estimateData = {
+		pr: 100407,
+		lotsno: 1,
+		esPt: 1,
+		"project-title": "Tradeshow Booth",
+		finishedsizeheight: product.height,
+		finishedsizewidth: product.width,
+		outside: true,
+		static: true,
+		quantity1: "1",
+		buyout: subtotal,
+		priceForced: subtotal,
+		buyoutquantity: 1,
+		buyoutvendorname: "",
+		vendorQuote: "web",
+		buyoutdescription: JSON.stringify(currentConfig)
+			.replace(/[\{\}\"]/g, "")
+			.replace(/[,\[\]]/g, "\n"),
+	};
 
 	const handleUpgrades = (e) => {
 		const isChecked = e.target.checked;
 
 		if (isChecked) {
-			setSelectedUpgrades([...selectedUpgrades, e.target.value]);
+			setSelectedUpgrades([
+				...selectedUpgrades,
+				upgrades.find((upgrade) => upgrade.id === e.target.value),
+			]);
 		}
 		if (!isChecked) {
-			setSelectedUpgrades(
-				selectedUpgrades.filter((_, i) => selectedUpgrades[i] !== e.target.value)
-			);
+			setSelectedUpgrades(selectedUpgrades.filter((upgrade) => upgrade.id !== e.target.value));
 		}
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+			method: "POST",
+			headers: {
+				authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(estimateData),
+		});
+		const data = await response.json();
+		console.log(data);
 	};
 
 	return (
@@ -36,7 +75,7 @@ export default function ProductPage({ product }) {
 						<div className="relative aspect-square w-96">
 							<Image src={product.image} alt={product.name} fill />
 						</div>
-						<form className="grid gap-4">
+						<form className="grid gap-4" onSubmit={handleSubmit}>
 							<h1 className="text-3xl font-bold">{product.name}</h1>
 							<label htmlFor="grade">
 								<span className="block">Grade</span>
@@ -64,13 +103,13 @@ export default function ProductPage({ product }) {
 							</label>
 							<fieldset>
 								<legend>Addon Upgrades</legend>
-								{upgrades.map((upgrade, i) => (
+								{upgrades.map((upgrade) => (
 									<label htmlFor={upgrade.id} key={upgrade.id} className="block">
 										<input
 											type="checkbox"
 											name={upgrade.id}
 											id={upgrade.id}
-											value={i}
+											value={upgrade.id}
 											onChange={handleUpgrades}
 										/>
 										<span className="ml-2">{upgrade.description}</span>
