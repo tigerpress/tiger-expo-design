@@ -1,19 +1,22 @@
 import Image from "next/future/image";
 import { useRef, useState } from "react";
+import Button from "../../components/button";
+import Select from "../../components/forms/select";
 import products from "../api/products.json";
 
 export default function ProductPage({ product }) {
 	const [selectedGrade, setSelectedGrade] = useState(0);
 	const [selectedOption, setSelectedOption] = useState(0);
 	const [selectedUpgrades, setSelectedUpgrades] = useState([]);
+	const [loading, setLoading] = useState(false);
+
 	const options = product.configs[selectedGrade].options;
 	const upgrades = product.configs[selectedGrade].upgrades;
 	const currentConfig = { ...options[selectedOption], selectedUpgrades };
+
 	const upgradesPrice = selectedUpgrades
 		.map((upgrade) => upgrade.price)
 		.reduce((a, c) => a + parseFloat(c), 0);
-
-	console.log(product);
 
 	const subtotal = upgradesPrice + parseFloat(options[selectedOption].price);
 
@@ -53,6 +56,7 @@ export default function ProductPage({ product }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 
 		const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
 			method: "POST",
@@ -65,6 +69,7 @@ export default function ProductPage({ product }) {
 		});
 		const data = await response.json();
 		console.log(data);
+		setLoading(false);
 	};
 
 	return (
@@ -77,16 +82,13 @@ export default function ProductPage({ product }) {
 						</div>
 						<form className="grid gap-4" onSubmit={handleSubmit}>
 							<h1 className="text-3xl font-bold">{product.name}</h1>
-							<label htmlFor="grade">
-								<span className="block">Grade</span>
-								<select name="grade" id="grade" onChange={(e) => setSelectedGrade(e.target.value)}>
-									{product.configs.map((config, i) => (
-										<option key={config.id} value={i}>
-											{config.grade}
-										</option>
-									))}
-								</select>
-							</label>
+							<Select label="Grade" name="grade" onChange={(e) => setSelectedGrade(e.target.value)}>
+								{product.configs.map((config, i) => (
+									<option key={config.id} value={i}>
+										{config.grade}
+									</option>
+								))}
+							</Select>
 							<label>
 								<span className="block">Option</span>
 								<select
@@ -116,7 +118,7 @@ export default function ProductPage({ product }) {
 									</label>
 								))}
 							</fieldset>
-							<button className="bg-slate-900 text-white">Add to Cart</button>
+							<Button isLoading={loading}>Submit</Button>
 							Price: {subtotal}
 						</form>
 					</div>

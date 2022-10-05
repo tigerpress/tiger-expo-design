@@ -1,15 +1,14 @@
-const Select = ({ register, options, name, label, ...rest }) => {
+const Select = (props) => {
+	const { label, name, onChange, disabled = false, errors, children } = props;
+
 	return (
-		<div>
-			<label htmlFor={name}>{label}</label>
-			<select {...register(name)} {...rest}>
-				{options.map((value) => (
-					<option value={value} key={value}>
-						{value}
-					</option>
-				))}
+		<label htmlFor={name} onChange={onChange}>
+			<span className="block">{label}</span>
+			<select name={name} id={name} disabled={disabled}>
+				{children}
 			</select>
-		</div>
+			{errors && <p>{errors}</p>}
+		</label>
 	);
 };
 

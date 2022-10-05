@@ -4,7 +4,7 @@ import "@fontsource/raleway/600.css";
 import "@fontsource/raleway/700.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
-import AppShell from "../components/AppShell";
+import AppShell from "../components/app/app-shell";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {

@@ -1,0 +1,23 @@
+import Image from "next/future/image";
+import { BsArrowRight } from "react-icons/bs";
+
+const ProductCard = ({ product }) => {
+	return (
+		<div className="group">
+			<div className="relative aspect-square rounded-lg bg-slate-200">
+				<Image src={product.image} alt={product.name} fill className="p-4 mix-blend-multiply" />
+			</div>
+			<div className="ml-1">
+				<h3 className="relative mt-2 flex items-center text-lg font-bold">
+					{product.name}
+					<BsArrowRight className="ml-2 transition-all group-hover:ml-4" />
+				</h3>
+				<p className="text-sm font-medium text-slate-600">
+					starting at ${product.configs[0].options[0].price}
+				</p>
+			</div>
+		</div>
+	);
+};
+
+export default ProductCard;
