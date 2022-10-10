@@ -1,8 +1,10 @@
 import Image from "next/future/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import Button from "../../components/button";
 import Container from "../../components/container";
 import Select from "../../components/forms/select";
+import ProductCard from "../../components/product-card";
 import products from "../api/products.json";
 
 const features = [
@@ -35,6 +37,10 @@ export default function ProductPage({ product }) {
 		.reduce((a, c) => a + parseFloat(c), 0);
 
 	const subtotal = upgradesPrice + parseFloat(options[selectedOption].price);
+
+	const relatedProducts = products
+		.filter((relatedProduct) => relatedProduct.id !== product.id)
+		.slice(0, 4);
 
 	const estimateData = {
 		pr: 100407,
@@ -185,6 +191,23 @@ export default function ProductPage({ product }) {
 					</div>
 				</div>
 			</div>
+
+			{relatedProducts && (
+				<section className="my-16">
+					<h2 className="mb-8 text-3xl font-bold">Customers also viewed</h2>
+					<ul className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
+						{relatedProducts.map((product) => (
+							<li key={product.id}>
+								<Link href={`/products/${product.id}`}>
+									<a>
+										<ProductCard product={product} />
+									</a>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
 		</Container>
 	);
 }
