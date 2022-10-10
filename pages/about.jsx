@@ -19,7 +19,7 @@ export default function AboutPage() {
 				Design are all divisions of TigerPress.
 			</p>
 			<div>
-				<Link href="/request-quote">I'd like a quote</Link>
+				<Link href="/request-quote">I&apos;d like a quote</Link>
 				<Link href="/contact">I have a question</Link>
 			</div>
 		</>

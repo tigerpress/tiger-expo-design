@@ -4,8 +4,8 @@ import { BsArrowRight } from "react-icons/bs";
 const ProductCard = ({ product }) => {
 	return (
 		<div className="group">
-			<div className="relative aspect-square rounded-lg bg-slate-200">
-				<Image src={product.image} alt={product.name} fill className="p-4 mix-blend-multiply" />
+			<div className="relative aspect-square rounded-lg bg-white">
+				<Image src={product.image} alt={product.name} fill className="p-8 mix-blend-multiply" />
 			</div>
 			<div className="ml-1">
 				<h3 className="relative mt-2 flex items-center text-lg font-bold">
