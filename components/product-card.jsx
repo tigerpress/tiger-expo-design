@@ -4,11 +4,11 @@ import { BsArrowRight } from "react-icons/bs";
 const ProductCard = ({ product }) => {
 	return (
 		<div className="group">
-			<div className="relative aspect-square rounded-lg bg-white">
+			<div className="relative aspect-[4/3] bg-white shadow-lg">
 				<Image src={product.image} alt={product.name} fill className="p-8 mix-blend-multiply" />
 			</div>
 			<div className="ml-1">
-				<h3 className="relative mt-2 flex items-center text-lg font-bold">
+				<h3 className="relative mt-3 flex items-center text-lg font-bold">
 					{product.name}
 					<BsArrowRight className="ml-2 transition-all group-hover:ml-4" />
 				</h3>

@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import Loader from "./loader";
 
-const Button = ({ children, variant = "primary", size = "md", isLoading }) => {
+const Button = ({ children, variant = "primary", size = "md", as = "button", isLoading }) => {
+	const Tag = as;
 	return (
-		<button
+		<Tag
 			className={clsx(
 				variant === "primary" && "border border-transparent bg-blue-700 text-white",
 				variant === "outline" && "border border-blue-700 bg-transparent text-blue-700",
@@ -11,7 +12,7 @@ const Button = ({ children, variant = "primary", size = "md", isLoading }) => {
 				size === "sm" && "px-2 py-1",
 				size === "md" && "px-4 py-2",
 				size === "lg" && "px-8 py-4",
-				"rounded-full transition-all hover:ring hover:ring-offset-1 disabled:opacity-50"
+				"inline-block cursor-pointer text-center transition-all hover:ring hover:ring-offset-1 disabled:opacity-50"
 			)}
 			disabled={isLoading}
 		>
@@ -23,7 +24,7 @@ const Button = ({ children, variant = "primary", size = "md", isLoading }) => {
 			) : (
 				children
 			)}
-		</button>
+		</Tag>
 	);
 };
 

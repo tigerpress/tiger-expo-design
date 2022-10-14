@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Heading from "../components/heading";
 
 export default function AboutPage() {
 	return (

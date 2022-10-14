@@ -140,8 +140,8 @@ export default function ProductPage({ product }) {
 									</label>
 								))}
 							</fieldset>
-							<Button isLoading={loading}>Submit</Button>
 							Price: {subtotal}
+							<Button isLoading={loading}>Add to Cart</Button>
 						</form>
 					</div>
 				</>

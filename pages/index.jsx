@@ -1,10 +1,6 @@
 import Link from "next/link";
-import {
-	HiChatBubbleBottomCenterText,
-	HiOutlineBolt,
-	HiOutlineGlobeAlt,
-	HiOutlineScale,
-} from "react-icons/hi";
+import { HiOutlineGlobeAlt } from "react-icons/hi";
+import Button from "../components/button";
 import Container from "../components/container";
 import ProductCard from "../components/product-card";
 import products from "./api/products.json";
@@ -14,25 +10,25 @@ const features = [
 		name: "Competitive exchange rates",
 		description:
 			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-		icon: "HiOutlineGlobeAlt",
+		icon: HiOutlineGlobeAlt,
 	},
 	{
 		name: "No hidden fees",
 		description:
 			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-		icon: "HiOutlineScale",
+		icon: HiOutlineGlobeAlt,
 	},
 	{
 		name: "Transfers are instant",
 		description:
 			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-		icon: "HiOutlineBolt",
+		icon: HiOutlineGlobeAlt,
 	},
 	{
 		name: "Mobile notifications",
 		description:
 			"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-		icon: "HiChatBubbleBottomCenterText",
+		icon: HiOutlineGlobeAlt,
 	},
 ];
 
@@ -43,16 +39,13 @@ export default function Home({ products }) {
 				<div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
 					<div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
 						<div className="sm:max-w-lg">
-							<h1 className="font text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-								Stand out in the crowd
+							<h1 className="font text-4xl font-bold tracking-tight text-brand-500 sm:text-6xl">
+								Set your brand apart from the crowd
 							</h1>
 							<p className="mt-4 text-xl text-gray-500">
-								Tiger Expo Design offers the widest range of portable display products, fabric
-								structures, modular exhibit solutions, display accessories and related graphics.
-								Tiger Expo Design offers an extensive selection of banner stands, portable signs,
-								light boxes, table throws, popup displays, outdoor displays and exhibit kits and
-								accessories! Tiger Expo Design is your one-stop-shop for all types of exhibit and
-								display solutions.
+								Tiger Expo Design offers an extensive selection of tradeshow displays, such as
+								banner stands, portable signs, light boxes, table throws, popup displays, outdoor
+								displays and exhibit kits and accessories!
 							</p>
 						</div>
 						<div>
@@ -123,12 +116,7 @@ export default function Home({ products }) {
 									</div>
 								</div>
 
-								<a
-									href="#"
-									className="inline-block rounded-md border border-transparent bg-orange-600 py-3 px-8 text-center font-medium text-white hover:bg-orange-700"
-								>
-									Increase Recognition
-								</a>
+								<Button as="a">Shop now</Button>
 							</div>
 						</div>
 					</div>
@@ -138,10 +126,9 @@ export default function Home({ products }) {
 			<div className="bg-white py-12">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="lg:text-center">
-						<h2 className="text-lg font-semibold text-orange-600">Transactions</h2>
-						<p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-							A better way to send money
-						</p>
+						<h2 className="mt-2 text-3xl font-bold uppercase leading-8 tracking-tight text-gray-900 sm:text-4xl">
+							The easiest way to buy your next tradeshow display.
+						</h2>
 						<p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
 							Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum
 							cupiditate veritatis in accusamus quisquam.
@@ -170,7 +157,7 @@ export default function Home({ products }) {
 
 			<Container>
 				{products && (
-					<section className="my-16">
+					<section className="my-16" id="products">
 						<h2 className="mb-8 text-3xl font-bold">Our products</h2>
 						<ul className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 							{products.map((product) => (
@@ -191,24 +178,16 @@ export default function Home({ products }) {
 				<div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">
 					<h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
 						<span className="block">Ready to dive in?</span>
-						<span className="block text-orange-600">Start your free trial today.</span>
+						<span className="block text-orange-600">
+							Buy online or reach out for a custom quote.
+						</span>
 					</h2>
 					<div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
 						<div className="inline-flex rounded-md shadow">
-							<a
-								href="#"
-								className="inline-flex items-center justify-center rounded-md border border-transparent bg-orange-600 px-5 py-3 text-base font-medium text-white hover:bg-orange-700"
-							>
-								Get started
-							</a>
+							<Button variant="outline">Get a quote</Button>
 						</div>
 						<div className="ml-3 inline-flex rounded-md shadow">
-							<a
-								href="#"
-								className="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-orange-600 hover:bg-orange-50"
-							>
-								Learn more
-							</a>
+							<Button>Shop now</Button>
 						</div>
 					</div>
 				</div>
