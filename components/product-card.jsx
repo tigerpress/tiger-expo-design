@@ -4,7 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 const ProductCard = ({ product }) => {
 	return (
 		<div className="group">
-			<div className="relative aspect-[4/3] bg-white shadow-lg">
+			<div className="relative aspect-[4/3] bg-white shadow-md">
 				<Image src={product.image} alt={product.name} fill className="p-8 mix-blend-multiply" />
 			</div>
 			<div className="ml-1">

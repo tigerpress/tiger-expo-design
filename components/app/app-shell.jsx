@@ -1,3 +1,4 @@
+import Footer from "./footer";
 import Header from "./header";
 
 export default function AppShell({ children }) {
@@ -5,6 +6,7 @@ export default function AppShell({ children }) {
 		<>
 			<Header />
 			<main>{children}</main>
+			<Footer />
 		</>
 	);
 }
