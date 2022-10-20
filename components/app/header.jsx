@@ -1,9 +1,22 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import * as Separator from "@radix-ui/react-separator";
+import clsx from "clsx";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { BiMenu } from "react-icons/bi";
 import products from "../../pages/api/products.json";
 import Container from "../container";
+
+const NavLink = ({ href, children }) => {
+	const router = useRouter();
+	const isSelected = router.asPath === href;
+
+	return (
+		<Link href={href}>
+			<a className={clsx(isSelected && "active text-radix-violet-11", "underlined")}>{children}</a>
+		</Link>
+	);
+};
 
 export default function Header() {
 	return (
@@ -19,19 +32,19 @@ export default function Header() {
 				<nav className="hidden lg:block">
 					<ul className="flex gap-8">
 						<li>
-							<Link href="/">Products</Link>
+							<NavLink href="/">Products</NavLink>
 						</li>
 						<li>
-							<Link href="/">Quote Request</Link>
+							<NavLink href="/quote">Quote Request</NavLink>
 						</li>
 						<li>
-							<Link href="/resources">Resources</Link>
+							<NavLink href="/resources">Resources</NavLink>
 						</li>
 						<li>
-							<Link href="/about">About</Link>
+							<NavLink href="/about">About</NavLink>
 						</li>
 						<li>
-							<Link href="/contact">Contact</Link>
+							<NavLink href="/contact">Contact</NavLink>
 						</li>
 					</ul>
 				</nav>
