@@ -1,6 +1,6 @@
 import Image from "next/future/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Button from "../../components/button";
 import Container from "../../components/container";
 import Select from "../../components/forms/select";

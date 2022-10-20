@@ -1,19 +1,23 @@
+import Button from "../components/button";
+
 export default function ContactPage() {
 	return (
-		<form action="">
-			<div>
-				<label htmlFor="">Your name</label>
+		<form action="" className="grid place-items-center py-9">
+			<label htmlFor="">
+				<span className="block">Your name</span>
 				<input type="text" />
-			</div>
-			<div>
-				<label htmlFor="">Your Email</label>
+			</label>
+			<label htmlFor="">
+				<span className="block">Your Email</span>
 				<input type="text" />
-			</div>
-			<div>
-				<label htmlFor="">Your Message</label>
+			</label>
+			<label htmlFor="">
+				<span className="block">Your Message</span>
 				<textarea />
-			</div>
-			<button>Send Message</button>
+			</label>
+			<span className="block">
+				<Button>Send Message</Button>
+			</span>
 		</form>
 	);
 }
