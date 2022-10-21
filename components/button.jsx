@@ -3,17 +3,26 @@ import Loader from "./loader";
 
 const Button = ({ children, variant = "primary", size = "md", as = "button", isLoading }) => {
 	const Tag = as;
+	const classes = {
+		variants: {
+			primary: "border border-transparent bg-radix-violet-9 text-white hover:bg-radix-violet-10",
+			outline:
+				"border-radix-violet-9 text-radix-violet-9 border bg-transparent hover:bg-radix-violet-3",
+			ghost: "text-radix-violet-9 border border-transparent bg-transparent hover:bg-radix-violet-3",
+		},
+		sizes: {
+			sm: "px-4 py-2",
+			md: "px-8 py-4",
+			lg: "px-12 py-6 text-lg",
+		},
+	};
+
 	return (
 		<Tag
 			className={clsx(
-				variant === "primary" &&
-					"border border-transparent bg-radix-violet-9 text-white hover:bg-radix-violet-10",
-				variant === "outline" && "border-blue-700 text-blue-700 border bg-transparent",
-				variant === "ghost" && "text-blue-700 border border-transparent bg-transparent",
-				size === "sm" && "px-2 py-1",
-				size === "md" && "px-4 py-2",
-				size === "lg" && "px-8 py-4",
-				"inline-block cursor-pointer text-center transition-all disabled:opacity-50"
+				classes.variants[variant],
+				classes.sizes[size],
+				"inline-block cursor-pointer text-center font-medium transition-all disabled:opacity-50"
 			)}
 			disabled={isLoading}
 		>

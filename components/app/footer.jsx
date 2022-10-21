@@ -1,4 +1,5 @@
 import Container from "../container";
+import Section from "../section";
 
 const linkList = [
 	{
@@ -79,9 +80,9 @@ const Footer = () => {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="bg-zinc-900 py-8 text-zinc-100">
+		<Section as="footer" className="">
 			<Container>
-				<div className="grid grid-cols-2 justify-items-center gap-8 lg:grid-cols-4">
+				<div className="justify-items-between grid grid-cols-2 gap-8 lg:grid-cols-4">
 					{linkList.map((category) => (
 						<div key={category.title}>
 							<h2 className="font-bold uppercase">{category.title}</h2>
@@ -99,7 +100,7 @@ const Footer = () => {
 				</div>
 				<p className="mt-8 border-t pt-4 text-center">&copy; {year} TigerExpoDesign</p>
 			</Container>
-		</footer>
+		</Section>
 	);
 };
 

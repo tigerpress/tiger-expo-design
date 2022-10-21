@@ -4,7 +4,12 @@ const Select = (props) => {
 	return (
 		<label htmlFor={name} onChange={onChange}>
 			<span className="block">{label}</span>
-			<select name={name} id={name} disabled={disabled}>
+			<select
+				name={name}
+				id={name}
+				disabled={disabled}
+				className="w-full overflow-hidden text-ellipsis"
+			>
 				{children}
 			</select>
 			{errors && <p>{errors}</p>}

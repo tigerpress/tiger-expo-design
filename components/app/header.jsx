@@ -20,7 +20,7 @@ const NavLink = ({ href, children }) => {
 
 export default function Header() {
 	return (
-		<header className="text-radix-gray-900 h-32 bg-radix-yellow-9 py-8 font-bold">
+		<header className="text-radix-gray-900 bg-radix-yellow-9 py-8 font-bold">
 			<Container className="flex items-center justify-between">
 				<Link href="/">
 					<a>
