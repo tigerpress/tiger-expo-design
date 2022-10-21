@@ -1,14 +1,20 @@
 import clsx from "clsx";
 import Loader from "./loader";
 
-const Button = ({ children, variant = "primary", size = "md", as = "button", isLoading }) => {
+const Button = ({
+	children,
+	variant = "primary",
+	size = "md",
+	as = "button",
+	isLoading,
+	loadingMessage,
+}) => {
 	const Tag = as;
 	const classes = {
 		variants: {
-			primary: "border border-transparent bg-radix-violet-9 text-white hover:bg-radix-violet-10",
-			outline:
-				"border-radix-violet-9 text-radix-violet-9 border bg-transparent hover:bg-radix-violet-3",
-			ghost: "text-radix-violet-9 border border-transparent bg-transparent hover:bg-radix-violet-3",
+			primary: "border border-transparent bg-violet-700 text-white hover:bg-violet-800",
+			outline: "border-violet-700 text-violet-700 border bg-transparent hover:bg-violet-100",
+			ghost: "text-violet-700 border border-transparent bg-transparent hover:bg-violet-100",
 		},
 		sizes: {
 			sm: "px-4 py-2",
@@ -29,7 +35,7 @@ const Button = ({ children, variant = "primary", size = "md", as = "button", isL
 			{isLoading ? (
 				<span>
 					<Loader />
-					loading...
+					{loadingMessage}...
 				</span>
 			) : (
 				children

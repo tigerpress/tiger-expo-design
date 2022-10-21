@@ -13,14 +13,14 @@ const NavLink = ({ href, children }) => {
 
 	return (
 		<Link href={href}>
-			<a className={clsx(isSelected && "active text-radix-violet-11", "underlined")}>{children}</a>
+			<a className={clsx(isSelected && "active text-indigo-600", "underlined")}>{children}</a>
 		</Link>
 	);
 };
 
 export default function Header() {
 	return (
-		<header className="text-radix-gray-900 bg-radix-yellow-9 py-8 font-bold">
+		<header className="bg-yellow-300 py-8 font-bold">
 			<Container className="flex items-center justify-between">
 				<Link href="/">
 					<a>

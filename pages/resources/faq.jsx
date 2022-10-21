@@ -1,3 +1,13 @@
+import Container from "../../components/container";
+import Section from "../../components/section";
+import Title from "../../components/title";
+
 export default function FaqPage() {
-	return <h1>FAQ</h1>;
+	return (
+		<Section>
+			<Container>
+				<Title level="h1">FAQ</Title>
+			</Container>
+		</Section>
+	);
 }

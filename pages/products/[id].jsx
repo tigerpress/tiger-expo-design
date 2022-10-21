@@ -1,5 +1,6 @@
 import Image from "next/future/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import Button from "../../components/button";
 import Container from "../../components/container";
@@ -7,6 +8,8 @@ import Select from "../../components/forms/select";
 import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
 import Title from "../../components/title";
+import { useLocalStorage } from "../../hooks/use-local-storage";
+import { currency } from "../../lib/utils";
 import products from "../api/products.json";
 
 const features = [
@@ -25,10 +28,12 @@ const features = [
 ];
 
 export default function ProductPage({ product }) {
+	const router = useRouter();
 	const [selectedGrade, setSelectedGrade] = useState(0);
 	const [selectedOption, setSelectedOption] = useState(0);
 	const [selectedUpgrades, setSelectedUpgrades] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [cart, setCart] = useLocalStorage("cart", null);
 
 	const options = product.configs[selectedGrade].options;
 	const upgrades = product.configs[selectedGrade].upgrades;
@@ -65,15 +70,13 @@ export default function ProductPage({ product }) {
 	};
 
 	const handleUpgrades = (e) => {
-		const isChecked = e.target.checked;
-
-		if (isChecked) {
+		if (e.target.checked) {
 			setSelectedUpgrades([
 				...selectedUpgrades,
 				upgrades.find((upgrade) => upgrade.id === e.target.value),
 			]);
 		}
-		if (!isChecked) {
+		if (!e.target.checked) {
 			setSelectedUpgrades(selectedUpgrades.filter((upgrade) => upgrade.id !== e.target.value));
 		}
 	};
@@ -82,23 +85,31 @@ export default function ProductPage({ product }) {
 		e.preventDefault();
 		setLoading(true);
 
-		const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-			method: "POST",
-			headers: {
-				authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-				"Content-Type": "application/json",
-				Accept: "application/json",
-			},
-			body: JSON.stringify(estimateData),
-		});
-		const data = await response.json();
-		console.log(data);
-		setLoading(false);
+		try {
+			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+				method: "POST",
+				headers: {
+					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify(estimateData),
+			});
+			setLoading(false);
+			console.log(response);
+
+			if (response.ok) {
+				setCart(currentConfig);
+				router.push("/checkout");
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (
 		<>
-			<Section>
+			<Section className="bg-white">
 				<Container>
 					<div className="grid gap-4 lg:grid-cols-2">
 						<div className="relative aspect-square">
@@ -139,8 +150,14 @@ export default function ProductPage({ product }) {
 									</label>
 								))}
 							</fieldset>
-							Price: {subtotal}
-							<Button isLoading={loading}>Add to Cart</Button>
+							<div className="flex items-center justify-between">
+								<span className="text-2xl font-bold text-indigo-600">
+									Subtotal: {currency.format(subtotal)}
+								</span>
+								<Button isLoading={loading} loadingMessage="submitting">
+									Proceed to Checkout
+								</Button>
+							</div>
 						</form>
 					</div>
 				</Container>
@@ -149,10 +166,10 @@ export default function ProductPage({ product }) {
 			<Section>
 				<Container>
 					<div>
-						<h2 className="text-gray-900 text-3xl font-bold tracking-tight sm:text-4xl">
+						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 							Technical Specifications
 						</h2>
-						<p className="text-gray-500 mt-4">
+						<p className="mt-4 text-gray-700">
 							The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards.
 							The powder coated steel divider separates active cards from new ones, or can be used
 							to archive important task lists.
@@ -160,9 +177,9 @@ export default function ProductPage({ product }) {
 
 						<dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
 							{features.map((feature) => (
-								<div key={feature.name} className="border-gray-200 border-t pt-4">
-									<dt className="text-gray-900 font-medium">{feature.name}</dt>
-									<dd className="text-gray-500 mt-2 text-sm">{feature.description}</dd>
+								<div key={feature.name} className="border-t border-gray-300 pt-4">
+									<dt className="font-medium">{feature.name}</dt>
+									<dd className="mt-2 text-sm text-gray-700">{feature.description}</dd>
 								</div>
 							))}
 						</dl>
@@ -171,7 +188,7 @@ export default function ProductPage({ product }) {
 			</Section>
 
 			{relatedProducts && (
-				<Section>
+				<Section className="bg-white">
 					<Container>
 						<h2 className="mb-8 text-3xl font-bold">Customers also viewed</h2>
 						<ul className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">

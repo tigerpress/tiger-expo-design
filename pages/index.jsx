@@ -38,7 +38,7 @@ const features = [
 export default function Home({ products }) {
 	return (
 		<>
-			<Section className="bg-radix-yellow-9 py-16 text-radix-violet-12">
+			<Section className="bg-yellow-300">
 				<Container>
 					<div className="grid items-center lg:grid-cols-12">
 						<div className="col-span-full max-w-prose lg:col-span-5 lg:col-start-1">
@@ -59,11 +59,11 @@ export default function Home({ products }) {
 				</Container>
 			</Section>
 
-			<Section className="bg-radix-gray-1">
+			<Section className="bg-gray-100">
 				<Container>
 					<div className="lg:text-center">
 						<Title level="h2">The easiest way to buy your next tradeshow display.</Title>
-						<p className="mt-4 text-xl text-radix-gray-11">
+						<p className="mt-4 text-xl text-gray-800">
 							Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum
 							cupiditate veritatis in accusamus quisquam.
 						</p>
@@ -73,7 +73,7 @@ export default function Home({ products }) {
 							{features.map((feature) => (
 								<div key={feature.name} className="group relative">
 									<dt>
-										<div className="absolute flex h-12 w-12 items-center justify-center bg-radix-yellow-4 text-black group-hover:bg-radix-yellow-5">
+										<div className="absolute flex h-12 w-12 items-center justify-center rounded-full bg-yellow-400 text-black transition-colors group-hover:bg-yellow-300">
 											<feature.icon className="h-6 w-6" aria-hidden="true" />
 										</div>
 										<p className="ml-16 text-lg font-medium leading-6">{feature.name}</p>
@@ -109,9 +109,7 @@ export default function Home({ products }) {
 				<Container>
 					<Title level="h2">
 						<span className="block">Ready to dive in?</span>
-						<span className="block text-radix-yellow-11">
-							Buy online or reach out for a custom quote.
-						</span>
+						<span className="block">Buy online or reach out for a custom quote.</span>
 					</Title>
 					<div className="mt-8 flex items-center justify-center gap-8">
 						<Button variant="outline">Get a quote</Button>

@@ -1,3 +1,13 @@
+import Container from "../components/container";
+import Section from "../components/section";
+import Title from "../components/title";
+
 export default function OrderConfirmationPage() {
-	return <h1>Order Confirmation</h1>;
+	return (
+		<Section>
+			<Container>
+				<Title level="h1">Order Confirmation</Title>
+			</Container>
+		</Section>
+	);
 }

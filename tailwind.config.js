@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
@@ -5,54 +7,9 @@ module.exports = {
 		fontFamily: {
 			sans: ["Raleway", "sans-serif"],
 		},
-		colors: {
-			transparent: "transparent",
-			current: "currentColor",
-			white: "#ffffff",
-			black: "#000000",
-			radix: {
-				yellow: {
-					1: "#fdfdf9",
-					2: "#fffce8",
-					3: "#fffbd1",
-					4: "#fff8bb",
-					5: "#fef2a4",
-					6: "#f9e68c",
-					7: "#efd36c",
-					8: "#ebbc00",
-					9: "#f5d90a",
-					10: "#f7ce00",
-					11: "#946800",
-					12: "#35290f",
-				},
-				violet: {
-					1: "#fdfcfe",
-					2: "#fbfaff",
-					3: "#f5f2ff",
-					4: "#ede9fe",
-					5: "#e4defc",
-					6: "#d7cff9",
-					7: "#c4b8f3",
-					8: "#aa99ec",
-					9: "#6e56cf",
-					10: "#644fc1",
-					11: "#5746af",
-					12: "#20134b",
-				},
-				gray: {
-					1: "#fdfdfc",
-					2: "#f9f9f8",
-					3: "#f3f3f2",
-					4: "#eeeeec",
-					5: "#e9e9e6",
-					6: "#e3e3e0",
-					7: "#dbdbd7",
-					8: "#c8c7c1",
-					9: "#90908c",
-					10: "#868682",
-					11: "#706f6c",
-					12: "#1b1b18",
-				},
+		extend: {
+			colors: {
+				gray: colors.zinc,
 			},
 		},
 	},
