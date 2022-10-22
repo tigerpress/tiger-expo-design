@@ -12,7 +12,7 @@
 		"@fontsource/raleway": "^4.5.10",
 		"@headlessui/react": "^1.7.2",
 		"@radix-ui/react-navigation-menu": "^1.0.0",
-		"@radix-ui/react-separator": "^1.0.0",
+		"@radix-ui/react-separator": "^1.0.1",
 		"clsx": "^1.2.1",
 		"next": "12.3.1",
 		"react": "18.2.0",
@@ -23,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/typography": "^0.5.7",
 		"autoprefixer": "^10.4.12",
 		"eslint": "8.23.1",
 		"eslint-config-next": "12.3.1",

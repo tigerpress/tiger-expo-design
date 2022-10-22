@@ -40,7 +40,7 @@ export default function Home({ products }) {
 		<>
 			<Section className="bg-yellow-300">
 				<Container>
-					<div className="grid items-center lg:grid-cols-12">
+					<div className="grid items-center gap-y-12 lg:grid-cols-12 lg:gap-y-0">
 						<div className="col-span-full max-w-prose lg:col-span-5 lg:col-start-1">
 							<Title level="h1">Set your brand apart from the crowd</Title>
 							<p className="mt-4 mb-8 text-xl">

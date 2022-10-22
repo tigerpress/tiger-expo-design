@@ -17,9 +17,9 @@ const Button = ({
 			ghost: "text-violet-700 border border-transparent bg-transparent hover:bg-violet-100",
 		},
 		sizes: {
-			sm: "px-4 py-2",
-			md: "px-8 py-4",
-			lg: "px-12 py-6 text-lg",
+			sm: "px-3 py-1",
+			md: "px-6 py-3",
+			lg: "px-9 py-6",
 		},
 	};
 
