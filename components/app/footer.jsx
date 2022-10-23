@@ -23,16 +23,12 @@ const linkList = [
 		title: "Help Center",
 		links: [
 			{
-				name: "Resources",
-				href: "/resources",
-			},
-			{
 				name: "Templates",
-				href: "/templates",
+				href: "/resources/templates",
 			},
 			{
 				name: "FAQ",
-				href: "/faq",
+				href: "/resources/faq",
 			},
 			{
 				name: "Contact Us",
@@ -44,12 +40,8 @@ const linkList = [
 		title: "Legal",
 		links: [
 			{
-				name: "Privacy Policy",
-				href: "/privacy-policy",
-			},
-			{
 				name: "Terms & Conditions",
-				href: "/terms-conditions",
+				href: "/resources/terms",
 			},
 		],
 	},
@@ -80,7 +72,7 @@ const Footer = () => {
 	const year = new Date().getFullYear();
 
 	return (
-		<Section as="footer" className="">
+		<Section as="footer">
 			<Container>
 				<div className="justify-items-between grid grid-cols-2 gap-8 lg:grid-cols-4">
 					{linkList.map((category) => (

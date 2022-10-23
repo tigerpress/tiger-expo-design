@@ -8,22 +8,22 @@ export default function ContactPage() {
 		<Section>
 			<Container>
 				<Title level="h1">Contact us</Title>
-				<form action="" className="grid place-items-center py-9">
+				<form className="mt-9">
 					<label htmlFor="">
-						<span className="block">Your name</span>
-						<input type="text" />
+						<span className="mt-3 mb-1 block">Your name</span>
+						<input type="text" className="w-full" />
 					</label>
 					<label htmlFor="">
-						<span className="block">Your Email</span>
-						<input type="text" />
+						<span className="mt-3 mb-1 block">Your Email</span>
+						<input type="text" className="w-full" />
 					</label>
 					<label htmlFor="">
-						<span className="block">Your Message</span>
-						<textarea />
+						<span className="mt-3 mb-1 block">Your Message</span>
+						<textarea className="w-full" rows="12" />
 					</label>
-					<span className="block">
+					<div className="mt-9">
 						<Button>Send Message</Button>
-					</span>
+					</div>
 				</form>
 			</Container>
 		</Section>

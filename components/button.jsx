@@ -12,9 +12,9 @@ const Button = ({
 	const Tag = as;
 	const classes = {
 		variants: {
-			primary: "border border-transparent bg-violet-700 text-white hover:bg-violet-800",
-			outline: "border-violet-700 text-violet-700 border bg-transparent hover:bg-violet-100",
-			ghost: "text-violet-700 border border-transparent bg-transparent hover:bg-violet-100",
+			primary: "border border-transparent bg-indigo-700 text-white hover:bg-indigo-800",
+			outline: "border-indigo-700 text-indigo-700 border bg-transparent hover:bg-indigo-100",
+			ghost: "text-indigo-700 border border-transparent bg-transparent hover:bg-indigo-100",
 		},
 		sizes: {
 			sm: "px-3 py-1",

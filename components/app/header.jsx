@@ -32,7 +32,7 @@ export default function Header() {
 				<nav className="hidden lg:block">
 					<ul className="flex gap-8">
 						<li>
-							<NavLink href="/">Products</NavLink>
+							<NavLink href="/products">Products</NavLink>
 						</li>
 						<li>
 							<NavLink href="/quote">Quote Request</NavLink>

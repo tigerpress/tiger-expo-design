@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const List = ({ style, items, indent, decoration }) => {
+const List = ({ style = "ul", items = [], indent = true, decoration }) => {
 	const Tag = style;
 
 	return (
