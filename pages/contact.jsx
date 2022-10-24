@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Button from "../components/button";
 import Container from "../components/container";
+import Input from "../components/forms/input";
+import TextArea from "../components/forms/textarea";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
@@ -9,18 +12,14 @@ export default function ContactPage() {
 	const [submitting, setSubmitting] = useState(false);
 	const [confirmed, setConfirmed] = useState(false);
 	const [error, setError] = useState("");
-	const [message, setMessage] = useState({
-		name: "",
-		email: "",
-		body: "",
-	});
 
-	const handleChange = (e) => {
-		setMessage({ ...message, [e.target.name]: e.target.value });
-	};
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const onSubmit = async (data) => {
 		setSubmitting(true);
 
 		try {
@@ -31,7 +30,7 @@ export default function ContactPage() {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 				},
-				body: JSON.stringify(message),
+				body: JSON.stringify(data),
 			});
 
 			setSubmitting(false);
@@ -52,48 +51,17 @@ export default function ContactPage() {
 			<Container>
 				<Title level="h1">Contact us</Title>
 
-				{!confirmed && !error && (
-					<form className="mt-9" onSubmit={handleSubmit}>
-						<label htmlFor="name">
-							<span className="mt-3 mb-1 block">Your name</span>
-							<input
-								type="text"
-								name="name"
-								className="w-full"
-								value={message.name}
-								onChange={handleChange}
-							/>
-						</label>
+				<form className="mt-9" onSubmit={handleSubmit(onSubmit)}>
+					<Input name="name" label="Your name" {...register("name", { required: true })} />
+					<Input name="email" label="Your email" {...register("email", { required: true })} />
+					<TextArea name="body" label="Message" {...register("body", { required: true })} />
 
-						<label htmlFor="email">
-							<span className="mt-3 mb-1 block">Your Email</span>
-							<input
-								type="email"
-								name="email"
-								className="w-full"
-								value={message.email}
-								onChange={handleChange}
-							/>
-						</label>
-
-						<label htmlFor="body">
-							<span class="mt-3 mb-1 block">Your Message</span>
-							<textarea
-								name="body"
-								className="w-full"
-								rows="12"
-								value={message.body}
-								onChange={handleChange}
-							/>
-						</label>
-
-						<div className="mt-9">
-							<Button isLoading={submitting} loadingMessage="submitting">
-								Send Message
-							</Button>
-						</div>
-					</form>
-				)}
+					<div className="mt-9">
+						<Button isLoading={submitting} loadingMessage="Sending your message">
+							Send Message
+						</Button>
+					</div>
+				</form>
 
 				{confirmed && <Paragraph>Your message was sent!</Paragraph>}
 

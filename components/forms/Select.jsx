@@ -1,20 +1,22 @@
-const Select = (props) => {
-	const { label, name, onChange, disabled = false, errors, children } = props;
+import { forwardRef } from "react";
 
+const Select = forwardRef(({ name, label, children, ...rest }, ref) => {
 	return (
-		<label htmlFor={name} onChange={onChange}>
-			<span className="block">{label}</span>
+		<label className="mt-3 block">
+			<span className="mb-1 block font-medium">{label}</span>
 			<select
 				name={name}
+				ref={ref}
 				id={name}
-				disabled={disabled}
+				{...rest}
 				className="w-full overflow-hidden text-ellipsis"
 			>
 				{children}
 			</select>
-			{errors && <p>{errors}</p>}
 		</label>
 	);
-};
+});
+
+Select.displayName = "Select";
 
 export default Select;

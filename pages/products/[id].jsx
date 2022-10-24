@@ -1,9 +1,11 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
 import Button from "../../components/button";
 import Container from "../../components/container";
+import Checkbox from "../../components/forms/checkbox";
 import Select from "../../components/forms/select";
 import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
@@ -30,37 +32,26 @@ const features = [
 export default function ProductPage({ product }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
-	const [cart, setCart] = useLocalStorage("cart", null);
-	const [{ options, upgrades }, setSelectedGrade] = useState(product.configs[0]);
-	const [selectedOption, setSelectedOption] = useState(options[0]);
-	const [selectedUpgrades, setSelectedUpgrades] = useState([]);
+	const {
+		register,
+		handleSubmit,
+		watch,
+		getValues,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			grade: product.configs[0].id,
+			option: product.configs[0].options[0],
+			upgrades: [],
+		},
+	});
 
-	const handleGradeChange = (e) => {
-		setSelectedGrade(product.configs.find((config) => config.id === e.target.value));
-		setSelectedOption(options[0]);
-		setSelectedUpgrades([]);
-	};
+	const watchValues = watch();
+	const configData = getValues();
 
-	const handleOptionChange = (e) =>
-		setSelectedOption(options.find((option) => option.id === e.target.value));
+	console.log(watchValues);
 
-	const handleUpgradeChange = (e) => {
-		if (e.target.checked) {
-			setSelectedUpgrades([
-				...selectedUpgrades,
-				upgrades.find((upgrade) => upgrade.id === e.target.value),
-			]);
-		}
-
-		if (!e.target.checked) {
-			setSelectedUpgrades(selectedUpgrades.filter((upgrade) => upgrade.id !== e.target.value));
-		}
-	};
-
-	const price =
-		selectedUpgrades?.map((upgrade) => upgrade.price).reduce((a, c) => a + parseFloat(c), 0) +
-		parseFloat(selectedOption.price);
-
+	// const [cart, setCart] = useLocalStorage("cart", null);
 	// const estimateData = {
 	// 	pr: 100407,
 	// 	lotsno: 1,
@@ -81,31 +72,33 @@ export default function ProductPage({ product }) {
 	// 	.replace(/[,\[\]]/g, "\n"),
 	// };
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setLoading(true);
+	// const onSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	setLoading(true);
 
-		try {
-			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-				method: "POST",
-				headers: {
-					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-				body: JSON.stringify(estimateData),
-			});
-			setLoading(false);
-			console.log(response);
+	// 	try {
+	// 		const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+	// 			method: "POST",
+	// 			headers: {
+	// 				authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+	// 				"Content-Type": "application/json",
+	// 				Accept: "application/json",
+	// 			},
+	// 			body: JSON.stringify(estimateData),
+	// 		});
+	// 		setLoading(false);
+	// 		console.log(response);
 
-			if (response.ok) {
-				setCart(currentConfig);
-				router.push("/checkout");
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	};
+	// 		if (response.ok) {
+	// 			setCart(currentConfig);
+	// 			router.push("/checkout");
+	// 		}
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
+
+	const onSubmit = (data) => console.log(data);
 
 	// filter out the current product and render the other items, up to a max of 4 to fit UI
 	const relatedProducts = products
@@ -120,46 +113,50 @@ export default function ProductPage({ product }) {
 						<div className="relative aspect-square">
 							<Image src={product.image} alt={product.name} fill />
 						</div>
-						<form className="grid gap-4" onSubmit={handleSubmit}>
+						<form onSubmit={handleSubmit(onSubmit)}>
 							<Title level="h1">{product.name}</Title>
-							<Select label="Grade" name="grade" onChange={handleGradeChange}>
+
+							<Select name="grade" label="Grade" {...register("grade")}>
 								{product.configs.map((config) => (
 									<option key={config.id} value={config.id}>
 										{config.grade}
 									</option>
 								))}
 							</Select>
-							<Select label="Option" name="option" onChange={handleOptionChange}>
-								{options.map((option) => (
-									<option key={option.id} value={option.id}>
-										{option.description}
-									</option>
-								))}
+
+							<Select name="option" label="Option" {...register("option")}>
+								{product.configs
+									.find((config) => config.id === watchValues.grade)
+									?.options.map((option) => (
+										<option key={option.id} value={option.id}>
+											{option.description}
+										</option>
+									))}
 							</Select>
-							<fieldset>
-								<legend>Addon Upgrades</legend>
-								{upgrades.map((upgrade) => (
-									<label htmlFor={upgrade.id} key={upgrade.id} className="block">
-										<input
-											type="checkbox"
-											name={upgrade.id}
-											id={upgrade.id}
+
+							<fieldset className="mt-3">
+								<legend className="font-medium">Addon Upgrades</legend>
+								{product.configs
+									.find((config) => config.id === watchValues.grade)
+									?.upgrades.map((upgrade) => (
+										<Checkbox
+											key={upgrade.id}
+											name={"upgrades"}
 											value={upgrade.id}
-											onChange={handleUpgradeChange}
+											label={upgrade.description}
+											{...register("upgrades", { shouldUnregister: true })}
 										/>
-										<span className="ml-2">{upgrade.description}</span>
-									</label>
-								))}
+									))}
 							</fieldset>
+
 							<div className="flex items-center justify-between">
-								<span className="text-2xl font-bold text-indigo-600">
-									Total Cost: {currency.format(price)}
-								</span>
+								<span className="text-2xl font-bold text-indigo-600"></span>
 								<Button isLoading={loading} loadingMessage="submitting">
 									Proceed to Checkout
 								</Button>
 							</div>
 						</form>
+						<div>{watch("grade", product.configs[0].id)}</div>
 					</div>
 				</Container>
 			</Section>
