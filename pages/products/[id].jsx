@@ -32,12 +32,13 @@ const features = [
 export default function ProductPage({ product }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const [cart, setCart] = useLocalStorage("cart", null);
 	const {
 		register,
 		handleSubmit,
 		watch,
 		getValues,
-		unregister,
+		setValue,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
@@ -45,68 +46,69 @@ export default function ProductPage({ product }) {
 			option: product.configs[0].options[0].id,
 			upgrades: [],
 		},
-		mode: "all",
-		shouldUnregister: true
 	});
 
 	const watchValues = watch();
-	
+	const formData = getValues();
+
+	const grade = product.configs.find(config => config.id === formData.grade)
+	const config = {
+		option: grade.options.find(option => option.id === formData.option),
+		upgrades: grade.upgrades.filter(upgrade => formData.upgrades.includes(upgrade.id))
+	}
+	const price = parseFloat(config.option?.price) + config.upgrades?.reduce((a,c) => a + parseFloat(c.price), 0)
+
 	useEffect(() => {
-		unregister('upgrades')
-	}, [unregister, watchValues.grade])
+		setValue('option', product.configs.find(config => config.id === watchValues.grade).options[0].id)
+		setValue('upgrades', [])
+	}, [watchValues.grade])
 
-	const configData = getValues();
 
-	console.log(watchValues);
 
-	// const [cart, setCart] = useLocalStorage("cart", null);
-	// const estimateData = {
-	// 	pr: 100407,
-	// 	lotsno: 1,
-	// 	esPt: 1,
-	// 	"project-title": "Tradeshow Booth",
-	// 	finishedsizeheight: product.height,
-	// 	finishedsizewidth: product.width,
-	// 	outside: true,
-	// 	static: true,
-	// 	quantity1: "1",
-	// 	buyout: price,
-	// 	priceForced: price,
-	// 	buyoutquantity: 1,
-	// 	buyoutvendorname: "",
-	// 	vendorQuote: "web",
-	// buyoutdescription: JSON.stringify(currentConfig)
-	// 	.replace(/[\{\}\"]/g, "")
-	// 	.replace(/[,\[\]]/g, "\n"),
-	// };
+	const estimateData = {
+		pr: 100407,
+		lotsno: 1,
+		esPt: 1,
+		"project-title": "Tradeshow Booth",
+		finishedsizeheight: product.height,
+		finishedsizewidth: product.width,
+		outside: true,
+		static: true,
+		quantity1: "1",
+		buyout: price,
+		priceForced: price,
+		buyoutquantity: 1,
+		buyoutvendorname: "",
+		vendorQuote: "web",
+	buyoutdescription: JSON.stringify(config)
+		.replace(/[\{\}\"]/g, "")
+		.replace(/[,\[\]]/g, "\n"),
+	};
 
-	// const onSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	setLoading(true);
+	const onSubmit = async (e) => {
+		setLoading(true);
 
-	// 	try {
-	// 		const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-	// 			method: "POST",
-	// 			headers: {
-	// 				authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-	// 				"Content-Type": "application/json",
-	// 				Accept: "application/json",
-	// 			},
-	// 			body: JSON.stringify(estimateData),
-	// 		});
-	// 		setLoading(false);
-	// 		console.log(response);
+		try {
+			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+				method: "POST",
+				headers: {
+					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify(estimateData),
+			});
+			setLoading(false);
+			console.log(response);
 
-	// 		if (response.ok) {
-	// 			setCart(currentConfig);
-	// 			router.push("/checkout");
-	// 		}
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
-
-	const onSubmit = (data) => console.log(data);
+			if (response.ok) {
+				setCart(config);
+				router.push("/checkout");
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	// filter out the current product and render the other items, up to a max of 4 to fit UI
 	const relatedProducts = products
@@ -158,13 +160,12 @@ export default function ProductPage({ product }) {
 							</fieldset>
 
 							<div className="flex items-center justify-between">
-								<span className="text-2xl font-bold text-indigo-600"></span>
+								<span className="text-2xl font-bold text-indigo-600">{currency.format(price)}</span>
 								<Button isLoading={loading} loadingMessage="submitting">
 									Proceed to Checkout
 								</Button>
 							</div>
 						</form>
-						<div>{watch("grade", product.configs[0].id)}</div>
 					</div>
 				</Container>
 			</Section>

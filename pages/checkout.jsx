@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import Button from "../components/button";
 import Container from "../components/container";
+import Checkbox from '../components/forms/checkbox';
+import Input from '../components/forms/input';
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
 export default function CheckoutPage() {
+	const {register, formState: {errors}} = useForm()
 	const [cart, setCart] = useState();
 
 	useEffect(() => {
@@ -35,42 +39,16 @@ export default function CheckoutPage() {
 							<Title level="h2">Contact Information</Title>
 							<form action="">
 								<div className="flex gap-4">
-									<label htmlFor="first-name">
-										<span className="mt-3 mb-1 block">First Name</span>
-										<input type="text" name="first-name" className="w-full" />
-									</label>
-									<label htmlFor="last-name">
-										<span className="mt-3 mb-1 block">Last Name</span>
-										<input type="text" name="last-name" className="w-full" />
-									</label>
+									<Input name="firstName" label="First Name" {...register('firstName')}/>
+									<Input name="lastName" label="Last Name" {...register('lastName')}/>
 								</div>
-								<label htmlFor="email">
-									<span className="mt-3 mb-1 block">Email Address</span>
-									<input type="email" name="email" className="w-full" />
-								</label>
-								<label htmlFor="address">
-									<span className="mt-3 mb-1 block">Address</span>
-									<input type="email" name="address" className="w-full" />
-								</label>
-								<label htmlFor="address">
-									<span className="mt-3 mb-1 block">City</span>
-									<input type="text" name="address" className="w-full" />
-								</label>
+								<Input type="email" name="email" label="email" {...register('email')}/>
+								<Input name="address1" label="Address 1" {...register('address1')}/>
+								<Input name="address2" label="Address 2" {...register('address2')}/>
+								<Input name="city" label="City" {...register('city')}/>
 								<div className="flex gap-4">
-									<label htmlFor="state">
-										<span className="mt-3 mb-1 block">State</span>
-										<input type="text" name="state" className="w-full" />
-									</label>
-									<label htmlFor="zip">
-										<span className="mt-3 mb-1 block">Zip Code</span>
-										<input type="text" name="zip" className="w-full" />
-									</label>
-								</div>
-								<div className="mt-3">
-									<label htmlFor="zip">
-										<input type="checkbox" name="zip" />
-										<span className="mb-1 ml-3">Shipping same as billing?</span>
-									</label>
+									<Input name="state" label="State" {...register('state')}/>
+									<Input name="zip" label="Zip" {...register('zip')}/>
 								</div>
 							</form>
 						</div>
@@ -84,11 +62,11 @@ export default function CheckoutPage() {
 										<th className="p-2 pl-8">Price</th>
 									</tr>
 									<tr className="even:bg-gray-200">
-										<td className="p-2 pl-8">{cart.id}</td>
-										<td className="p-2 pl-8">{cart.description}</td>
-										<td className="p-2 pl-8">{cart.price}</td>
+										<td className="p-2 pl-8">{cart.option.id}</td>
+										<td className="p-2 pl-8">{cart.option.description}</td>
+										<td className="p-2 pl-8">{cart.option.price}</td>
 									</tr>
-									{cart.selectedUpgrades?.map((upgrade) => {
+									{cart.upgrades?.map((upgrade) => {
 										return (
 											<tr key={upgrade.id} className="even:bg-gray-200">
 												<td className="p-2 pl-8">{upgrade.id}</td>
