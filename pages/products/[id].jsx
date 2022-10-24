@@ -37,16 +37,24 @@ export default function ProductPage({ product }) {
 		handleSubmit,
 		watch,
 		getValues,
+		unregister,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
 			grade: product.configs[0].id,
-			option: product.configs[0].options[0],
+			option: product.configs[0].options[0].id,
 			upgrades: [],
 		},
+		mode: "all",
+		shouldUnregister: true
 	});
 
 	const watchValues = watch();
+	
+	useEffect(() => {
+		unregister('upgrades')
+	}, [unregister, watchValues.grade])
+
 	const configData = getValues();
 
 	console.log(watchValues);
@@ -138,13 +146,13 @@ export default function ProductPage({ product }) {
 								<legend className="font-medium">Addon Upgrades</legend>
 								{product.configs
 									.find((config) => config.id === watchValues.grade)
-									?.upgrades.map((upgrade) => (
+									?.upgrades.map((upgrade, i) => (
 										<Checkbox
 											key={upgrade.id}
-											name={"upgrades"}
+											name={'upgrades'}
 											value={upgrade.id}
 											label={upgrade.description}
-											{...register("upgrades", { shouldUnregister: true })}
+											{...register('upgrades')}
 										/>
 									))}
 							</fieldset>
