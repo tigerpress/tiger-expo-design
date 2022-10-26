@@ -53,9 +53,11 @@ export default function Home({ products }) {
 								banner stands, portable signs, light boxes, table throws, popup displays, outdoor
 								displays and exhibit kits and accessories!
 							</p>
-							<Button as="a" size="md">
-								Shop now
-							</Button>
+							<Link href="/products" passHref>
+								<Button size="md" as="a">
+									Shop now
+								</Button>
+							</Link>
 						</div>
 						<div className="col-span-full row-start-1 lg:col-span-7 lg:col-start-6">
 							<img src="hero-img.webp" />
@@ -117,17 +119,21 @@ export default function Home({ products }) {
 						<div className="col-span-full md:col-span-6 lg:col-span-7 lg:col-start-1 lg:row-start-1">
 							<img src="crowd.webp" />
 						</div>
-						<div className="col-span-full bg-white p-12 md:col-span-6 lg:col-start-7 lg:row-start-1">
+						<div className="col-span-full bg-white p-12 md:col-span-6 md:shadow-lg lg:col-start-7 lg:row-start-1">
 							<Title level="h2">Do we have you convinced?</Title>
 							<p className="mt-4 mb-8 text-xl">
 								Whether you&apos;re ready to buy now or just want to chat about your project,
 								we&apos;re here to help.
 							</p>
 							<div className="flex gap-4">
-								<Button as="a" variant="outline">
-									Shop now
-								</Button>
-								<Button as="a">Contact us</Button>
+								<Link href="/products" passHref>
+									<Button as="a">Shop now</Button>
+								</Link>
+								<Link href="/products" passHref>
+									<Button as="a" variant="outline">
+										Contact us
+									</Button>
+								</Link>
 							</div>
 						</div>
 					</div>

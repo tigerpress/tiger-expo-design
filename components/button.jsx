@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import { useState } from "react";
+import { HiOutlineCheckCircle } from "react-icons/hi";
 import Loader from "./loader";
 
 const Button = ({
@@ -7,9 +9,14 @@ const Button = ({
 	size = "md",
 	as = "button",
 	isLoading,
-	loadingMessage,
+	isError,
+	isSuccess,
+	href,
+	onClick,
+	pill,
 }) => {
 	const Tag = as;
+
 	const classes = {
 		variants: {
 			primary: "border border-transparent bg-indigo-700 text-white hover:bg-indigo-800",
@@ -21,6 +28,11 @@ const Button = ({
 			md: "px-6 py-3",
 			lg: "px-9 py-6",
 		},
+		states: {
+			loading: "bg-yellow-700 hover:bg-yellow-700",
+			error: "bg-red-500 hover:bg-bg-red-500",
+			success: "bg-indigo-400 hover:bg-bg-indigo-400",
+		},
 	};
 
 	return (
@@ -28,15 +40,31 @@ const Button = ({
 			className={clsx(
 				classes.variants[variant],
 				classes.sizes[size],
-				"inline-block cursor-pointer text-center font-medium transition-all disabled:opacity-50"
+				isError && classes.states.error,
+				isLoading && classes.states.loading,
+				isSuccess && classes.states.success,
+				pill && "rounded-full",
+				"inline-block cursor-pointer text-center font-medium transition-all disabled:cursor-not-allowed"
 			)}
-			disabled={isLoading}
+			{...(as === "a" ? (href = { href }) : null)}
+			disabled={isLoading || isError}
+			onClick={onClick}
 		>
-			{isLoading ? (
-				<span>
-					<Loader />
-					{loadingMessage}...
-				</span>
+			{isError ? (
+				<div className="flex items-center gap-2">
+					<Loader className="h-6 w-6" />
+					An error occurred...
+				</div>
+			) : isLoading ? (
+				<div className="flex items-center gap-2">
+					<Loader className="h-6 w-6" />
+					Loading...
+				</div>
+			) : isSuccess ? (
+				<div className="flex items-center gap-2">
+					<HiOutlineCheckCircle className="h-6 w-6" />
+					Success!
+				</div>
 			) : (
 				children
 			)}

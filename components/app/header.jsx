@@ -4,6 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BiMenu } from "react-icons/bi";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 import products from "../../pages/api/products.json";
 import Container from "../container";
 
@@ -30,7 +31,14 @@ export default function Header() {
 
 				{/* DESKTOP MENU */}
 				<nav className="hidden lg:block">
-					<ul className="flex gap-8">
+					<ul className="flex items-center gap-8">
+						<li>
+							<Link href="/checkout">
+								<a className="flex items-center gap-2 rounded-full bg-indigo-700 p-2 text-white transition-colors hover:bg-indigo-600">
+									<HiOutlineShoppingCart className="inline text-xl" />
+								</a>
+							</Link>
+						</li>
 						<li>
 							<NavLink href="/products">Products</NavLink>
 						</li>
@@ -88,6 +96,9 @@ export default function Header() {
 									</Link>
 									<Link href="/contact" passHref>
 										<NavigationMenu.Link>Contact</NavigationMenu.Link>
+									</Link>
+									<Link href="/checkout" passHref>
+										<NavigationMenu.Link>Cart</NavigationMenu.Link>
 									</Link>
 								</NavigationMenu.Content>
 							</NavigationMenu.Item>

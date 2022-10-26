@@ -4,9 +4,9 @@ import Button from "../components/button";
 import Container from "../components/container";
 import Checkbox from "../components/forms/checkbox";
 import Input from "../components/forms/input";
+import Paragraph from "../components/paragraph";
 import Section from "../components/section";
-import Paragraph from "../components/typography/paragraph";
-import Title from "../components/typography/title";
+import Title from "../components/title";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
 export default function CheckoutPage() {

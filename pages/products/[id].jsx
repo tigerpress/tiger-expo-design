@@ -6,6 +6,7 @@ import { useForm, useWatch } from "react-hook-form";
 import Button from "../../components/button";
 import Container from "../../components/container";
 import Checkbox from "../../components/forms/checkbox";
+import Input from "../../components/forms/input";
 import Select from "../../components/forms/select";
 import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
@@ -32,6 +33,7 @@ const features = [
 export default function ProductPage({ product }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [cart, setCart] = useLocalStorage("cart", null);
 	const {
 		register,
@@ -45,25 +47,32 @@ export default function ProductPage({ product }) {
 			grade: product.configs[0].id,
 			option: product.configs[0].options[0].id,
 			upgrades: [],
+			quantity: 1,
 		},
 	});
 
 	const watchValues = watch();
 	const formData = getValues();
 
-	const grade = product.configs.find(config => config.id === formData.grade)
+	const grade = product.configs.find((config) => config.id === formData.grade);
 	const config = {
-		option: grade.options.find(option => option.id === formData.option),
-		upgrades: grade.upgrades.filter(upgrade => formData.upgrades.includes(upgrade.id))
-	}
-	const price = parseFloat(config.option?.price) + config.upgrades?.reduce((a,c) => a + parseFloat(c.price), 0)
+		option: grade.options.find((option) => option.id === formData.option),
+		upgrades: grade.upgrades.filter((upgrade) => formData.upgrades.includes(upgrade.id)),
+		quantity: formData.quantity,
+	};
+	const price =
+		parseFloat(config.option?.price) +
+		config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0) * config.quantity;
 
 	useEffect(() => {
-		setValue('option', product.configs.find(config => config.id === watchValues.grade).options[0].id)
-		setValue('upgrades', [])
-	}, [watchValues.grade])
+		setValue(
+			"option",
+			product.configs.find((config) => config.id === watchValues.grade).options[0].id
+		);
+		setValue("upgrades", []);
+	}, [watchValues.grade]);
 
-
+	console.log(config);
 
 	const estimateData = {
 		pr: 100407,
@@ -80,9 +89,9 @@ export default function ProductPage({ product }) {
 		buyoutquantity: 1,
 		buyoutvendorname: "",
 		vendorQuote: "web",
-	buyoutdescription: JSON.stringify(config)
-		.replace(/[\{\}\"]/g, "")
-		.replace(/[,\[\]]/g, "\n"),
+		buyoutdescription: JSON.stringify(config)
+			.replace(/[\{\}\"]/g, "")
+			.replace(/[,\[\]]/g, "\n"),
 	};
 
 	const onSubmit = async (e) => {
@@ -102,6 +111,7 @@ export default function ProductPage({ product }) {
 			console.log(response);
 
 			if (response.ok) {
+				setSuccess(true);
 				setCart(config);
 				router.push("/checkout");
 			}
@@ -124,7 +134,9 @@ export default function ProductPage({ product }) {
 							<Image src={product.image} alt={product.name} fill />
 						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<Title level="h1">{product.name}</Title>
+							<Title level="h1" className="mb-12">
+								{product.name}
+							</Title>
 
 							<Select name="grade" label="Grade" {...register("grade")}>
 								{product.configs.map((config) => (
@@ -151,17 +163,24 @@ export default function ProductPage({ product }) {
 									?.upgrades.map((upgrade, i) => (
 										<Checkbox
 											key={upgrade.id}
-											name={'upgrades'}
+											name={"upgrades"}
 											value={upgrade.id}
 											label={upgrade.description}
-											{...register('upgrades')}
+											{...register("upgrades")}
 										/>
 									))}
 							</fieldset>
 
-							<div className="flex items-center justify-between">
-								<span className="text-2xl font-bold text-indigo-600">{currency.format(price)}</span>
-								<Button isLoading={loading} loadingMessage="submitting">
+							<Input
+								type="number"
+								name="quantity"
+								label="Quantity of Kits"
+								{...register("quantity")}
+							/>
+
+							<div className="mt-12 flex items-center justify-between">
+								<span className="text-2xl font-bold">Kit Price: {currency.format(price)}</span>
+								<Button isLoading={loading} isSuccess={success}>
 									Proceed to Checkout
 								</Button>
 							</div>
