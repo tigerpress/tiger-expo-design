@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../components/button";
 import Container from "../components/container";
-import Checkbox from '../components/forms/checkbox';
-import Input from '../components/forms/input';
-import Paragraph from "../components/paragraph";
+import Checkbox from "../components/forms/checkbox";
+import Input from "../components/forms/input";
 import Section from "../components/section";
-import Title from "../components/title";
+import Paragraph from "../components/typography/paragraph";
+import Title from "../components/typography/title";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
 export default function CheckoutPage() {
-	const {register, formState: {errors}} = useForm()
+	const {
+		register,
+		formState: { errors },
+	} = useForm();
 	const [cart, setCart] = useState();
 
 	useEffect(() => {
@@ -39,16 +42,16 @@ export default function CheckoutPage() {
 							<Title level="h2">Contact Information</Title>
 							<form action="">
 								<div className="flex gap-4">
-									<Input name="firstName" label="First Name" {...register('firstName')}/>
-									<Input name="lastName" label="Last Name" {...register('lastName')}/>
+									<Input name="firstName" label="First Name" {...register("firstName")} />
+									<Input name="lastName" label="Last Name" {...register("lastName")} />
 								</div>
-								<Input type="email" name="email" label="email" {...register('email')}/>
-								<Input name="address1" label="Address 1" {...register('address1')}/>
-								<Input name="address2" label="Address 2" {...register('address2')}/>
-								<Input name="city" label="City" {...register('city')}/>
+								<Input type="email" name="email" label="email" {...register("email")} />
+								<Input name="address1" label="Address 1" {...register("address1")} />
+								<Input name="address2" label="Address 2" {...register("address2")} />
+								<Input name="city" label="City" {...register("city")} />
 								<div className="flex gap-4">
-									<Input name="state" label="State" {...register('state')}/>
-									<Input name="zip" label="Zip" {...register('zip')}/>
+									<Input name="state" label="State" {...register("state")} />
+									<Input name="zip" label="Zip" {...register("zip")} />
 								</div>
 							</form>
 						</div>

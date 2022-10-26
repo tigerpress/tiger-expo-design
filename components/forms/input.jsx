@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import Paragraph from "../paragraph";
+import Paragraph from "../typography/paragraph";
 
 const Input = forwardRef(({ name, label, type = "text", ...rest }, ref) => {
 	return (
