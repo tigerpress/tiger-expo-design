@@ -4,6 +4,7 @@ import Button from "../components/button";
 import Container from "../components/container";
 import Checkbox from "../components/forms/checkbox";
 import Input from "../components/forms/input";
+import PaymentForm from "../components/forms/payment-form";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
@@ -53,7 +54,21 @@ export default function CheckoutPage() {
 									<Input name="state" label="State" {...register("state")} />
 									<Input name="zip" label="Zip" {...register("zip")} />
 								</div>
+								<Checkbox
+									name="bill-to"
+									label="Billing address same as shipping?"
+									{...register("billTo")}
+								/>
 							</form>
+							<div>
+								<Title level="h2" className="mt-8">
+									Billing Information
+								</Title>
+								<PaymentForm />
+								<Paragraph className="text-sm text-gray-600">
+									Your payments are securely processed through PayTrace
+								</Paragraph>
+							</div>
 						</div>
 						<div className="flex flex-col items-end gap-8">
 							<div className="border-bg-gray-300 border bg-white p-8">

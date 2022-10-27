@@ -34,6 +34,7 @@ export default function ProductPage({ product }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
 	const [cart, setCart] = useLocalStorage("cart", null);
 	const {
 		register,
@@ -49,6 +50,7 @@ export default function ProductPage({ product }) {
 			upgrades: [],
 			quantity: 1,
 		},
+		reValidateMode: "onChange",
 	});
 
 	const watchValues = watch();
@@ -61,8 +63,9 @@ export default function ProductPage({ product }) {
 		quantity: formData.quantity,
 	};
 	const price =
-		parseFloat(config.option?.price) +
-		config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0) * config.quantity;
+		(parseFloat(config.option?.price) +
+			config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0)) *
+		parseInt(config.quantity);
 
 	useEffect(() => {
 		setValue(
@@ -83,10 +86,10 @@ export default function ProductPage({ product }) {
 		finishedsizewidth: product.width,
 		outside: true,
 		static: true,
-		quantity1: "1",
+		quantity1: config.quantity,
 		buyout: price,
-		priceForced: price,
-		buyoutquantity: 1,
+		priceForced: true,
+		buyoutquantity: config.quantity,
 		buyoutvendorname: "",
 		vendorQuote: "web",
 		buyoutdescription: JSON.stringify(config)
@@ -116,6 +119,7 @@ export default function ProductPage({ product }) {
 				router.push("/checkout");
 			}
 		} catch (error) {
+			setError(true);
 			console.error(error);
 		}
 	};
@@ -176,10 +180,11 @@ export default function ProductPage({ product }) {
 								name="quantity"
 								label="Quantity of Kits"
 								{...register("quantity")}
+								min="1"
 							/>
 
 							<div className="mt-12 flex items-center justify-between">
-								<span className="text-2xl font-bold">Kit Price: {currency.format(price)}</span>
+								<span className="text-2xl font-bold">Subtotal: {currency.format(price)}</span>
 								<Button isLoading={loading} isSuccess={success}>
 									Proceed to Checkout
 								</Button>
