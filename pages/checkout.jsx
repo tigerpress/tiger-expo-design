@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { HiOutlineTrash } from "react-icons/hi";
 import Button from "../components/button";
 import Container from "../components/container";
 import Checkbox from "../components/forms/checkbox";
 import Input from "../components/forms/input";
 import PaymentForm from "../components/forms/payment-form";
+import IconButton from "../components/icon-button";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
 import { useLocalStorage } from "../hooks/use-local-storage";
+import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
 	const {
@@ -71,28 +74,35 @@ export default function CheckoutPage() {
 							</div>
 						</div>
 						<div className="flex flex-col items-end gap-8">
-							<div className="border-bg-gray-300 border bg-white p-8">
+							<div className="w-full bg-white p-8">
 								<Title level="h2">Your Cart</Title>
-								<table className="mt-6 table-auto">
+								<table className="mt-6 w-full table-auto">
 									<tr className="even:bg-gray-200">
-										<th className="p-2 pl-8">Item Number</th>
-										<th className="p-2 pl-8">Description</th>
-										<th className="p-2 pl-8">Price</th>
-										<th className="p-2 pl-8">Quantity</th>
+										<th className="hidden p-2 text-left md:table-cell">Item No.</th>
+										<th className="p-2 text-left">Item</th>
+										<th className="p-2 text-right">Price</th>
+										<th className="p-2 text-right">Qty</th>
+										<th className="p-2 text-center">Del</th>
 									</tr>
 									<tr className="even:bg-gray-200">
-										<td className="p-2 pl-8">{cart.option.id}</td>
-										<td className="p-2 pl-8">{cart.option.description}</td>
-										<td className="p-2 pl-8">{cart.option.price}</td>
-										<td className="p-2 pl-8">{cart.quantity}</td>
+										<td className="hidden p-2 text-left md:table-cell">{cart.option.id}</td>
+										<td className="p-2 text-left">{cart.option.description}</td>
+										<td className="p-2 text-right">{currency.format(cart.option.price)}</td>
+										<td className="p-2 text-right">{cart.quantity}</td>
+										<td className="p-2 text-center">
+											<IconButton variant="ghost" size="sm" icon={HiOutlineTrash} />
+										</td>
 									</tr>
 									{cart.upgrades?.map((upgrade) => {
 										return (
 											<tr key={upgrade.id} className="even:bg-gray-200">
-												<td className="p-2 pl-8">{upgrade.id}</td>
-												<td className="p-2 pl-8">{upgrade.description}</td>
-												<td className="p-2 pl-8">{upgrade.price}</td>
-												<td className="p-2 pl-8">{cart.quantity}</td>
+												<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
+												<td className="p-2 text-left">{upgrade.description}</td>
+												<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
+												<td className="p-2 text-right">{cart.quantity}</td>
+												<td className="p-2 text-center">
+													<IconButton variant="ghost" size="sm" icon={HiOutlineTrash} />
+												</td>
 											</tr>
 										);
 									})}
