@@ -66,7 +66,7 @@ export default function CheckoutPage() {
 								</Title>
 								<PaymentForm />
 								<Paragraph className="text-sm text-gray-600">
-									Your payments are securely processed through PayTrace
+									Your payments are securely processed through our PayTrace provider.
 								</Paragraph>
 							</div>
 						</div>
@@ -78,11 +78,13 @@ export default function CheckoutPage() {
 										<th className="p-2 pl-8">Item Number</th>
 										<th className="p-2 pl-8">Description</th>
 										<th className="p-2 pl-8">Price</th>
+										<th className="p-2 pl-8">Quantity</th>
 									</tr>
 									<tr className="even:bg-gray-200">
 										<td className="p-2 pl-8">{cart.option.id}</td>
 										<td className="p-2 pl-8">{cart.option.description}</td>
 										<td className="p-2 pl-8">{cart.option.price}</td>
+										<td className="p-2 pl-8">{cart.quantity}</td>
 									</tr>
 									{cart.upgrades?.map((upgrade) => {
 										return (
@@ -90,6 +92,7 @@ export default function CheckoutPage() {
 												<td className="p-2 pl-8">{upgrade.id}</td>
 												<td className="p-2 pl-8">{upgrade.description}</td>
 												<td className="p-2 pl-8">{upgrade.price}</td>
+												<td className="p-2 pl-8">{cart.quantity}</td>
 											</tr>
 										);
 									})}

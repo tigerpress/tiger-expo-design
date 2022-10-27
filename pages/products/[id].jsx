@@ -75,7 +75,7 @@ export default function ProductPage({ product }) {
 		setValue("upgrades", []);
 	}, [watchValues.grade]);
 
-	console.log(config);
+	console.log(product);
 
 	const estimateData = {
 		pr: 100407,
@@ -85,12 +85,13 @@ export default function ProductPage({ product }) {
 		finishedsizeheight: product.height,
 		finishedsizewidth: product.width,
 		outside: true,
-		static: true,
-		quantity1: config.quantity,
-		buyout: price,
-		priceForced: true,
+		quantity1: 1,
+		quantityStaticOrder: config.quantity,
 		buyoutquantity: config.quantity,
-		buyoutvendorname: "",
+		buyout: price,
+		priceForced: price,
+		shippingCost: 0,
+		buyoutvendorname: "web",
 		vendorQuote: "web",
 		buyoutdescription: JSON.stringify(config)
 			.replace(/[\{\}\"]/g, "")
