@@ -11,12 +11,10 @@ import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
 import { useCart } from "../context/cart-context";
-import { useHasMounted } from "../hooks/use-has-mounted";
 import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
 	const { cartItems, removeFromCart } = useCart();
-	const { hasMounted } = useHasMounted();
 
 	const {
 		register,
@@ -28,8 +26,7 @@ export default function CheckoutPage() {
 			<Container>
 				<Title level="h1">Checkout</Title>
 
-				{!hasMounted ||
-					(!cartItems.length && (
+				{cartItems.length === 0 && (
 						<div className="mt-32 flex flex-col items-center justify-center gap-6">
 							<p className="text-xl font-bold">
 								Oh no! You don&apos;t have anything in your cart yet!
@@ -38,9 +35,9 @@ export default function CheckoutPage() {
 								Shop Now
 							</Button>
 						</div>
-					))}
+					)}
 
-				{hasMounted && cartItems.length && (
+				{cartItems.length > 0 && (
 					<div className="mt-12 grid gap-8 lg:grid-cols-2">
 						<div className="bg-white p-8">
 							<Title level="h2">Contact Information</Title>
@@ -112,8 +109,8 @@ export default function CheckoutPage() {
 														<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
 														<td className="p-2 text-left">{upgrade.description}</td>
 														<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-														<td className="p-2 text-right">x</td>
-														<td className="p-2 text-right">x</td>
+														<td className="p-2 text-right"></td>
+														<td className="p-2 text-right"></td>
 													</tr>
 												))}
 											</React.Fragment>

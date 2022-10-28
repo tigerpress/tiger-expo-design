@@ -9,9 +9,7 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useLocalStorage("cart", []);
-	let cartQuantity = cartItems
-		? cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)
-		: 0;
+	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)
 
 	function increaseItemQuantity(item) {
 		setCartItems((cartItems) => {

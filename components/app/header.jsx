@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";
-import { useHasMounted } from "../../hooks/use-has-mounted";
 import products from "../../pages/api/products.json";
 import Container from "../container";
 
@@ -24,7 +23,6 @@ const NavLink = ({ href, children }) => {
 
 export default function Header() {
 	const { cartQuantity } = useCart();
-	const { hasMounted } = useHasMounted();
 
 	return (
 		<header className="bg-yellow-300 py-8 font-bold">
@@ -38,7 +36,7 @@ export default function Header() {
 				{/* DESKTOP MENU */}
 				<nav className="hidden lg:block">
 					<ul className="flex items-center gap-8">
-						{cartQuantity > 0 && hasMounted && (
+						{cartQuantity > 0 && (
 							<li>
 								<Link href="/checkout">
 									<a className="relative flex items-center gap-2 rounded-full bg-indigo-700 p-2 text-white transition-colors hover:bg-indigo-600">
