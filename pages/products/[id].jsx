@@ -11,6 +11,7 @@ import Select from "../../components/forms/select";
 import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
 import Title from "../../components/title";
+import { useCart } from "../../context/cart-context";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { currency } from "../../lib/utils";
 import products from "../api/products.json";
@@ -31,11 +32,11 @@ const features = [
 ];
 
 export default function ProductPage({ product }) {
+	const { increaseItemQuantity } = useCart();
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
-	const [cart, setCart] = useLocalStorage("cart", null);
 	const {
 		register,
 		handleSubmit,
@@ -99,30 +100,30 @@ export default function ProductPage({ product }) {
 	};
 
 	const onSubmit = async (e) => {
-		setLoading(true);
+		// setLoading(true);
 
-		try {
-			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-				method: "POST",
-				headers: {
-					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-				body: JSON.stringify(estimateData),
-			});
-			setLoading(false);
-			console.log(response);
+		increaseItemQuantity(config.option.id);
+		// try {
+		// 	const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+		// 		method: "POST",
+		// 		headers: {
+		// 			authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+		// 			"Content-Type": "application/json",
+		// 			Accept: "application/json",
+		// 		},
+		// 		body: JSON.stringify(estimateData),
+		// 	});
+		// 	setLoading(false);
+		// 	console.log(response);
 
-			if (response.ok) {
-				setSuccess(true);
-				setCart(config);
-				router.push("/checkout");
-			}
-		} catch (error) {
-			setError(true);
-			console.error(error);
-		}
+		// 	if (response.ok) {
+		// 		setSuccess(true);
+		// 		router.push("/checkout");
+		// 	}
+		// } catch (error) {
+		// 	setError(true);
+		// 	console.error(error);
+		// }
 	};
 
 	// filter out the current product and render the other items, up to a max of 4 to fit UI

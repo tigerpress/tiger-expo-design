@@ -5,13 +5,16 @@ import "@fontsource/raleway/700.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
 import AppShell from "../components/app/app-shell";
+import { CartProvider } from "../context/cart-context";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<AppShell>
-			<Component {...pageProps} />
-		</AppShell>
+		<CartProvider>
+			<AppShell>
+				<Component {...pageProps} />
+			</AppShell>
+		</CartProvider>
 	);
 }
 
