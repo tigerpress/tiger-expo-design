@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { HiOutlineTrash } from "react-icons/hi";
 import Button from "../components/button";
@@ -10,37 +10,37 @@ import IconButton from "../components/icon-button";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
-import { useLocalStorage } from "../hooks/use-local-storage";
+import { useCart } from "../context/cart-context";
+import { useHasMounted } from "../hooks/use-has-mounted";
 import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
+	const { cartItems, removeFromCart } = useCart();
+	const { hasMounted } = useHasMounted();
+
 	const {
 		register,
 		formState: { errors },
 	} = useForm();
-	const [cart, setCart] = useState();
-
-	useEffect(() => {
-		if (typeof window !== undefined) {
-			setCart(JSON.parse(window.localStorage.getItem("cart")));
-		}
-	}, []);
 
 	return (
 		<Section>
 			<Container>
 				<Title level="h1">Checkout</Title>
 
-				{!cart && (
-					<div className="mt-32 flex flex-col items-center justify-center gap-6">
-						<Paragraph className="text-xl font-bold">
-							Oh no! You don&apos;t have anything in your cart yet!
-						</Paragraph>
-						<Button href="/products">Shop Now</Button>
-					</div>
-				)}
+				{!hasMounted ||
+					(!cartItems.length && (
+						<div className="mt-32 flex flex-col items-center justify-center gap-6">
+							<p className="text-xl font-bold">
+								Oh no! You don&apos;t have anything in your cart yet!
+							</p>
+							<Button href="/products" as="a">
+								Shop Now
+							</Button>
+						</div>
+					))}
 
-				{cart && (
+				{hasMounted && cartItems.length && (
 					<div className="mt-12 grid gap-8 lg:grid-cols-2">
 						<div className="bg-white p-8">
 							<Title level="h2">Contact Information</Title>
@@ -77,38 +77,51 @@ export default function CheckoutPage() {
 							<div className="w-full bg-white p-8">
 								<Title level="h2">Your Cart</Title>
 								<table className="mt-6 w-full table-auto">
-									<tr className="even:bg-gray-200">
-										<th className="hidden p-2 text-left md:table-cell">Item No.</th>
-										<th className="p-2 text-left">Item</th>
-										<th className="p-2 text-right">Price</th>
-										<th className="p-2 text-right">Qty</th>
-										<th className="p-2 text-center">Del</th>
-									</tr>
-									<tr className="even:bg-gray-200">
-										<td className="hidden p-2 text-left md:table-cell">{cart.option.id}</td>
-										<td className="p-2 text-left">{cart.option.description}</td>
-										<td className="p-2 text-right">{currency.format(cart.option.price)}</td>
-										<td className="p-2 text-right">{cart.quantity}</td>
-										<td className="p-2 text-center">
-											<IconButton variant="ghost" size="sm" icon={HiOutlineTrash} />
-										</td>
-									</tr>
-									{cart.upgrades?.map((upgrade) => {
-										return (
-											<tr key={upgrade.id} className="even:bg-gray-200">
-												<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
-												<td className="p-2 text-left">{upgrade.description}</td>
-												<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-												<td className="p-2 text-right">{cart.quantity}</td>
-												<td className="p-2 text-center">
-													<IconButton variant="ghost" size="sm" icon={HiOutlineTrash} />
-												</td>
-											</tr>
-										);
-									})}
+									<thead>
+										<tr className="even:bg-gray-200">
+											<th className="hidden p-2 text-left md:table-cell">Item No.</th>
+											<th className="p-2 text-left">Item</th>
+											<th className="p-2 text-right">Price</th>
+											<th className="p-2 text-right">Qty</th>
+											<th className="p-2 text-center">Del</th>
+										</tr>
+									</thead>
+									<tbody>
+										{cartItems.map((cartItem) => (
+											<React.Fragment key={cartItem.id}>
+												<tr className="even:bg-gray-200">
+													<td className="hidden p-2 text-left font-semibold md:table-cell">
+														{cartItem.id}
+													</td>
+													<td className="p-2 text-left font-semibold">{cartItem.description}</td>
+													<td className="p-2 text-right font-semibold">
+														{currency.format(cartItem.price)}
+													</td>
+													<td className="p-2 text-right font-semibold">{cartItem.quantity}</td>
+													<td className="p-2 text-center">
+														<IconButton
+															variant="ghost"
+															size="sm"
+															icon={HiOutlineTrash}
+															onClick={() => removeFromCart(cartItem)}
+														/>
+													</td>
+												</tr>
+												{cartItem.upgrades.map((upgrade) => (
+													<tr key={upgrade.id} className="even:bg-gray-200">
+														<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
+														<td className="p-2 text-left">{upgrade.description}</td>
+														<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
+														<td className="p-2 text-right">x</td>
+														<td className="p-2 text-right">x</td>
+													</tr>
+												))}
+											</React.Fragment>
+										))}
+									</tbody>
 								</table>
 							</div>
-							<div class="flex gap-4">
+							<div className="flex gap-4">
 								<Button variant="ghost">Start Over</Button>
 								<Button>Buy now</Button>
 							</div>

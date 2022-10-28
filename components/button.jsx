@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useState } from "react";
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import Loader from "./loader";
 

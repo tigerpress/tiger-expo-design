@@ -59,13 +59,14 @@ export default function ProductPage({ product }) {
 
 	const grade = product.configs.find((config) => config.id === formData.grade);
 	const config = {
-		option: grade.options.find((option) => option.id === formData.option),
-		upgrades: grade.upgrades.filter((upgrade) => formData.upgrades.includes(upgrade.id)),
+		id: grade?.options.find((option) => option.id === formData.option)?.id,
+		description: grade?.options.find((option) => option.id === formData.option)?.description,
+		price: grade?.options.find((option) => option.id === formData.option)?.price,
+		upgrades: grade?.upgrades.filter((upgrade) => formData.upgrades.includes(upgrade.id)),
 		quantity: formData.quantity,
 	};
 	const price =
-		(parseFloat(config.option?.price) +
-			config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0)) *
+		(parseFloat(config?.price) + config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0)) *
 		parseInt(config.quantity);
 
 	useEffect(() => {
@@ -76,7 +77,7 @@ export default function ProductPage({ product }) {
 		setValue("upgrades", []);
 	}, [watchValues.grade]);
 
-	console.log(product);
+	console.log(formData);
 
 	const estimateData = {
 		pr: 100407,
@@ -100,9 +101,9 @@ export default function ProductPage({ product }) {
 	};
 
 	const onSubmit = async (e) => {
-		// setLoading(true);
+		increaseItemQuantity(config);
+		router.push("/checkout");
 
-		increaseItemQuantity(config.option.id);
 		// try {
 		// 	const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
 		// 		method: "POST",

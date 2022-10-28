@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 
 export const useLocalStorage = (key, initialValue) => {
 	const [value, setValue] = useState(() => {
-		if (typeof window === "undefined") return initialValue;
-
-		let existingItem = window.localStorage.getItem(key);
-		return existingItem ? JSON.parse(existingItem) : initialValue;
+		if (typeof window === "undefined") {
+			return initialValue;
+		} else {
+			let existingItem = window.localStorage.getItem(key);
+			return existingItem ? JSON.parse(existingItem) : initialValue;
+		}
 	});
 
 	useEffect(() => {
