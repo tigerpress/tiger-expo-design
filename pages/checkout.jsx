@@ -14,7 +14,7 @@ import { useCart } from "../context/cart-context";
 import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
-	const { cartItems, removeFromCart } = useCart();
+	const { cartItems, removeFromCart, cartTotalPrice } = useCart();
 
 	const {
 		register,
@@ -27,15 +27,15 @@ export default function CheckoutPage() {
 				<Title level="h1">Checkout</Title>
 
 				{cartItems.length === 0 && (
-						<div className="mt-32 flex flex-col items-center justify-center gap-6">
-							<p className="text-xl font-bold">
-								Oh no! You don&apos;t have anything in your cart yet!
-							</p>
-							<Button href="/products" as="a">
-								Shop Now
-							</Button>
-						</div>
-					)}
+					<div className="mt-32 flex flex-col items-center justify-center gap-6">
+						<p className="text-xl font-bold">
+							Oh no! You don&apos;t have anything in your cart yet!
+						</p>
+						<Button href="/products" as="a">
+							Shop Now
+						</Button>
+					</div>
+				)}
 
 				{cartItems.length > 0 && (
 					<div className="mt-12 grid gap-8 lg:grid-cols-2">
@@ -104,7 +104,7 @@ export default function CheckoutPage() {
 														/>
 													</td>
 												</tr>
-												{cartItem.upgrades.map((upgrade) => (
+												{cartItem?.upgrades.map((upgrade) => (
 													<tr key={upgrade.id} className="even:bg-gray-200">
 														<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
 														<td className="p-2 text-left">{upgrade.description}</td>
@@ -117,6 +117,9 @@ export default function CheckoutPage() {
 										))}
 									</tbody>
 								</table>
+								<p className="mt-4 w-full text-right text-xl font-bold">
+									Order total: {currency.format(cartTotalPrice())}
+								</p>
 							</div>
 							<div className="flex gap-4">
 								<Button variant="ghost">Start Over</Button>

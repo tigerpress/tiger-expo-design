@@ -9,7 +9,17 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useLocalStorage("cart", []);
-	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0)
+
+	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0);
+
+	const cartTotalPrice = () => {
+		let individualUpgradesCost = cartItems.map((cartItem) =>
+			cartItem.upgrades.reduce((a, c) => a + parseFloat(c.price), 0)
+		);
+		let allUpgradesCost = individualUpgradesCost.reduce((a, c) => a + c, 0);
+		let itemCost = cartItems.reduce((a, c) => a + parseFloat(c.price), 0);
+		return allUpgradesCost + itemCost;
+	};
 
 	function increaseItemQuantity(item) {
 		setCartItems((cartItems) => {
@@ -55,6 +65,7 @@ export const CartProvider = ({ children }) => {
 				removeFromCart,
 				cartItems,
 				cartQuantity,
+				cartTotalPrice,
 			}}
 		>
 			{children}
