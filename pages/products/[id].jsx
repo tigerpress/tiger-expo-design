@@ -102,7 +102,7 @@ export default function ProductPage({ product }) {
 
 	const onSubmit = async (e) => {
 		increaseItemQuantity(config);
-		router.push("/checkout");
+		router.push("/cart");
 
 		// try {
 		// 	const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
