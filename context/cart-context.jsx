@@ -12,14 +12,14 @@ export const CartProvider = ({ children }) => {
 
 	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0);
 
-	const cartTotalPrice = () => {
-		let individualUpgradesCost = cartItems.map((cartItem) =>
-			cartItem.upgrades.reduce((a, c) => a + parseFloat(c.price), 0)
-		);
-		let allUpgradesCost = individualUpgradesCost.reduce((a, c) => a + c, 0);
-		let itemCost = cartItems.reduce((a, c) => a + parseFloat(c.price), 0);
-		return allUpgradesCost + itemCost;
+	const itemTotalPrice = (item) => {
+		let itemPrice = parseFloat(item.price) * parseFloat(item.quantity);
+		let upgradesPrice =
+			item.upgrades.reduce((a, c) => a + parseFloat(c.price), 0) * parseFloat(item.quantity);
+		return itemPrice + upgradesPrice;
 	};
+
+	const cartTotalPrice = cartItems.reduce((a, c) => a + itemTotalPrice(c), 0);
 
 	function increaseItemQuantity(item) {
 		setCartItems((cartItems) => {
@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => {
 	function decreaseItemQuantity(item) {
 		setCartItems((cartItems) => {
 			if (cartItems.find((cartItem) => cartItem.id === item.id)?.quantity === 1) {
-				return cartItems.filter((cartItem) => cartItem.id !== item.id);
+				return;
 			} else {
 				return cartItems.map((cartItem) => {
 					if (cartItem.id === item.id) {
@@ -57,6 +57,10 @@ export const CartProvider = ({ children }) => {
 		setCartItems((cartItems) => cartItems.filter((cartItem) => cartItem.id !== item.id));
 	}
 
+	function wipeCart() {
+		setCartItems([]);
+	}
+
 	return (
 		<CartContext.Provider
 			value={{
@@ -65,7 +69,9 @@ export const CartProvider = ({ children }) => {
 				removeFromCart,
 				cartItems,
 				cartQuantity,
+				itemTotalPrice,
 				cartTotalPrice,
+				wipeCart,
 			}}
 		>
 			{children}

@@ -71,16 +71,15 @@ export default function CheckoutPage() {
 							</div>
 						</div>
 						<div className="flex flex-col items-end gap-8">
-							<div className="w-full bg-white p-8">
-								<Title level="h2">Your Cart</Title>
+							<div className="w-full py-8">
+								<Title level="h2">Order Summary</Title>
 								<table className="mt-6 w-full table-auto">
 									<thead>
 										<tr className="even:bg-gray-200">
 											<th className="hidden p-2 text-left md:table-cell">Item No.</th>
 											<th className="p-2 text-left">Item</th>
-											<th className="p-2 text-right">Price</th>
+											<th className="p-2 text-right">Price/EA</th>
 											<th className="p-2 text-right">Qty</th>
-											<th className="p-2 text-center">Del</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -95,21 +94,12 @@ export default function CheckoutPage() {
 														{currency.format(cartItem.price)}
 													</td>
 													<td className="p-2 text-right font-semibold">{cartItem.quantity}</td>
-													<td className="p-2 text-center">
-														<IconButton
-															variant="ghost"
-															size="sm"
-															icon={HiOutlineTrash}
-															onClick={() => removeFromCart(cartItem)}
-														/>
-													</td>
 												</tr>
 												{cartItem?.upgrades.map((upgrade) => (
 													<tr key={upgrade.id} className="even:bg-gray-200">
 														<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
 														<td className="p-2 text-left">{upgrade.description}</td>
 														<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-														<td className="p-2 text-right"></td>
 														<td className="p-2 text-right"></td>
 													</tr>
 												))}
@@ -118,11 +108,13 @@ export default function CheckoutPage() {
 									</tbody>
 								</table>
 								<p className="mt-4 w-full text-right text-xl font-bold">
-									Order total: {currency.format(cartTotalPrice())}
+									Order total: {currency.format(cartTotalPrice)}
 								</p>
 							</div>
 							<div className="flex gap-4">
-								<Button variant="ghost">Start Over</Button>
+								<Button variant="ghost" href="/cart" as="a">
+									Return to cart
+								</Button>
 								<Button>Buy now</Button>
 							</div>
 						</div>

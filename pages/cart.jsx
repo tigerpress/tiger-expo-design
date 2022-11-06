@@ -15,8 +15,14 @@ import { useCart } from "../context/cart-context";
 import { currency } from "../lib/utils";
 
 export default function CartPage() {
-	const { cartItems, removeFromCart, cartTotalPrice, increaseItemQuantity, decreaseItemQuantity } =
-		useCart();
+	const {
+		cartItems,
+		removeFromCart,
+		cartTotalPrice,
+		increaseItemQuantity,
+		decreaseItemQuantity,
+		wipeCart,
+	} = useCart();
 
 	const {
 		register,
@@ -47,7 +53,7 @@ export default function CartPage() {
 									<th className="hidden p-2 text-left md:table-cell">Item No.</th>
 									<th className="p-2 text-left">Item</th>
 									<th className="p-2 text-right">Price/EA</th>
-									<th className="p-2 text-right">Qty</th>
+									<th className="p-2 text-center">Qty</th>
 									<th className="p-2 text-center">Del</th>
 								</tr>
 							</thead>
@@ -63,23 +69,21 @@ export default function CartPage() {
 												{currency.format(cartItem.price)}
 											</td>
 											<td className="p-2 text-right font-semibold">
-												<Button
-													variant="outline"
-													size="sm"
-													pill
-													onClick={() => decreaseItemQuantity(cartItem)}
-												>
-													-
-												</Button>
-												<span className="mx-2">{cartItem.quantity}</span>
-												<Button
-													variant="outline"
-													size="sm"
-													pill
-													onClick={() => increaseItemQuantity(cartItem)}
-												>
-													+
-												</Button>
+												<div className="whitespace-nowrap">
+													<button
+														className="border border-gray-900 border-opacity-10 px-2 text-lg text-gray-700"
+														onClick={() => decreaseItemQuantity(cartItem)}
+													>
+														-
+													</button>
+													<span className="mx-2">{cartItem.quantity}</span>
+													<button
+														className="border border-gray-900 border-opacity-10 px-2 text-lg text-gray-700"
+														onClick={() => increaseItemQuantity(cartItem)}
+													>
+														+
+													</button>
+												</div>
 											</td>
 											<td className="p-2 text-center">
 												<IconButton
@@ -104,10 +108,12 @@ export default function CartPage() {
 							</tbody>
 						</table>
 						<p className="mt-4 w-full text-right text-xl font-bold">
-							Order total: {currency.format(cartTotalPrice())}
+							Order total: {currency.format(cartTotalPrice)}
 						</p>
-						<div className="flex gap-4">
-							<Button variant="ghost">Clear cart</Button>
+						<div className="mt-12 flex justify-end gap-4">
+							<Button variant="ghost" onClick={wipeCart}>
+								Clear cart
+							</Button>
 							<Link href="/checkout" passHref>
 								<Button as="a">Check out</Button>
 							</Link>
