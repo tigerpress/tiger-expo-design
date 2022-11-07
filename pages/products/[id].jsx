@@ -2,7 +2,7 @@ import Image from "next/future/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "../../components/button";
 import Container from "../../components/container";
 import Checkbox from "../../components/forms/checkbox";
@@ -12,7 +12,6 @@ import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
 import Title from "../../components/title";
 import { useCart } from "../../context/cart-context";
-import { useLocalStorage } from "../../hooks/use-local-storage";
 import { currency } from "../../lib/utils";
 import products from "../api/products.json";
 
@@ -32,11 +31,8 @@ const features = [
 ];
 
 export default function ProductPage({ product }) {
-	const { increaseItemQuantity } = useCart();
 	const router = useRouter();
-	const [loading, setLoading] = useState(false);
-	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState(false);
+	const { increaseItemQuantity } = useCart();
 	const {
 		register,
 		handleSubmit,
@@ -77,54 +73,9 @@ export default function ProductPage({ product }) {
 		setValue("upgrades", []);
 	}, [watchValues.grade]);
 
-	console.log(formData);
-
-	const estimateData = {
-		pr: 100407,
-		lotsno: 1,
-		esPt: 1,
-		"project-title": "Tradeshow Booth",
-		finishedsizeheight: product.height,
-		finishedsizewidth: product.width,
-		outside: true,
-		quantity1: 1,
-		quantityStaticOrder: config.quantity,
-		buyoutquantity: config.quantity,
-		buyout: price,
-		priceForced: price,
-		shippingCost: 0,
-		buyoutvendorname: "web",
-		vendorQuote: "web",
-		buyoutdescription: JSON.stringify(config)
-			.replace(/[\{\}\"]/g, "")
-			.replace(/[,\[\]]/g, "\n"),
-	};
-
-	const onSubmit = async (e) => {
+	const onSubmit = (e) => {
 		increaseItemQuantity(config);
 		router.push("/cart");
-
-		// try {
-		// 	const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-		// 		method: "POST",
-		// 		headers: {
-		// 			authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-		// 			"Content-Type": "application/json",
-		// 			Accept: "application/json",
-		// 		},
-		// 		body: JSON.stringify(estimateData),
-		// 	});
-		// 	setLoading(false);
-		// 	console.log(response);
-
-		// 	if (response.ok) {
-		// 		setSuccess(true);
-		// 		router.push("/checkout");
-		// 	}
-		// } catch (error) {
-		// 	setError(true);
-		// 	console.error(error);
-		// }
 	};
 
 	// filter out the current product and render the other items, up to a max of 4 to fit UI
@@ -188,9 +139,7 @@ export default function ProductPage({ product }) {
 
 							<div className="mt-12 flex items-center justify-between">
 								<span className="text-2xl font-bold">Subtotal: {currency.format(price)}</span>
-								<Button isLoading={loading} isSuccess={success}>
-									Proceed to Checkout
-								</Button>
+								<Button>Proceed to Checkout</Button>
 							</div>
 						</form>
 					</div>

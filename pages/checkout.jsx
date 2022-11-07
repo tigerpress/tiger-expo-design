@@ -1,12 +1,11 @@
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { HiOutlineTrash } from "react-icons/hi";
 import Button from "../components/button";
 import Container from "../components/container";
 import Checkbox from "../components/forms/checkbox";
 import Input from "../components/forms/input";
 import PaymentForm from "../components/forms/payment-form";
-import IconButton from "../components/icon-button";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
@@ -14,12 +13,62 @@ import { useCart } from "../context/cart-context";
 import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
-	const { cartItems, removeFromCart, cartTotalPrice } = useCart();
+	const { cartItems, cartTotalPrice } = useCart();
+	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+	const router = useRouter();
 
 	const {
 		register,
+		handleSubmit,
 		formState: { errors },
-	} = useForm();
+	} = useForm({ mode: "onBlur" });
+
+	const estimateData = {
+		pr: 100407,
+		lotsno: 1,
+		esPt: 1,
+		"project-title": "Tradeshow Booth",
+		finishedsizeheight: 5,
+		finishedsizewidth: 5,
+		outside: true,
+		quantity1: 1,
+		quantityStaticOrder: 1,
+		buyoutquantity: 1,
+		buyout: cartTotalPrice,
+		priceForced: cartTotalPrice,
+		shippingCost: 0,
+		buyoutvendorname: "web",
+		vendorQuote: "web",
+		buyoutdescription: JSON.stringify(cartItems)
+			.replace(/[\{\}\"]/g, "")
+			.replace(/[,\[\]]/g, "\n"),
+	};
+
+	const onSubmit = async (e) => {
+		try {
+			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+				method: "POST",
+				headers: {
+					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify(estimateData),
+			});
+			setLoading(false);
+			console.log(response);
+
+			if (response.ok) {
+				setSuccess(true);
+				router.push("/order-confirmation");
+			}
+		} catch (error) {
+			setError(true);
+			console.error(error);
+		}
+	};
 
 	return (
 		<Section>
@@ -38,10 +87,10 @@ export default function CheckoutPage() {
 				)}
 
 				{cartItems.length > 0 && (
-					<div className="mt-12 grid gap-8 lg:grid-cols-2">
-						<div className="bg-white p-8">
-							<Title level="h2">Contact Information</Title>
-							<form action="">
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<div className="mt-12 grid gap-8 lg:grid-cols-2">
+							<div className="bg-white p-8">
+								<Title level="h2">Billing Information</Title>
 								<div className="flex gap-4">
 									<Input name="firstName" label="First Name" {...register("firstName")} />
 									<Input name="lastName" label="Last Name" {...register("lastName")} />
@@ -52,73 +101,98 @@ export default function CheckoutPage() {
 								<Input name="city" label="City" {...register("city")} />
 								<div className="flex gap-4">
 									<Input name="state" label="State" {...register("state")} />
-									<Input name="zip" label="Zip" {...register("zip")} />
+									<Input
+										name="zip"
+										label="Zip"
+										{...register("zip", {
+											pattern: {
+												value: /(^\d{5}$)|(^\d{5}-\d{4}$)/,
+												message: "Please enter a valid US zip code",
+											},
+										})}
+										errors={errors}
+									/>
 								</div>
 								<Checkbox
 									name="bill-to"
 									label="Billing address same as shipping?"
 									{...register("billTo")}
 								/>
-							</form>
-							<div>
-								<Title level="h2" className="mt-8">
-									Billing Information
-								</Title>
-								<PaymentForm />
-								<Paragraph className="text-sm text-gray-600">
-									Your payments are securely processed through our PayTrace provider.
-								</Paragraph>
+								<div>
+									<Title level="h2" className="mt-8">
+										Payment
+									</Title>
+									<PaymentForm />
+									<Paragraph className="text-sm text-gray-600">
+										Your payments are securely processed through our PayTrace provider.
+									</Paragraph>
+								</div>
 							</div>
-						</div>
-						<div className="flex flex-col items-end gap-8">
-							<div className="w-full py-8">
-								<Title level="h2">Order Summary</Title>
-								<table className="mt-6 w-full table-auto">
-									<thead>
-										<tr className="even:bg-gray-200">
-											<th className="hidden p-2 text-left md:table-cell">Item No.</th>
-											<th className="p-2 text-left">Item</th>
-											<th className="p-2 text-right">Price/EA</th>
-											<th className="p-2 text-right">Qty</th>
-										</tr>
-									</thead>
-									<tbody>
-										{cartItems.map((cartItem) => (
-											<React.Fragment key={cartItem.id}>
-												<tr className="even:bg-gray-200">
-													<td className="hidden p-2 text-left font-semibold md:table-cell">
-														{cartItem.id}
-													</td>
-													<td className="p-2 text-left font-semibold">{cartItem.description}</td>
-													<td className="p-2 text-right font-semibold">
-														{currency.format(cartItem.price)}
-													</td>
-													<td className="p-2 text-right font-semibold">{cartItem.quantity}</td>
-												</tr>
-												{cartItem?.upgrades.map((upgrade) => (
-													<tr key={upgrade.id} className="even:bg-gray-200">
-														<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
-														<td className="p-2 text-left">{upgrade.description}</td>
-														<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-														<td className="p-2 text-right"></td>
+
+							<div className="flex flex-col items-end gap-8">
+								<div className="w-full py-8">
+									<Title level="h2">Order Summary</Title>
+									<table className="mt-6 w-full table-auto">
+										<thead>
+											<tr className="even:bg-gray-200">
+												<th className="hidden p-2 text-left md:table-cell">Item No.</th>
+												<th className="p-2 text-left">Item</th>
+												<th className="p-2 text-right">Price/EA</th>
+												<th className="p-2 text-right">Qty</th>
+											</tr>
+										</thead>
+										<tbody>
+											{cartItems.map((cartItem) => (
+												<React.Fragment key={cartItem.id}>
+													<tr className="even:bg-gray-200">
+														<td className="hidden p-2 text-left font-semibold md:table-cell">
+															{cartItem.id}
+														</td>
+														<td className="p-2 text-left font-semibold">{cartItem.description}</td>
+														<td className="p-2 text-right font-semibold">
+															{currency.format(cartItem.price)}
+														</td>
+														<td className="p-2 text-right font-semibold">{cartItem.quantity}</td>
 													</tr>
-												))}
-											</React.Fragment>
-										))}
-									</tbody>
-								</table>
-								<p className="mt-4 w-full text-right text-xl font-bold">
-									Order total: {currency.format(cartTotalPrice)}
-								</p>
-							</div>
-							<div className="flex gap-4">
-								<Button variant="ghost" href="/cart" as="a">
-									Return to cart
-								</Button>
-								<Button>Buy now</Button>
+													{cartItem?.upgrades.map((upgrade) => (
+														<tr key={upgrade.id} className="even:bg-gray-200">
+															<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
+															<td className="p-2 text-left">{upgrade.description}</td>
+															<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
+															<td className="p-2 text-right"></td>
+														</tr>
+													))}
+												</React.Fragment>
+											))}
+										</tbody>
+									</table>
+									<div>
+										<p className="mt-4 w-full text-right font-medium">
+											Subtotal: {currency.format(cartTotalPrice)}
+										</p>
+										<p className="w-full text-right font-medium">
+											Tax: {currency.format(cartTotalPrice * 0.0625)}
+										</p>
+										<p className="w-full text-right font-medium">
+											Ground shipping: {currency.format(75)}
+										</p>
+										<p className="mt-2 w-full text-right text-xl font-bold">
+											Order total: {currency.format(cartTotalPrice + cartTotalPrice * 0.0625 + 75)}
+										</p>
+									</div>
+								</div>
+
+								<div className="flex gap-4">
+									<Button variant="ghost" href="/cart" as="a">
+										Return to cart
+									</Button>
+									<Button isLoading={loading} isSuccess={success}>
+										Buy now
+									</Button>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				)}
 			</Container>
 		</Section>
