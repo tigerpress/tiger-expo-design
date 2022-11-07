@@ -49,63 +49,61 @@ export default function CartPage() {
 					<div className="mt-12 w-full bg-white p-8">
 						<table className="mt-6 w-full table-auto">
 							<thead>
-								<tr className="even:bg-gray-200">
-									<th className="hidden p-2 text-left md:table-cell">Item No.</th>
-									<th className="p-2 text-left">Item</th>
-									<th className="p-2 text-right">Price/EA</th>
-									<th className="p-2 text-center">Qty</th>
-									<th className="p-2 text-center">Del</th>
+								<tr className="">
+									<th className="hidden px-2 py-1 text-left md:table-cell">Item No.</th>
+									<th className="px-2 py-1 text-left">Item</th>
+									<th className="px-2 py-1 text-right">Price/EA</th>
+									<th className="px-2 py-1 text-center">Qty</th>
+									<th className="px-2 py-1 text-center">Del</th>
 								</tr>
 							</thead>
-							<tbody>
-								{cartItems.map((cartItem) => (
-									<React.Fragment key={cartItem.id}>
-										<tr className="even:bg-gray-200">
-											<td className="hidden p-2 text-left font-semibold md:table-cell">
-												{cartItem.id}
-											</td>
-											<td className="p-2 text-left font-semibold">{cartItem.description}</td>
-											<td className="p-2 text-right font-semibold">
-												{currency.format(cartItem.price)}
-											</td>
-											<td className="p-2 text-right font-semibold">
-												<div className="whitespace-nowrap">
-													<button
-														className="border border-gray-900 border-opacity-10 px-2 text-lg text-gray-700"
-														onClick={() => decreaseItemQuantity(cartItem)}
-													>
-														-
-													</button>
-													<span className="mx-2">{cartItem.quantity}</span>
-													<button
-														className="border border-gray-900 border-opacity-10 px-2 text-lg text-gray-700"
-														onClick={() => increaseItemQuantity(cartItem)}
-													>
-														+
-													</button>
-												</div>
-											</td>
-											<td className="p-2 text-center">
-												<IconButton
-													variant="ghost"
-													size="sm"
-													icon={HiOutlineTrash}
-													onClick={() => removeFromCart(cartItem)}
-												/>
-											</td>
+							{cartItems.map((cartItem) => (
+								<tbody key={cartItem.id} className="border-t">
+									<tr>
+										<td className="hidden px-2 py-1 text-left font-semibold md:table-cell">
+											{cartItem.id}
+										</td>
+										<td className="px-2 py-1 text-left font-semibold">{cartItem.description}</td>
+										<td className="px-2 py-1 text-right font-semibold">
+											{currency.format(cartItem.price)}
+										</td>
+										<td className="px-2 py-1 text-right font-semibold">
+											<div className="whitespace-nowrap">
+												<button
+													className="border border-gray-900 border-opacity-10 bg-white px-2 text-lg text-gray-700"
+													onClick={() => decreaseItemQuantity(cartItem)}
+												>
+													-
+												</button>
+												<span className="mx-2">{cartItem.quantity}</span>
+												<button
+													className="border border-gray-900 border-opacity-10 bg-white px-2 text-lg text-gray-700"
+													onClick={() => increaseItemQuantity(cartItem)}
+												>
+													+
+												</button>
+											</div>
+										</td>
+										<td className="px-2 py-1 text-center">
+											<IconButton
+												variant="ghost"
+												size="sm"
+												icon={HiOutlineTrash}
+												onClick={() => removeFromCart(cartItem)}
+											/>
+										</td>
+									</tr>
+									{cartItem?.upgrades?.map((upgrade) => (
+										<tr key={upgrade.id} className="text-gray-700">
+											<td className="hidden px-2 py-1 text-left md:table-cell">{upgrade.id}</td>
+											<td className="px-2 py-1 text-left">{upgrade.description}</td>
+											<td className="px-2 py-1 text-right">{currency.format(upgrade.price)}</td>
+											<td className="px-2 py-1 text-right"></td>
+											<td className="px-2 py-1 text-right"></td>
 										</tr>
-										{cartItem?.upgrades.map((upgrade) => (
-											<tr key={upgrade.id} className="even:bg-gray-200">
-												<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
-												<td className="p-2 text-left">{upgrade.description}</td>
-												<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-												<td className="p-2 text-right"></td>
-												<td className="p-2 text-right"></td>
-											</tr>
-										))}
-									</React.Fragment>
-								))}
-							</tbody>
+									))}
+								</tbody>
+							))}
 						</table>
 						<p className="mt-4 w-full text-right text-xl font-bold">
 							Order total: {currency.format(cartTotalPrice)}

@@ -87,9 +87,14 @@ export default function ProductPage({ product }) {
 		<>
 			<Section className="bg-white">
 				<Container>
-					<div className="grid gap-4 lg:grid-cols-2">
-						<div className="relative aspect-square">
-							<Image src={product.image} alt={product.name} fill />
+					<div className="grid gap-8 lg:grid-cols-2">
+						<div className="relative bg-gray-100 shadow-vignette">
+							<Image
+								src={product.image}
+								alt={product.name}
+								fill
+								className="p-8 mix-blend-multiply"
+							/>
 						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<Title level="h1" className="mb-12">
@@ -139,7 +144,7 @@ export default function ProductPage({ product }) {
 
 							<div className="mt-12 flex items-center justify-between">
 								<span className="text-2xl font-bold">Subtotal: {currency.format(price)}</span>
-								<Button>Proceed to Checkout</Button>
+								<Button>Add to cart</Button>
 							</div>
 						</form>
 					</div>

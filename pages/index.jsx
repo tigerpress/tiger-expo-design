@@ -129,7 +129,7 @@ export default function Home({ products }) {
 								<Link href="/products" passHref>
 									<Button as="a">Shop now</Button>
 								</Link>
-								<Link href="/products" passHref>
+								<Link href="/contact" passHref>
 									<Button as="a" variant="outline">
 										Contact us
 									</Button>

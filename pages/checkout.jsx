@@ -134,37 +134,44 @@ export default function CheckoutPage() {
 									<Title level="h2">Order Summary</Title>
 									<table className="mt-6 w-full table-auto">
 										<thead>
-											<tr className="even:bg-gray-200">
-												<th className="hidden p-2 text-left md:table-cell">Item No.</th>
-												<th className="p-2 text-left">Item</th>
-												<th className="p-2 text-right">Price/EA</th>
-												<th className="p-2 text-right">Qty</th>
+											<tr className="">
+												<th className="hidden px-2 py-1 text-left md:table-cell">Item No.</th>
+												<th className="px-2 py-1 text-left">Item</th>
+												<th className="px-2 py-1 text-right">Price/EA</th>
+												<th className="px-2 py-1 text-center">Qty</th>
 											</tr>
 										</thead>
-										<tbody>
-											{cartItems.map((cartItem) => (
-												<React.Fragment key={cartItem.id}>
-													<tr className="even:bg-gray-200">
-														<td className="hidden p-2 text-left font-semibold md:table-cell">
-															{cartItem.id}
+										{cartItems.map((cartItem) => (
+											<tbody key={cartItem.id} className="border-t">
+												<tr>
+													<td className="hidden px-2 py-1 text-left font-semibold md:table-cell">
+														{cartItem.id}
+													</td>
+													<td className="px-2 py-1 text-left font-semibold">
+														{cartItem.description}
+													</td>
+													<td className="px-2 py-1 text-right font-semibold">
+														{currency.format(cartItem.price)}
+													</td>
+													<td className="px-2 py-1 text-right font-semibold">
+														<span className="mx-1">{cartItem.quantity}</span>
+													</td>
+												</tr>
+												{cartItem?.upgrades?.map((upgrade) => (
+													<tr key={upgrade.id} className="text-gray-700">
+														<td className="hidden px-2 py-1 text-left md:table-cell">
+															{upgrade.id}
 														</td>
-														<td className="p-2 text-left font-semibold">{cartItem.description}</td>
-														<td className="p-2 text-right font-semibold">
-															{currency.format(cartItem.price)}
+														<td className="px-2 py-1 text-left">{upgrade.description}</td>
+														<td className="px-2 py-1 text-right">
+															{currency.format(upgrade.price)}
 														</td>
-														<td className="p-2 text-right font-semibold">{cartItem.quantity}</td>
+														<td className="px-2 py-1 text-right"></td>
+														<td className="px-2 py-1 text-right"></td>
 													</tr>
-													{cartItem?.upgrades.map((upgrade) => (
-														<tr key={upgrade.id} className="even:bg-gray-200">
-															<td className="hidden p-2 text-left md:table-cell">{upgrade.id}</td>
-															<td className="p-2 text-left">{upgrade.description}</td>
-															<td className="p-2 text-right">{currency.format(upgrade.price)}</td>
-															<td className="p-2 text-right"></td>
-														</tr>
-													))}
-												</React.Fragment>
-											))}
-										</tbody>
+												))}
+											</tbody>
+										))}
 									</table>
 									<div>
 										<p className="mt-4 w-full text-right font-medium">
