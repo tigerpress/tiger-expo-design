@@ -21,7 +21,7 @@ export default function CartPage() {
 		cartTotalPrice,
 		increaseItemQuantity,
 		decreaseItemQuantity,
-		wipeCart,
+		clearCart,
 	} = useCart();
 
 	const {
@@ -63,7 +63,7 @@ export default function CartPage() {
 										<td className="hidden px-2 py-1 text-left font-semibold md:table-cell">
 											{cartItem.id}
 										</td>
-										<td className="px-2 py-1 text-left font-semibold">{cartItem.description}</td>
+										<td className="px-2 py-1 text-left font-semibold">{cartItem.name}</td>
 										<td className="px-2 py-1 text-right font-semibold">
 											{currency.format(cartItem.price)}
 										</td>
@@ -96,7 +96,7 @@ export default function CartPage() {
 									{cartItem?.upgrades?.map((upgrade) => (
 										<tr key={upgrade.id} className="text-gray-700">
 											<td className="hidden px-2 py-1 text-left md:table-cell">{upgrade.id}</td>
-											<td className="px-2 py-1 text-left">{upgrade.description}</td>
+											<td className="px-2 py-1 text-left">{upgrade.name}</td>
 											<td className="px-2 py-1 text-right">{currency.format(upgrade.price)}</td>
 											<td className="px-2 py-1 text-right"></td>
 											<td className="px-2 py-1 text-right"></td>
@@ -109,7 +109,7 @@ export default function CartPage() {
 							Order total: {currency.format(cartTotalPrice)}
 						</p>
 						<div className="mt-12 flex justify-end gap-4">
-							<Button variant="ghost" onClick={wipeCart}>
+							<Button variant="ghost" onClick={clearCart}>
 								Clear cart
 							</Button>
 							<Link href="/checkout" passHref>

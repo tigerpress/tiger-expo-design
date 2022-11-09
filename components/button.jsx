@@ -43,7 +43,7 @@ const Button = ({
 				isLoading && classes.states.loading,
 				isSuccess && classes.states.success,
 				pill && "rounded-full",
-				"inline-block cursor-pointer text-center font-medium transition-all disabled:cursor-not-allowed"
+				"inline-block cursor-pointer rounded-xl text-center font-medium transition-all disabled:cursor-not-allowed"
 			)}
 			{...(as === "a" ? (href = { href }) : null)}
 			disabled={isLoading || isError}

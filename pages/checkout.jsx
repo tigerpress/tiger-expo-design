@@ -147,9 +147,7 @@ export default function CheckoutPage() {
 													<td className="hidden px-2 py-1 text-left font-semibold md:table-cell">
 														{cartItem.id}
 													</td>
-													<td className="px-2 py-1 text-left font-semibold">
-														{cartItem.description}
-													</td>
+													<td className="px-2 py-1 text-left font-semibold">{cartItem.name}</td>
 													<td className="px-2 py-1 text-right font-semibold">
 														{currency.format(cartItem.price)}
 													</td>
@@ -162,7 +160,7 @@ export default function CheckoutPage() {
 														<td className="hidden px-2 py-1 text-left md:table-cell">
 															{upgrade.id}
 														</td>
-														<td className="px-2 py-1 text-left">{upgrade.description}</td>
+														<td className="px-2 py-1 text-left">{upgrade.name}</td>
 														<td className="px-2 py-1 text-right">
 															{currency.format(upgrade.price)}
 														</td>

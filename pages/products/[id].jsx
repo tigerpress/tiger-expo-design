@@ -15,21 +15,6 @@ import { useCart } from "../../context/cart-context";
 import { currency } from "../../lib/utils";
 import products from "../api/products.json";
 
-const features = [
-	{ name: "Origin", description: "Designed by Good Goods, Inc." },
-	{
-		name: "Material",
-		description: "Solid walnut base with rare earth magnets and powder coated steel card cover",
-	},
-	{ name: "Dimensions", description: '6.25" x 3.55" x 1.15"' },
-	{ name: "Finish", description: "Hand sanded and finished with natural oil" },
-	{ name: "Includes", description: "Wood card tray and 3 refill packs" },
-	{
-		name: "Considerations",
-		description: "Made from natural materials. Grain and color vary with each item.",
-	},
-];
-
 export default function ProductPage({ product }) {
 	const router = useRouter();
 	const { increaseItemQuantity } = useCart();
@@ -52,15 +37,17 @@ export default function ProductPage({ product }) {
 
 	const watchValues = watch();
 	const formData = getValues();
-
 	const grade = product.configs.find((config) => config.id === formData.grade);
 	const config = {
 		id: grade?.options.find((option) => option.id === formData.option)?.id,
-		description: grade?.options.find((option) => option.id === formData.option)?.description,
+		name: grade?.options.find((option) => option.id === formData.option)?.name,
 		price: grade?.options.find((option) => option.id === formData.option)?.price,
 		upgrades: grade?.upgrades.filter((upgrade) => formData.upgrades.includes(upgrade.id)),
 		quantity: formData.quantity,
 	};
+
+	const currentOption = grade?.options.find((option) => option.id === formData.option);
+
 	const price =
 		(parseFloat(config?.price) + config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0)) *
 		parseInt(config.quantity);
@@ -96,6 +83,7 @@ export default function ProductPage({ product }) {
 								className="p-8 mix-blend-multiply"
 							/>
 						</div>
+
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<Title level="h1" className="mb-12">
 								{product.name}
@@ -114,7 +102,7 @@ export default function ProductPage({ product }) {
 									.find((config) => config.id === watchValues.grade)
 									?.options.map((option) => (
 										<option key={option.id} value={option.id}>
-											{option.description}
+											{option.name}
 										</option>
 									))}
 							</Select>
@@ -128,7 +116,7 @@ export default function ProductPage({ product }) {
 											key={upgrade.id}
 											name={"upgrades"}
 											value={upgrade.id}
-											label={upgrade.description}
+											label={upgrade.name}
 											{...register("upgrades")}
 										/>
 									))}
@@ -157,17 +145,15 @@ export default function ProductPage({ product }) {
 						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 							Technical Specifications
 						</h2>
-						<p className="mt-4 text-gray-700">
-							The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards.
-							The powder coated steel divider separates active cards from new ones, or can be used
-							to archive important task lists.
-						</p>
+						<p className="mt-4 text-gray-700">{currentOption.description}</p>
 
 						<dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-							{features.map((feature) => (
-								<div key={feature.name} className="border-t border-gray-300 pt-4">
-									<dt className="font-medium">{feature.name}</dt>
-									<dd className="mt-2 text-sm text-gray-700">{feature.description}</dd>
+							{Object.keys(currentOption.specifications).map((key) => (
+								<div key={key} className="border-t border-gray-300 pt-4">
+									<dt className="font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
+									<dd className="mt-2 text-sm text-gray-700">
+										{currentOption.specifications[key]}
+									</dd>
 								</div>
 							))}
 						</dl>

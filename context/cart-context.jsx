@@ -57,7 +57,7 @@ export const CartProvider = ({ children }) => {
 		setCartItems((cartItems) => cartItems.filter((cartItem) => cartItem.id !== item.id));
 	}
 
-	function wipeCart() {
+	function clearCart() {
 		setCartItems([]);
 	}
 
@@ -71,7 +71,7 @@ export const CartProvider = ({ children }) => {
 				cartQuantity,
 				itemTotalPrice,
 				cartTotalPrice,
-				wipeCart,
+				clearCart,
 			}}
 		>
 			{children}
