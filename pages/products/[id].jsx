@@ -22,7 +22,6 @@ export default function ProductPage({ product }) {
 		register,
 		handleSubmit,
 		watch,
-		getValues,
 		setValue,
 		formState: { errors },
 	} = useForm({
@@ -35,18 +34,20 @@ export default function ProductPage({ product }) {
 		reValidateMode: "onChange",
 	});
 
-	const watchValues = watch();
-	const formData = getValues();
-	const grade = product.configs.find((config) => config.id === formData.grade);
-	const config = {
-		id: grade?.options.find((option) => option.id === formData.option)?.id,
-		name: grade?.options.find((option) => option.id === formData.option)?.name,
-		price: grade?.options.find((option) => option.id === formData.option)?.price,
-		upgrades: grade?.upgrades.filter((upgrade) => formData.upgrades.includes(upgrade.id)),
-		quantity: formData.quantity,
-	};
+	const formValues = watch();
+	const currentGrade =
+		product.configs.find((config) => config.id === formValues.grade) ?? product.configs[0];
+	const currentOption =
+		currentGrade?.options.find((option) => option.id === formValues.option) ??
+		product.configs[0].options[0];
 
-	const currentOption = grade?.options.find((option) => option.id === formData.option);
+	const config = {
+		id: currentOption?.id,
+		name: currentOption?.name,
+		price: currentOption?.price,
+		upgrades: currentGrade?.upgrades.filter((upgrade) => formValues.upgrades.includes(upgrade.id)),
+		quantity: formValues.quantity,
+	};
 
 	const price =
 		(parseFloat(config?.price) + config.upgrades?.reduce((a, c) => a + parseFloat(c.price), 0)) *
@@ -55,10 +56,10 @@ export default function ProductPage({ product }) {
 	useEffect(() => {
 		setValue(
 			"option",
-			product.configs.find((config) => config.id === watchValues.grade).options[0].id
+			product.configs.find((config) => config.id === formValues.grade)?.options[0].id
 		);
 		setValue("upgrades", []);
-	}, [watchValues.grade]);
+	}, [formValues.grade]);
 
 	const onSubmit = (e) => {
 		increaseItemQuantity(config);
@@ -98,28 +99,24 @@ export default function ProductPage({ product }) {
 							</Select>
 
 							<Select name="option" label="Option" {...register("option")}>
-								{product.configs
-									.find((config) => config.id === watchValues.grade)
-									?.options.map((option) => (
-										<option key={option.id} value={option.id}>
-											{option.name}
-										</option>
-									))}
+								{currentGrade?.options.map((option) => (
+									<option key={option.id} value={option.id}>
+										{option.name}
+									</option>
+								))}
 							</Select>
 
 							<fieldset className="mt-3">
 								<legend className="font-medium">Addon Upgrades</legend>
-								{product.configs
-									.find((config) => config.id === watchValues.grade)
-									?.upgrades.map((upgrade, i) => (
-										<Checkbox
-											key={upgrade.id}
-											name={"upgrades"}
-											value={upgrade.id}
-											label={upgrade.name}
-											{...register("upgrades")}
-										/>
-									))}
+								{currentGrade?.upgrades.map((upgrade, i) => (
+									<Checkbox
+										key={upgrade.id}
+										name={"upgrades"}
+										value={upgrade.id}
+										label={upgrade.name}
+										{...register("upgrades")}
+									/>
+								))}
 							</fieldset>
 
 							<Input
@@ -139,27 +136,28 @@ export default function ProductPage({ product }) {
 				</Container>
 			</Section>
 
-			<Section>
-				<Container>
-					<div>
-						<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-							Technical Specifications
-						</h2>
-						<p className="mt-4 text-gray-700">{currentOption.description}</p>
-
-						<dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-							{Object.keys(currentOption.specifications).map((key) => (
-								<div key={key} className="border-t border-gray-300 pt-4">
-									<dt className="font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
-									<dd className="mt-2 text-sm text-gray-700">
-										{currentOption.specifications[key]}
-									</dd>
-								</div>
-							))}
-						</dl>
-					</div>
-				</Container>
-			</Section>
+			{currentOption && (
+				<Section>
+					<Container>
+						<div>
+							<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+								Product Specifications
+							</h2>
+							<p className="mt-4 text-gray-700">{currentOption.description}</p>
+							<dl className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8">
+								{Object.keys(currentOption.specifications).map((key) => (
+									<div key={key} className="border-t border-gray-300 pt-4">
+										<dt className="font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
+										<dd className="mt-2 text-sm text-gray-700">
+											{currentOption.specifications[key]}
+										</dd>
+									</div>
+								))}
+							</dl>
+						</div>
+					</Container>
+				</Section>
+			)}
 
 			{relatedProducts && (
 				<Section className="bg-white">

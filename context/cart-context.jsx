@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
 			} else {
 				return cartItems.map((cartItem) => {
 					if (cartItem.id === item.id) {
-						return { ...cartItem, quantity: cartItem.quantity + 1 };
+						return { ...cartItem, quantity: parseFloat(cartItem.quantity) + 1 };
 					} else {
 						return cartItem;
 					}
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
 			} else {
 				return cartItems.map((cartItem) => {
 					if (cartItem.id === item.id) {
-						return { ...cartItem, quantity: cartItem.quantity - 1 };
+						return { ...cartItem, quantity: parseFloat(cartItem.quantity) - 1 };
 					} else {
 						return cartItem;
 					}
