@@ -25,7 +25,7 @@ export default function Header() {
 	const { cartQuantity } = useCart();
 
 	return (
-		<header className="bg-yellow-300 py-8 font-bold">
+		<header className="py-8 font-bold">
 			<Container className="flex items-center justify-between">
 				<Link href="/">
 					<a>

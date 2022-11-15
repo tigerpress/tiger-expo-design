@@ -6,10 +6,12 @@ import Container from "../components/container";
 import Checkbox from "../components/forms/checkbox";
 import Input from "../components/forms/input";
 import PaymentForm from "../components/forms/payment-form";
+import Select from "../components/forms/Select";
 import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
 import { useCart } from "../context/cart-context";
+import { STATES } from "../lib/constants";
 import { currency } from "../lib/utils";
 
 export default function CheckoutPage() {
@@ -95,12 +97,17 @@ export default function CheckoutPage() {
 									<Input name="firstName" label="First Name" {...register("firstName")} />
 									<Input name="lastName" label="Last Name" {...register("lastName")} />
 								</div>
-								<Input type="email" name="email" label="email" {...register("email")} />
-								<Input name="address1" label="Address 1" {...register("address1")} />
-								<Input name="address2" label="Address 2" {...register("address2")} />
-								<Input name="city" label="City" {...register("city")} />
-								<div className="flex gap-4">
-									<Input name="state" label="State" {...register("state")} />
+								<Input type="email" name="email" label="Email" {...register("email")} />
+								<Input name="address" label="Address" {...register("address1")} />
+								<div className="gap-4 md:flex">
+									<Input name="city" label="City" {...register("city")} />
+									<Select name="state" label="State" {...register("state")}>
+										{Object.entries(STATES).map(([key, value]) => (
+											<option value={key} key={key}>
+												{value}
+											</option>
+										))}
+									</Select>
 									<Input
 										name="zip"
 										label="Zip"

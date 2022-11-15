@@ -12,7 +12,6 @@ const Button = ({
 	isSuccess,
 	href,
 	onClick,
-	pill,
 }) => {
 	const Tag = as;
 
@@ -42,8 +41,7 @@ const Button = ({
 				isError && classes.states.error,
 				isLoading && classes.states.loading,
 				isSuccess && classes.states.success,
-				pill && "rounded-full",
-				"inline-block cursor-pointer rounded-xl text-center font-medium transition-all disabled:cursor-not-allowed"
+				"inline-block cursor-pointer rounded-full text-center font-medium transition-all disabled:cursor-not-allowed"
 			)}
 			{...(as === "a" ? (href = { href }) : null)}
 			disabled={isLoading || isError}

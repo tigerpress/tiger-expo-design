@@ -76,9 +76,9 @@ export default function ProductPage({ product }) {
 			<Section className="bg-white">
 				<Container>
 					<div className="grid gap-8 lg:grid-cols-2">
-						<div className="relative bg-gray-100 shadow-vignette">
+						<div className="relative aspect-square bg-gray-100 shadow-vignette">
 							<Image
-								src={product.image}
+								src={`/${currentOption.id}.webp`}
 								alt={product.name}
 								fill
 								className="p-8 mix-blend-multiply"
@@ -89,6 +89,7 @@ export default function ProductPage({ product }) {
 							<Title level="h1" className="mb-12">
 								{product.name}
 							</Title>
+							<p className="mt-4 text-gray-700">{currentOption.description}</p>
 
 							<Select name="grade" label="Grade" {...register("grade")}>
 								{product.configs.map((config) => (
