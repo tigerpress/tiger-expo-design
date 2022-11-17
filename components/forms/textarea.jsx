@@ -19,4 +19,4 @@ const TextArea = forwardRef(({ name, label, type = "text", rows = "12", ...rest 
 
 TextArea.displayName = "TextArea";
 
-export default TextArea;
+export { TextArea };

@@ -23,4 +23,4 @@ const List = ({ style = "ul", items = [], indent = true, decoration }) => {
 	);
 };
 
-export default List;
+export { List };

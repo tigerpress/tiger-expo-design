@@ -28,4 +28,4 @@ const Input = forwardRef(({ name, label, type = "text", errors, ...rest }, ref) 
 
 Input.displayName = "Input";
 
-export default Input;
+export { Input };

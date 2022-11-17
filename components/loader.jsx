@@ -5,4 +5,4 @@ const Loader = ({ className }) => {
 	return <HiOutlineCog className={clsx(className, "inline animate-spin")} />;
 };
 
-export default Loader;
+export { Loader };

@@ -11,4 +11,4 @@ const Checkbox = forwardRef(({ name, label, ...rest }, ref) => {
 
 Checkbox.displayName = "Checkbox";
 
-export default Checkbox;
+export { Checkbox };

@@ -19,4 +19,4 @@ const Select = forwardRef(({ name, label, children, ...rest }, ref) => {
 
 Select.displayName = "Select";
 
-export default Select;
+export { Select };

@@ -6,11 +6,11 @@ import {
 	HiOutlineGlobe,
 	HiOutlinePuzzle,
 } from "react-icons/hi";
-import Button from "../components/button";
-import Container from "../components/container";
-import ProductCard from "../components/product-card";
-import Section from "../components/section";
-import Title from "../components/title";
+import { Button } from "../components/button";
+import { Container } from "../components/container";
+import { ProductCard } from "../components/product-card";
+import { Section } from "../components/section";
+import { Title } from "../components/title";
 import products from "./api/products.json";
 
 const features = [

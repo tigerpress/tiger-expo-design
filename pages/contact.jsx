@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Button from "../components/button";
-import Container from "../components/container";
-import Input from "../components/forms/input";
-import TextArea from "../components/forms/textarea";
-import Paragraph from "../components/paragraph";
-import Section from "../components/section";
-import Title from "../components/title";
+import { Button } from "../components/button";
+import { Container } from "../components/container";
+import { Input } from "../components/forms/input";
+import { TextArea } from "../components/forms/textarea";
+import { Paragraph } from "../components/paragraph";
+import { Section } from "../components/section";
+import { Title } from "../components/title";
 
 export default function ContactPage() {
 	const [submitting, setSubmitting] = useState(false);

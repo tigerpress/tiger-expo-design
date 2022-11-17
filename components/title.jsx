@@ -15,4 +15,4 @@ const Title = ({ level = "h2", className = "", children }) => {
 	return <Tag className={clsx(classes[level], className)}>{children}</Tag>;
 };
 
-export default Title;
+export { Title };

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { HiOutlineCheckCircle } from "react-icons/hi";
-import Loader from "./loader";
+import { Loader } from "./loader";
 
 const Button = ({
 	children,
@@ -69,4 +69,4 @@ const Button = ({
 	);
 };
 
-export default Button;
+export { Button };

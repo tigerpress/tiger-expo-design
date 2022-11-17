@@ -6,4 +6,4 @@ const Container = ({ className = "", children }) => {
 	);
 };
 
-export default Container;
+export { Container };

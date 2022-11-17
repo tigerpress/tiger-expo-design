@@ -7,7 +7,7 @@ import { BiMenu } from "react-icons/bi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";
 import products from "../../pages/api/products.json";
-import Container from "../container";
+import { Container } from "../container";
 
 const NavLink = ({ href, children }) => {
 	const router = useRouter();
@@ -20,7 +20,7 @@ const NavLink = ({ href, children }) => {
 	);
 };
 
-export default function Header() {
+const Header = () => {
 	const { cartQuantity } = useCart();
 
 	return (
@@ -116,4 +116,6 @@ export default function Header() {
 			</Container>
 		</header>
 	);
-}
+};
+
+export { Header };

@@ -1,5 +1,5 @@
-import Container from "../container";
-import Section from "../section";
+import { Container } from "../container";
+import { Section } from "../section";
 
 const linkList = [
 	{
@@ -96,4 +96,4 @@ const Footer = () => {
 	);
 };
 
-export default Footer;
+export { Footer };

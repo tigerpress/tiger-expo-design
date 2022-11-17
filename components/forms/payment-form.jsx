@@ -1,6 +1,6 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import Button from "../button";
+import { Button } from "../button";
 
 const PaymentForm = ({ clientKey, error, tryAgain2 }) => {
 	const [tryAgain, setTryAgain] = useState(tryAgain2);
@@ -119,4 +119,4 @@ const PaymentForm = ({ clientKey, error, tryAgain2 }) => {
 		</>
 	);
 };
-export default PaymentForm;
+export { PaymentForm };

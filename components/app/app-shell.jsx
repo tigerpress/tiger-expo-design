@@ -1,7 +1,7 @@
-import Footer from "./footer";
-import Header from "./header";
+import { Footer } from "./footer";
+import { Header } from "./header";
 
-export default function AppShell({ children }) {
+const AppShell = ({ children }) => {
 	return (
 		<div className="flex min-h-full flex-col">
 			<Header />
@@ -9,4 +9,6 @@ export default function AppShell({ children }) {
 			<Footer />
 		</div>
 	);
-}
+};
+
+export { AppShell };

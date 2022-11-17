@@ -1,6 +1,6 @@
-import Container from "../components/container";
-import Section from "../components/section";
-import Title from "../components/title";
+import { Container } from "../components/container";
+import { Section } from "../components/section";
+import { Title } from "../components/title";
 
 export default function OrderConfirmationPage() {
 	return (
