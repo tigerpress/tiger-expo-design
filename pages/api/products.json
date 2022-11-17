@@ -1,17 +1,16 @@
 [
 	{
-		"id": "TSB5X10",
-		"name": "Booth, 5' x 10'",
-		"width": "120",
-		"height": "60",
-		"image": "/TSB5X10.webp",
+		"id": "TSB5",
+		"name": "Tabletop Booths / Banner Stands",
+		"image": "/TSB5.webp",
+		"description": "Tabletop and banner stand displays are excellent choices for budget concious or highly mobile exhibits.",
 		"configs": [
 			{
-				"id": "TSB5X10E",
-				"grade": "Economy",
+				"id": "TSB5E",
+				"budget": "Economy",
 				"options": [
 					{
-						"id": "TSB5X10EO1",
+						"id": "TSB5EO1",
 						"name": "2 Pop-Up banners angled at back wall",
 						"price": "399",
 						"description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -28,7 +27,7 @@
 						}
 					},
 					{
-						"id": "TSB5X10EO2",
+						"id": "TSB5EO2",
 						"name": "1 Large Pop-Up Banner",
 						"price": "684",
 						"description": "1 Large Pop-Up Banner",
@@ -47,28 +46,28 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB5X10EU1",
+						"id": "TSB5EU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10EU2",
+						"id": "TSB5EU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB5X10EU3",
+						"id": "TSB5EU3",
 						"name": "Tabletop Pop-Up Banner",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB5X10S",
-				"grade": "Standard",
+				"id": "TSB5S",
+				"budget": "Standard",
 				"options": [
 					{
-						"id": "TSB5X10SO1",
+						"id": "TSB5SO1",
 						"name": "5 ft. Hop-Up straight display, fabric front only",
 						"price": "562",
 						"description": "Lorem ipsum dolor sit amet",
@@ -87,43 +86,43 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB5X10SU1",
+						"id": "TSB5SU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10SU2",
+						"id": "TSB5SU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB5X10SU3",
+						"id": "TSB5SU3",
 						"name": "Tabletop Pop-Up Banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10SU4",
+						"id": "TSB5SU4",
 						"name": "Podium Artwork Wrap",
 						"price": "124"
 					},
 					{
-						"id": "TSB5X10SU5",
+						"id": "TSB5SU5",
 						"name": "5' Banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10SU6",
+						"id": "TSB5SU6",
 						"name": "5' Sign",
 						"price": "87"
 					}
 				]
 			},
 			{
-				"id": "TSB5X10P",
-				"grade": "Premium",
+				"id": "TSB5P",
+				"budget": "Premium",
 				"options": [
 					{
-						"id": "TSB5X10PO1",
+						"id": "TSB5PO1",
 						"name": "5 ft. Hop-Up curved display, fabric full graphics",
 						"price": "847",
 						"description": "Lorem ipsum dolor sit amet",
@@ -142,37 +141,37 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB5X10PU1",
+						"id": "TSB5PU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10PU2",
+						"id": "TSB5PU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB5X10PU3",
+						"id": "TSB5PU3",
 						"name": "Tabletop Pop-Up Banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10PU4",
+						"id": "TSB5PU4",
 						"name": "Podium Artwork Wrap",
 						"price": "124"
 					},
 					{
-						"id": "TSB5X10PU5",
+						"id": "TSB5PU5",
 						"name": "5' Banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB5X10PU6",
+						"id": "TSB5PU6",
 						"name": "5' Sign",
 						"price": "87"
 					},
 					{
-						"id": "TSB5X10PU7",
+						"id": "TSB5PU7",
 						"name": "Backlight",
 						"price": "52"
 					}
@@ -181,18 +180,17 @@
 		]
 	},
 	{
-		"id": "TSB10X10",
-		"name": "Booth, 10' x 10'",
-		"width": "120",
-		"height": "120",
-		"image": "/TSB5X10.webp",
+		"id": "TSB8",
+		"name": "8' Tradeshow Booths",
+		"image": "/TSB5.webp",
+		"description": "Our 8 foot tradeshow displays are excellent choices for budget concious or highly mobile exhibits.",
 		"configs": [
 			{
-				"id": "TSB10X10E",
-				"grade": "Economy",
+				"id": "TSB8E",
+				"budget": "Economy",
 				"options": [
 					{
-						"id": "TSB10X10EO1",
+						"id": "TSB8EO1",
 						"name": "3 pop-up banners along back wall",
 						"price": "599",
 						"description": "Lorem ipsum dolor sit amet",
@@ -211,33 +209,33 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X10EU1",
+						"id": "TSB8EU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10EU2",
+						"id": "TSB8EU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X10EU3",
+						"id": "TSB8EU3",
 						"name": "Podium + 10 foot entrance vinyl banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10EU4",
+						"id": "TSB8EU4",
 						"name": "Podium + 10 foot entrance rigid sign",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB10X10S",
-				"grade": "Standard",
+				"id": "TSB8S",
+				"budget": "Standard",
 				"options": [
 					{
-						"id": "TSB10X10SO1",
+						"id": "TSB8SO1",
 						"name": "Hop-up lite straight, fabric front only",
 						"price": "399",
 						"description": "Lorem ipsum dolor sit amet",
@@ -254,7 +252,7 @@
 						}
 					},
 					{
-						"id": "TSB10X10SO2",
+						"id": "TSB8SO2",
 						"name": "Hop-up lite straight, full graphics",
 						"price": "499",
 						"description": "Lorem ipsum dolor sit amet",
@@ -271,7 +269,7 @@
 						}
 					},
 					{
-						"id": "TSB10X10SO3",
+						"id": "TSB8SO3",
 						"name": "Hop-up straight, fabric front only",
 						"price": "549",
 						"description": "Lorem ipsum dolor sit amet",
@@ -288,7 +286,7 @@
 						}
 					},
 					{
-						"id": "TSB10X10SO4",
+						"id": "TSB8SO4",
 						"name": "Hop-up straight, full graphics",
 						"price": "648",
 						"description": "Lorem ipsum dolor sit amet",
@@ -305,7 +303,7 @@
 						}
 					},
 					{
-						"id": "TSB10X10SO5",
+						"id": "TSB8SO5",
 						"name": "Hop-up curved, full graphics",
 						"price": "500",
 						"description": "Lorem ipsum dolor sit amet",
@@ -324,48 +322,48 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X10SU1",
+						"id": "TSB8SU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10SU2",
+						"id": "TSB8SU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X10SU3",
+						"id": "TSB8SU3",
 						"name": "Podium + 10 foot entrance vinyl banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10SU4",
+						"id": "TSB8SU4",
 						"name": "Podium + 10 foot entrance rigid sign",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10SU5",
+						"id": "TSB8SU5",
 						"name": "Backlight",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10SU6",
+						"id": "TSB8SU6",
 						"name": "Flag",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10SU7",
+						"id": "TSB8SU7",
 						"name": "Literature Rack",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB10X10P",
-				"grade": "Premium",
+				"id": "TSB8P",
+				"budget": "Premium",
 				"options": [
 					{
-						"id": "TSB10X10PO1",
+						"id": "TSB8PO1",
 						"name": "10' Vector Frame Master Modular Backwall Kit 10",
 						"price": "799",
 						"description": "Lorem ipsum dolor sit amet",
@@ -384,32 +382,32 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X10PU1",
+						"id": "TSB8PU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10PU2",
+						"id": "TSB8PU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X10PU3",
+						"id": "TSB8PU3",
 						"name": "Podium + 10 foot entrance vinyl banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10PU4",
+						"id": "TSB8PU4",
 						"name": "Podium + 10 foot entrance rigid sign",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10PU5",
+						"id": "TSB8PU5",
 						"name": "Hanging Header",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X10PU6",
+						"id": "TSB8PU6",
 						"name": "Backlight",
 						"price": "83"
 					}
@@ -418,18 +416,19 @@
 		]
 	},
 	{
-		"id": "TSB10X15",
-		"name": "Booth, 10' x 15'",
+		"id": "TSB10",
+		"name": "10' Tradeshow Booths",
 		"width": "170",
 		"height": "120",
-		"image": "/TSB5X10.webp",
+		"image": "/TSB5.webp",
+		"description": "Our 8 foot tradeshow displays are excellent choices for budget concious or highly mobile exhibits.",
 		"configs": [
 			{
-				"id": "TSB10X15E",
-				"grade": "Economy",
+				"id": "TSB10E",
+				"budget": "Economy",
 				"options": [
 					{
-						"id": "TSB10X15EO1",
+						"id": "TSB10EO1",
 						"name": "5' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
 						"price": "899",
 						"description": "Lorem ipsum dolor sit amet",
@@ -448,33 +447,33 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X15EU1",
+						"id": "TSB10EU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15EU2",
+						"id": "TSB10EU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X15EU3",
+						"id": "TSB10EU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15EU4",
+						"id": "TSB10EU4",
 						"name": "15' entrance vinyl banner",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB10X15S",
-				"grade": "Standard",
+				"id": "TSB10S",
+				"budget": "Standard",
 				"options": [
 					{
-						"id": "TSB10X15SO1",
+						"id": "TSB10SO1",
 						"name": "10' Hop-Up straight display (fabric front only) plus 2-pop-up banners",
 						"price": "399",
 						"description": "Lorem ipsum dolor sit amet",
@@ -493,43 +492,43 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X15SU1",
+						"id": "TSB10SU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15SU2",
+						"id": "TSB10SU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X15SU3",
+						"id": "TSB10SU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15SU4",
+						"id": "TSB10SU4",
 						"name": "15' entrance vinyl banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15SU5",
+						"id": "TSB10SU5",
 						"name": "Backlight",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15SU6",
+						"id": "TSB10SU6",
 						"name": "Pop-up banner",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB10X15P",
-				"grade": "Premium",
+				"id": "TSB10P",
+				"budget": "Premium",
 				"options": [
 					{
-						"id": "TSB10X15PO1",
+						"id": "TSB10PO1",
 						"name": "Modular Display",
 						"price": "799",
 						"description": "Lorem ipsum dolor sit amet",
@@ -548,37 +547,37 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB10X15PU1",
+						"id": "TSB10PU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15PU2",
+						"id": "TSB10PU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB10X15PU3",
+						"id": "TSB10PU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15PU4",
+						"id": "TSB10PU4",
 						"name": "15' Entrance Banner",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15PU5",
+						"id": "TSB10PU5",
 						"name": "Backlight",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15PU6",
+						"id": "TSB10PU6",
 						"name": "Shelving",
 						"price": "83"
 					},
 					{
-						"id": "TSB10X15PU7",
+						"id": "TSB10PU7",
 						"name": "Charging Station",
 						"price": "83"
 					}
@@ -587,189 +586,18 @@
 		]
 	},
 	{
-		"id": "TSB10X20",
-		"name": "Booth, 10' x 20'",
-		"width": "240",
-		"height": "120",
-		"image": "/TSB5X10.webp",
+		"id": "TSB15",
+		"name": "15' Tradeshow Booths",
+		"image": "/TSB5.webp",
+		"description": "Our 8 foot tradeshow displays are excellent choices for budget concious or highly mobile exhibits.",
+
 		"configs": [
 			{
-				"id": "TSB10X20",
-				"grade": "Economy",
+				"id": "TSB15E",
+				"budget": "Economy",
 				"options": [
 					{
-						"id": "TSB10X20EO1",
-						"name": "Waveline Originals 20' Straight Serpentine Display",
-						"price": "899",
-						"description": "Lorem ipsum dolor sit amet",
-						"specifications": {
-							"shape": "Straight",
-							"width": "118.5",
-							"height": "89.5",
-							"dimensions": "119W x 90H x 29D",
-							"weight": "41 lbs",
-							"origin": "USA",
-							"material": "Subliminated Fabric",
-							"base": "Anodized silver frame",
-							"accessories": "Rolling carry bag included"
-						}
-					},
-					{
-						"id": "TSB10X20EO2",
-						"name": "Formulate Tension Fabric Display",
-						"price": "899",
-						"description": "Lorem ipsum dolor sit amet",
-						"specifications": {
-							"shape": "Straight",
-							"width": "118.5",
-							"height": "89.5",
-							"dimensions": "119W x 90H x 29D",
-							"weight": "41 lbs",
-							"origin": "USA",
-							"material": "Subliminated Fabric",
-							"base": "Anodized silver frame",
-							"accessories": "Rolling carry bag included"
-						}
-					}
-				],
-				"upgrades": [
-					{
-						"id": "TSB10X20EU1",
-						"name": "Table Cloth",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20EU2",
-						"name": "Table Top Tri-Fold Display",
-						"price": "21"
-					},
-					{
-						"id": "TSB10X20EU3",
-						"name": "2 Podiums plus 20' Entrance Banner",
-						"price": "83"
-					}
-				]
-			},
-			{
-				"id": "TSB10X20S",
-				"grade": "Standard",
-				"options": [
-					{
-						"id": "TSB10X20SO1",
-						"name": "Waveline Media Display",
-						"price": "399",
-						"description": "Lorem ipsum dolor sit amet",
-						"specifications": {
-							"shape": "Straight",
-							"width": "118.5",
-							"height": "89.5",
-							"dimensions": "119W x 90H x 29D",
-							"weight": "41 lbs",
-							"origin": "USA",
-							"material": "Subliminated Fabric",
-							"base": "Anodized silver frame",
-							"accessories": "Rolling carry bag included"
-						}
-					}
-				],
-				"upgrades": [
-					{
-						"id": "TSB10X20SU1",
-						"name": "Table Cloth",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20SU2",
-						"name": "Table Top Tri-Fold Display",
-						"price": "21"
-					},
-					{
-						"id": "TSB10X20SU3",
-						"name": "2 Podiums plus 20' Entrance Banner",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20SU4",
-						"name": "Backlight",
-						"price": "83"
-					}
-				]
-			},
-			{
-				"id": "TSB10X20P",
-				"grade": "Premium",
-				"options": [
-					{
-						"id": "TSB10X20PO1",
-						"name": "Exhibitline Display",
-						"price": "799",
-						"description": "Lorem ipsum dolor sit amet",
-						"specifications": {
-							"shape": "Straight",
-							"width": "118.5",
-							"height": "89.5",
-							"dimensions": "119W x 90H x 29D",
-							"weight": "41 lbs",
-							"origin": "USA",
-							"material": "Subliminated Fabric",
-							"base": "Anodized silver frame",
-							"accessories": "Rolling carry bag included"
-						}
-					}
-				],
-				"upgrades": [
-					{
-						"id": "TSB10X20PU1",
-						"name": "Table Cloth",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20PU2",
-						"name": "Table Top Tri-Fold Display",
-						"price": "21"
-					},
-					{
-						"id": "TSB10X20PU3",
-						"name": "2 Podiums plus 20' Entrance Banner",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20PU4",
-						"name": "Backlight",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20PU5",
-						"name": "Hanging Header",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20PU6",
-						"name": "Shelving",
-						"price": "83"
-					},
-					{
-						"id": "TSB10X20PU7",
-						"name": "Charging Station",
-						"price": "83"
-					}
-				]
-			}
-		]
-	},
-	{
-		"id": "TSB15X15",
-		"name": "Booth, 15' x 15'",
-		"width": "170",
-		"height": "170",
-		"image": "/TSB5X10.webp",
-		"configs": [
-			{
-				"id": "TSB15X15E",
-				"grade": "Economy",
-				"options": [
-					{
-						"id": "TSB15X15EO1",
+						"id": "TSB15EO1",
 						"name": "5' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
 						"price": "899",
 						"description": "Lorem ipsum dolor sit amet",
@@ -788,28 +616,28 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB15X15EU1",
+						"id": "TSB15EU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15EU2",
+						"id": "TSB15EU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB15X15EU3",
+						"id": "TSB15EU3",
 						"name": "Podium",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB15X15S",
-				"grade": "Standard",
+				"id": "TSB15S",
+				"budget": "Standard",
 				"options": [
 					{
-						"id": "TSB15X15SO1",
+						"id": "TSB15SO1",
 						"name": "10' Hop-Up straight display (fabric front only) plus 2 pop-up banners",
 						"price": "399",
 						"description": "Lorem ipsum dolor sit amet",
@@ -828,38 +656,38 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB15X15SU1",
+						"id": "TSB15SU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15SU2",
+						"id": "TSB15SU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB15X15SU3",
+						"id": "TSB15SU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15SU4",
+						"id": "TSB15SU4",
 						"name": "Pop-up banners",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15SU5",
+						"id": "TSB15SU5",
 						"name": "Extra Podium",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB15X15P",
-				"grade": "Premium",
+				"id": "TSB15P",
+				"budget": "Premium",
 				"options": [
 					{
-						"id": "TSB15X15PO1",
+						"id": "TSB15PO1",
 						"name": "Modular Display",
 						"price": "799",
 						"description": "Lorem ipsum dolor sit amet",
@@ -878,37 +706,37 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB15X15PU1",
+						"id": "TSB15PU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15PU2",
+						"id": "TSB15PU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB15X15PU3",
+						"id": "TSB15PU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15PU4",
+						"id": "TSB15PU4",
 						"name": "Hanging Header",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15PU5",
+						"id": "TSB15PU5",
 						"name": "Backlight",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15PU6",
+						"id": "TSB15PU6",
 						"name": "Shelving",
 						"price": "83"
 					},
 					{
-						"id": "TSB15X15PU7",
+						"id": "TSB15PU7",
 						"name": "Charging Station",
 						"price": "83"
 					}
@@ -917,18 +745,190 @@
 		]
 	},
 	{
-		"id": "TSB20X20",
-		"name": "Booth, 20' x 20'",
-		"width": "240",
-		"height": "240",
-		"image": "/TSB5X10.webp",
+		"id": "TSB20",
+		"name": "20' Tradeshow Booths",
+		"image": "/TSB5.webp",
+		"description": "Our 8 foot tradeshow displays are excellent choices for budget concious or highly mobile exhibits.",
 		"configs": [
 			{
-				"id": "TSB20X20",
-				"grade": "Economy",
+				"id": "TSB20",
+				"budget": "Economy",
 				"options": [
 					{
-						"id": "TSB20X20EO1",
+						"id": "TSB20EO1",
+						"name": "Waveline Originals 20' Straight Serpentine Display",
+						"price": "899",
+						"description": "Lorem ipsum dolor sit amet",
+						"specifications": {
+							"shape": "Straight",
+							"width": "118.5",
+							"height": "89.5",
+							"dimensions": "119W x 90H x 29D",
+							"weight": "41 lbs",
+							"origin": "USA",
+							"material": "Subliminated Fabric",
+							"base": "Anodized silver frame",
+							"accessories": "Rolling carry bag included"
+						}
+					},
+					{
+						"id": "TSB20EO2",
+						"name": "Formulate Tension Fabric Display",
+						"price": "899",
+						"description": "Lorem ipsum dolor sit amet",
+						"specifications": {
+							"shape": "Straight",
+							"width": "118.5",
+							"height": "89.5",
+							"dimensions": "119W x 90H x 29D",
+							"weight": "41 lbs",
+							"origin": "USA",
+							"material": "Subliminated Fabric",
+							"base": "Anodized silver frame",
+							"accessories": "Rolling carry bag included"
+						}
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20EU1",
+						"name": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20EU2",
+						"name": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20EU3",
+						"name": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB20S",
+				"budget": "Standard",
+				"options": [
+					{
+						"id": "TSB20SO1",
+						"name": "Waveline Media Display",
+						"price": "399",
+						"description": "Lorem ipsum dolor sit amet",
+						"specifications": {
+							"shape": "Straight",
+							"width": "118.5",
+							"height": "89.5",
+							"dimensions": "119W x 90H x 29D",
+							"weight": "41 lbs",
+							"origin": "USA",
+							"material": "Subliminated Fabric",
+							"base": "Anodized silver frame",
+							"accessories": "Rolling carry bag included"
+						}
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20SU1",
+						"name": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20SU2",
+						"name": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20SU3",
+						"name": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB20SU4",
+						"name": "Backlight",
+						"price": "83"
+					}
+				]
+			},
+			{
+				"id": "TSB20P",
+				"budget": "Premium",
+				"options": [
+					{
+						"id": "TSB20PO1",
+						"name": "Exhibitline Display",
+						"price": "799",
+						"description": "Lorem ipsum dolor sit amet",
+						"specifications": {
+							"shape": "Straight",
+							"width": "118.5",
+							"height": "89.5",
+							"dimensions": "119W x 90H x 29D",
+							"weight": "41 lbs",
+							"origin": "USA",
+							"material": "Subliminated Fabric",
+							"base": "Anodized silver frame",
+							"accessories": "Rolling carry bag included"
+						}
+					}
+				],
+				"upgrades": [
+					{
+						"id": "TSB20PU1",
+						"name": "Table Cloth",
+						"price": "83"
+					},
+					{
+						"id": "TSB20PU2",
+						"name": "Table Top Tri-Fold Display",
+						"price": "21"
+					},
+					{
+						"id": "TSB20PU3",
+						"name": "2 Podiums plus 20' Entrance Banner",
+						"price": "83"
+					},
+					{
+						"id": "TSB20PU4",
+						"name": "Backlight",
+						"price": "83"
+					},
+					{
+						"id": "TSB20PU5",
+						"name": "Hanging Header",
+						"price": "83"
+					},
+					{
+						"id": "TSB20PU6",
+						"name": "Shelving",
+						"price": "83"
+					},
+					{
+						"id": "TSB20PU7",
+						"name": "Charging Station",
+						"price": "83"
+					}
+				]
+			}
+		]
+	},
+
+	{
+		"id": "TSB25",
+		"name": "Island Exhibits",
+		"width": "240",
+		"height": "240",
+		"image": "/TSB5.webp",
+		"description": "Our 8 foot tradeshow displays are excellent choices for budget concious or highly mobile exhibits.",
+		"configs": [
+			{
+				"id": "TSB25",
+				"budget": "Economy",
+				"options": [
+					{
+						"id": "TSB25EO1",
 						"name": "Formulate Fusion 20x20 Island Kit 10",
 						"price": "899",
 						"description": "Lorem ipsum dolor sit amet",
@@ -945,7 +945,7 @@
 						}
 					},
 					{
-						"id": "TSB20X20EO2",
+						"id": "TSB25EO2",
 						"name": "Waveline Media Peninsula",
 						"price": "899",
 						"description": "Lorem ipsum dolor sit amet",
@@ -964,28 +964,28 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB20X20EU1",
+						"id": "TSB25EU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20EU2",
+						"id": "TSB25EU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB20X20EU3",
+						"id": "TSB25EU3",
 						"name": "Podium",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB20X20S",
-				"grade": "Standard",
+				"id": "TSB25S",
+				"budget": "Standard",
 				"options": [
 					{
-						"id": "TSB20X20SO1",
+						"id": "TSB25SO1",
 						"name": "Orbital Truss Display",
 						"price": "399",
 						"description": "Lorem ipsum dolor sit amet",
@@ -1004,33 +1004,33 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB20X20SU1",
+						"id": "TSB25SU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20SU2",
+						"id": "TSB25SU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB20X20SU3",
+						"id": "TSB25SU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20SU4",
+						"id": "TSB25SU4",
 						"name": "Backlight",
 						"price": "83"
 					}
 				]
 			},
 			{
-				"id": "TSB20X20P",
-				"grade": "Premium",
+				"id": "TSB25P",
+				"budget": "Premium",
 				"options": [
 					{
-						"id": "TSB20X20PO1",
+						"id": "TSB25PO1",
 						"name": "XVLine Modular Display",
 						"price": "799",
 						"description": "Lorem ipsum dolor sit amet",
@@ -1049,42 +1049,42 @@
 				],
 				"upgrades": [
 					{
-						"id": "TSB20X20PU1",
+						"id": "TSB25PU1",
 						"name": "Table Cloth",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU2",
+						"id": "TSB25PU2",
 						"name": "Table Top Tri-Fold Display",
 						"price": "21"
 					},
 					{
-						"id": "TSB20X20PU3",
+						"id": "TSB25PU3",
 						"name": "Podium",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU4",
+						"id": "TSB25PU4",
 						"name": "Backlight",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU5",
+						"id": "TSB25PU5",
 						"name": "Hanging Header",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU6",
+						"id": "TSB25PU6",
 						"name": "Shelving",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU7",
+						"id": "TSB25PU7",
 						"name": "Charging Station",
 						"price": "83"
 					},
 					{
-						"id": "TSB20X20PU8",
+						"id": "TSB25PU8",
 						"name": "20' Entrance Banner",
 						"price": "83"
 					}

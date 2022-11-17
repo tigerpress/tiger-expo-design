@@ -11,6 +11,7 @@ import Paragraph from "../components/paragraph";
 import Section from "../components/section";
 import Title from "../components/title";
 import { useCart } from "../context/cart-context";
+import { useTax } from "../hooks/use-tax";
 import { STATES } from "../lib/constants";
 import { currency } from "../lib/utils";
 
@@ -25,7 +26,12 @@ export default function CheckoutPage() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm({ mode: "onBlur" });
+
+	const formData = watch();
+
+	const { tax } = useTax(formData.state);
 
 	const estimateData = {
 		pr: 100407,
@@ -183,7 +189,7 @@ export default function CheckoutPage() {
 											Subtotal: {currency.format(cartTotalPrice)}
 										</p>
 										<p className="w-full text-right font-medium">
-											Tax: {currency.format(cartTotalPrice * 0.0625)}
+											Tax: {currency.format(cartTotalPrice * tax)}
 										</p>
 										<p className="w-full text-right font-medium">
 											Ground shipping: {currency.format(75)}

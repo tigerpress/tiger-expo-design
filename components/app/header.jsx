@@ -3,7 +3,6 @@ import * as Separator from "@radix-ui/react-separator";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";

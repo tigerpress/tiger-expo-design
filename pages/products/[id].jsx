@@ -8,6 +8,7 @@ import Container from "../../components/container";
 import Checkbox from "../../components/forms/checkbox";
 import Input from "../../components/forms/input";
 import Select from "../../components/forms/select";
+import Paragraph from "../../components/paragraph";
 import ProductCard from "../../components/product-card";
 import Section from "../../components/section";
 import Title from "../../components/title";
@@ -26,7 +27,7 @@ export default function ProductPage({ product }) {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			grade: product.configs[0].id,
+			budget: product.configs[0].id,
 			option: product.configs[0].options[0].id,
 			upgrades: [],
 			quantity: 1,
@@ -36,7 +37,7 @@ export default function ProductPage({ product }) {
 
 	const formValues = watch();
 	const currentGrade =
-		product.configs.find((config) => config.id === formValues.grade) ?? product.configs[0];
+		product.configs.find((config) => config.id === formValues.budget) ?? product.configs[0];
 	const currentOption =
 		currentGrade?.options.find((option) => option.id === formValues.option) ??
 		product.configs[0].options[0];
@@ -56,10 +57,10 @@ export default function ProductPage({ product }) {
 	useEffect(() => {
 		setValue(
 			"option",
-			product.configs.find((config) => config.id === formValues.grade)?.options[0].id
+			product.configs.find((config) => config.id === formValues.budget)?.options[0].id
 		);
 		setValue("upgrades", []);
-	}, [formValues.grade]);
+	}, [formValues.budget]);
 
 	const onSubmit = (e) => {
 		increaseItemQuantity(config);
@@ -73,28 +74,28 @@ export default function ProductPage({ product }) {
 
 	return (
 		<>
-			<Section className="bg-white">
+			<Section>
 				<Container>
-					<div className="grid gap-8 lg:grid-cols-2">
-						<div className="relative aspect-square bg-gray-100 shadow-vignette">
+					<Title level="h1">{product.name}</Title>
+					<div className="mt-8 grid items-start gap-4 lg:mt-12 lg:grid-cols-12">
+						<div className="relative aspect-3/2 bg-gray-100 shadow-vignette lg:col-start-1 lg:col-end-11 lg:row-start-1">
 							<Image
 								src={`/${currentOption.id}.webp`}
 								alt={product.name}
 								fill
-								className="p-8 mix-blend-multiply"
+								className="object-cover"
 							/>
 						</div>
 
-						<form onSubmit={handleSubmit(onSubmit)}>
-							<Title level="h1" className="mb-12">
-								{product.name}
-							</Title>
-							<p className="mt-4 text-gray-700">{currentOption.description}</p>
-
-							<Select name="grade" label="Grade" {...register("grade")}>
+						<form
+							onSubmit={handleSubmit(onSubmit)}
+							className="z-10 rounded-lg bg-white p-8 shadow-xl lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:mt-20"
+						>
+							<Paragraph>{product.description}</Paragraph>
+							<Select name="budget" label="Budget" {...register("budget")}>
 								{product.configs.map((config) => (
 									<option key={config.id} value={config.id}>
-										{config.grade}
+										{config.budget}
 									</option>
 								))}
 							</Select>

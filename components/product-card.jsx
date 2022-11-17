@@ -4,13 +4,8 @@ import { BsArrowRight } from "react-icons/bs";
 const ProductCard = ({ product }) => {
 	return (
 		<div className="group">
-			<div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 shadow-vignette">
-				<Image
-					src={`/${product.id}.webp`}
-					alt={product.name}
-					fill
-					className="p-8 mix-blend-multiply"
-				/>
+			<div className="relative aspect-square overflow-hidden rounded-xl bg-gray-50 shadow-vignette">
+				<Image src={`/${product.id}.webp`} alt={product.name} fill />
 			</div>
 			<div className="ml-1">
 				<h3 className="relative mt-3 flex items-center text-lg font-bold">
