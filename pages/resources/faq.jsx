@@ -6,7 +6,7 @@ import Paragraph from "../../components/paragraph";
 import Section from "../../components/section";
 import Title from "../../components/title";
 
-export default function FaqPage() {
+const FaqPage = () => {
 	return (
 		<Section>
 			<Container>
@@ -62,4 +62,6 @@ export default function FaqPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default FaqPage;

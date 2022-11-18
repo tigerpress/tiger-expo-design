@@ -4,7 +4,7 @@ import Paragraph from "../../components/paragraph";
 import Section from "../../components/section";
 import Title from "../../components/title";
 
-export default function TermsPage() {
+const TermsPage = () => {
 	return (
 		<Section>
 			<Container>
@@ -478,4 +478,6 @@ export default function TermsPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default TermsPage;

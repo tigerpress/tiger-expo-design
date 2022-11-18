@@ -16,7 +16,7 @@ import { useCart } from "../../context/cart-context";
 import { currency } from "../../lib/utils";
 import products from "../api/products.json";
 
-export default function ProductPage({ product }) {
+const ProductPage = ({ product }) => {
 	const router = useRouter();
 	const { increaseItemQuantity } = useCart();
 	const {
@@ -181,7 +181,7 @@ export default function ProductPage({ product }) {
 			)}
 		</>
 	);
-}
+};
 
 export async function getStaticPaths() {
 	const paths = products.map((product) => ({ params: { id: product.id } }));
@@ -194,3 +194,5 @@ export async function getStaticProps({ params }) {
 		props: { product },
 	};
 }
+
+export default ProductPage;

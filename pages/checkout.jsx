@@ -15,8 +15,8 @@ import { useTax } from "../hooks/use-tax";
 import { STATES } from "../lib/constants";
 import { currency } from "../lib/utils";
 
-export default function CheckoutPage() {
-	const { cartItems, cartTotalPrice } = useCart();
+const CheckoutPage = () => {
+	const { cartItems, cartTotalPrice, clearCart } = useCart();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
@@ -70,6 +70,7 @@ export default function CheckoutPage() {
 
 			if (response.ok) {
 				setSuccess(true);
+				clearCart();
 				router.push("/order-confirmation");
 			}
 		} catch (error) {
@@ -189,7 +190,7 @@ export default function CheckoutPage() {
 											Subtotal: {currency.format(cartTotalPrice)}
 										</p>
 										<p className="w-full text-right font-medium">
-											Tax: {currency.format(cartTotalPrice * tax)}
+											Tax: {isNaN(tax) ? currency.format(0) : currency.format(cartTotalPrice * tax)}
 										</p>
 										<p className="w-full text-right font-medium">
 											Ground shipping: {currency.format(75)}
@@ -215,4 +216,6 @@ export default function CheckoutPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default CheckoutPage;

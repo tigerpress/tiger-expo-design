@@ -2,7 +2,7 @@ import { Container } from "../components/container";
 import { Section } from "../components/section";
 import { Title } from "../components/title";
 
-export default function OrderConfirmationPage() {
+const OrderConfirmationPage = () => {
 	return (
 		<Section>
 			<Container>
@@ -10,4 +10,6 @@ export default function OrderConfirmationPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default OrderConfirmationPage;

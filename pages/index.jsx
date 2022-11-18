@@ -1,4 +1,3 @@
-import Image from "next/future/image";
 import Link from "next/link";
 import {
 	HiOutlineCollection,
@@ -40,7 +39,7 @@ const features = [
 	},
 ];
 
-export default function Home({ products }) {
+const HomePage = ({ products }) => {
 	return (
 		<>
 			<Section className="bg-yellow-300">
@@ -141,10 +140,12 @@ export default function Home({ products }) {
 			</Section>
 		</>
 	);
-}
+};
 
 export async function getStaticProps() {
 	return {
 		props: { products },
 	};
 }
+
+export default HomePage;

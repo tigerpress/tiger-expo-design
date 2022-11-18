@@ -6,7 +6,7 @@ import Paragraph from "../../components/paragraph";
 import Section from "../../components/section";
 import Title from "../../components/title";
 
-export default function ArtRequirementsPage() {
+const ArtRequirementsPage = () => {
 	return (
 		<Section>
 			<Container>
@@ -106,4 +106,6 @@ export default function ArtRequirementsPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default ArtRequirementsPage;

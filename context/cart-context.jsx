@@ -3,11 +3,11 @@ import { useLocalStorage } from "../hooks/use-local-storage";
 
 const CartContext = createContext({});
 
-export const useCart = () => {
+const useCart = () => {
 	return useContext(CartContext);
 };
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useLocalStorage("cart", []);
 
 	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0);
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
 
 	const cartTotalPrice = cartItems.reduce((a, c) => a + itemTotalPrice(c), 0);
 
-	function increaseItemQuantity(item) {
+	const increaseItemQuantity = (item) => {
 		setCartItems((cartItems) => {
 			if (!cartItems || !cartItems.find((cartItem) => cartItem.id === item.id)) {
 				return [...cartItems, item];
@@ -35,9 +35,9 @@ export const CartProvider = ({ children }) => {
 				});
 			}
 		});
-	}
+	};
 
-	function decreaseItemQuantity(item) {
+	const decreaseItemQuantity = (item) => {
 		setCartItems((cartItems) => {
 			if (cartItems.find((cartItem) => cartItem.id === item.id)?.quantity === 1) {
 				return;
@@ -51,15 +51,15 @@ export const CartProvider = ({ children }) => {
 				});
 			}
 		});
-	}
+	};
 
-	function removeFromCart(item) {
+	const removeFromCart = (item) => {
 		setCartItems((cartItems) => cartItems.filter((cartItem) => cartItem.id !== item.id));
-	}
+	};
 
-	function clearCart() {
+	const clearCart = () => {
 		setCartItems([]);
-	}
+	};
 
 	return (
 		<CartContext.Provider
@@ -78,3 +78,5 @@ export const CartProvider = ({ children }) => {
 		</CartContext.Provider>
 	);
 };
+
+export { useCart, CartProvider };

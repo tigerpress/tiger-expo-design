@@ -8,7 +8,7 @@ import { Paragraph } from "../components/paragraph";
 import { Section } from "../components/section";
 import { Title } from "../components/title";
 
-export default function QuoteRequestPage() {
+const QuoteRequestPage = () => {
 	const [submitting, setSubmitting] = useState(false);
 	const [confirmed, setConfirmed] = useState(false);
 	const [error, setError] = useState("");
@@ -79,4 +79,6 @@ export default function QuoteRequestPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default QuoteRequestPage;

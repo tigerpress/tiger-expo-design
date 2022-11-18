@@ -10,7 +10,7 @@ import { Title } from "../components/title";
 import { useCart } from "../context/cart-context";
 import { currency } from "../lib/utils";
 
-export default function CartPage() {
+const CartPage = () => {
 	const {
 		cartItems,
 		removeFromCart,
@@ -117,4 +117,6 @@ export default function CartPage() {
 			</Container>
 		</Section>
 	);
-}
+};
+
+export default CartPage;

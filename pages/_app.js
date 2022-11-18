@@ -8,7 +8,7 @@ import { AppShell } from "../components/app/app-shell";
 import { CartProvider } from "../context/cart-context";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
 	return (
 		<CartProvider>
 			<AppShell>
@@ -16,6 +16,6 @@ function MyApp({ Component, pageProps }) {
 			</AppShell>
 		</CartProvider>
 	);
-}
+};
 
 export default MyApp;
