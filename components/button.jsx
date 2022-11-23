@@ -41,7 +41,7 @@ const Button = ({
 				isError && classes.states.error,
 				isLoading && classes.states.loading,
 				isSuccess && classes.states.success,
-				"inline-block cursor-pointer rounded-full text-center font-medium transition-all disabled:cursor-not-allowed"
+				"inline-block cursor-pointer rounded-full text-center font-medium transition-all will-change-transform active:scale-95  disabled:cursor-not-allowed"
 			)}
 			{...(as === "a" ? (href = { href }) : null)}
 			disabled={isLoading || isError}

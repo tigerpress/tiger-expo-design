@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiOutlineTrash } from "react-icons/hi";
 import { Button } from "../components/button";
@@ -19,11 +20,61 @@ const CartPage = () => {
 		decreaseItemQuantity,
 		clearCart,
 	} = useCart();
+	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+	const router = useRouter();
 
 	const {
 		register,
 		formState: { errors },
 	} = useForm();
+
+	const estimateData = {
+		pr: 100407,
+		lotsno: 1,
+		esPt: 1,
+		"project-title": "Tradeshow Booth",
+		finishedsizeheight: 5,
+		finishedsizewidth: 5,
+		outside: true,
+		quantity1: 1,
+		quantityStaticOrder: 1,
+		buyoutquantity: 1,
+		buyout: cartTotalPrice,
+		priceForced: cartTotalPrice,
+		shippingCost: 0,
+		buyoutvendorname: "web",
+		vendorQuote: "web",
+		buyoutdescription: JSON.stringify(cartItems)
+			.replace(/[\{\}\"]/g, "")
+			.replace(/[,\[\]]/g, "\n"),
+	};
+
+	const createEstimate = async (e) => {
+		try {
+			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
+				method: "POST",
+				headers: {
+					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify(estimateData),
+			});
+
+			const { estimate } = await response.json();
+			setLoading(false);
+
+			if (response.ok) {
+				setSuccess(true);
+				router.push(`/checkout?id=${estimate}`);
+			}
+		} catch (error) {
+			setError(true);
+			console.error(error);
+		}
+	};
 
 	return (
 		<Section>
@@ -108,9 +159,9 @@ const CartPage = () => {
 							<Button variant="ghost" onClick={clearCart}>
 								Clear cart
 							</Button>
-							<Link href="/checkout" passHref>
-								<Button as="a">Check out</Button>
-							</Link>
+							<Button as="a" isLoading={loading} isSuccess={success} onClick={createEstimate}>
+								Check out
+							</Button>
 						</div>
 					</div>
 				)}

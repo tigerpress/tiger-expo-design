@@ -6,7 +6,7 @@ import { Container } from "../components/container";
 import { Checkbox } from "../components/forms/checkbox";
 import { Input } from "../components/forms/input";
 import { PaymentForm } from "../components/forms/payment-form";
-import { Select } from "../components/forms/Select";
+import { Select } from "../components/forms/select";
 import { Paragraph } from "../components/paragraph";
 import { Section } from "../components/section";
 import { Title } from "../components/title";
@@ -65,8 +65,10 @@ const CheckoutPage = () => {
 				},
 				body: JSON.stringify(estimateData),
 			});
+			const { estimate } = await response.json();
 			setLoading(false);
-			console.log(response);
+
+			console.log(estimate);
 
 			if (response.ok) {
 				setSuccess(true);
