@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../button";
 
 const PaymentForm = ({ clientKey, error, tryAgain2 }) => {

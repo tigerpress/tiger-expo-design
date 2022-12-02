@@ -42,7 +42,7 @@ const features = [
 const HomePage = ({ products }) => {
 	return (
 		<>
-			<Section className="bg-yellow-300">
+			<Section className="relative bg-yellow-300">
 				<Container>
 					<div className="grid items-center gap-y-12 lg:grid-cols-12 lg:gap-y-0">
 						<div className="col-span-full max-w-prose lg:col-span-5 lg:col-start-1">

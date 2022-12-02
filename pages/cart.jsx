@@ -117,14 +117,15 @@ const CartPage = () => {
 										<td className="px-2 py-1 text-right font-semibold">
 											<div className="whitespace-nowrap">
 												<button
-													className="border border-gray-900 border-opacity-10 bg-white px-2 text-lg text-gray-700"
+													className="rounded-md border bg-indigo-100 px-2 text-lg transition-colors hover:bg-indigo-200 disabled:bg-gray-200"
 													onClick={() => decreaseItemQuantity(cartItem)}
+													disabled={cartItem.quantity === 1}
 												>
 													-
 												</button>
 												<span className="mx-2">{cartItem.quantity}</span>
 												<button
-													className="border border-gray-900 border-opacity-10 bg-white px-2 text-lg text-gray-700"
+													className="rounded-md border bg-indigo-100 px-2 text-lg transition-colors hover:bg-indigo-200 disabled:bg-gray-200"
 													onClick={() => increaseItemQuantity(cartItem)}
 												>
 													+

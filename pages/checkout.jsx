@@ -11,15 +11,20 @@ import { Paragraph } from "../components/paragraph";
 import { Section } from "../components/section";
 import { Title } from "../components/title";
 import { useCart } from "../context/cart-context";
+import { useDebouncedValue } from "../hooks/use-debounced-value";
+import { useShippingCost } from "../hooks/use-shipping-cost";
 import { useTax } from "../hooks/use-tax";
 import { STATES } from "../lib/constants";
 import { currency } from "../lib/utils";
 
 const CheckoutPage = () => {
 	const { cartItems, cartTotalPrice, clearCart } = useCart();
-	const [loading, setLoading] = useState(false);
+	const [processing, setProcessing] = useState(false);
+	const [retry, setRetry] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState(false);
+	const [paymentError, setPaymentError] = useState(false);
+	const [clientKey, setClientKey] = useState("");
 	const router = useRouter();
 
 	const {
@@ -28,57 +33,15 @@ const CheckoutPage = () => {
 		formState: { errors },
 		watch,
 	} = useForm({ mode: "onBlur" });
-
 	const formData = watch();
-
 	const { tax } = useTax(formData.state);
+	const { shippingCost } = useShippingCost(router.query.id, formData.zip);
+	console.log(shippingCost);
 
-	const estimateData = {
-		pr: 100407,
-		lotsno: 1,
-		esPt: 1,
-		"project-title": "Tradeshow Booth",
-		finishedsizeheight: 5,
-		finishedsizewidth: 5,
-		outside: true,
-		quantity1: 1,
-		quantityStaticOrder: 1,
-		buyoutquantity: 1,
-		buyout: cartTotalPrice,
-		priceForced: cartTotalPrice,
-		shippingCost: 0,
-		buyoutvendorname: "web",
-		vendorQuote: "web",
-		buyoutdescription: JSON.stringify(cartItems)
-			.replace(/[\{\}\"]/g, "")
-			.replace(/[,\[\]]/g, "\n"),
-	};
+	const handlePayment = async () => {};
 
-	const onSubmit = async (e) => {
-		try {
-			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
-				method: "POST",
-				headers: {
-					authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_HEADER}`,
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-				body: JSON.stringify(estimateData),
-			});
-			const { estimate } = await response.json();
-			setLoading(false);
-
-			console.log(estimate);
-
-			if (response.ok) {
-				setSuccess(true);
-				clearCart();
-				router.push("/order-confirmation");
-			}
-		} catch (error) {
-			setError(true);
-			console.error(error);
-		}
+	const onSubmit = async (event) => {
+		event.preventDefault();
 	};
 
 	return (
@@ -195,7 +158,7 @@ const CheckoutPage = () => {
 											Tax: {isNaN(tax) ? currency.format(0) : currency.format(cartTotalPrice * tax)}
 										</p>
 										<p className="w-full text-right font-medium">
-											Ground shipping: {currency.format(75)}
+											Ground shipping: {currency.format(parseFloat(shippingCost))}
 										</p>
 										<p className="mt-2 w-full text-right text-xl font-bold">
 											Order total: {currency.format(cartTotalPrice + cartTotalPrice * 0.0625 + 75)}
@@ -207,7 +170,7 @@ const CheckoutPage = () => {
 									<Button variant="ghost" href="/cart" as="a">
 										Return to cart
 									</Button>
-									<Button isLoading={loading} isSuccess={success}>
+									<Button isLoading={processing} isSuccess={success}>
 										Buy now
 									</Button>
 								</div>

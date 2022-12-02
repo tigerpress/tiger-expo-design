@@ -40,7 +40,7 @@ const Header = () => {
 								<Link href="/cart">
 									<a className="relative flex items-center gap-2 rounded-full bg-indigo-700 p-2 text-white transition-colors hover:bg-indigo-600">
 										<HiOutlineShoppingCart className="inline text-xl" />
-										<span className="absolute top-0 right-0 aspect-square h-6 w-6 -translate-y-2 translate-x-2 rounded-full bg-black text-center text-sm font-bold text-white">
+										<span className="absolute top-0 right-0 grid aspect-square h-6 w-6 -translate-y-2 translate-x-2 place-items-center rounded-full bg-black text-center text-sm font-bold text-white">
 											{cartQuantity}
 										</span>
 									</a>

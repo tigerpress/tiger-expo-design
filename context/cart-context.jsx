@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
 const CartContext = createContext({});
@@ -10,7 +10,9 @@ const useCart = () => {
 const CartProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useLocalStorage("cart", []);
 
-	let cartQuantity = cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0);
+	let cartQuantity = useMemo(() => {
+		return cartItems.reduce((quantity, item) => parseInt(item.quantity) + quantity, 0);
+	}, [cartItems]);
 
 	const itemTotalPrice = (item) => {
 		let itemPrice = parseFloat(item.price) * parseFloat(item.quantity);
@@ -19,7 +21,7 @@ const CartProvider = ({ children }) => {
 		return itemPrice + upgradesPrice;
 	};
 
-	const cartTotalPrice = cartItems.reduce((a, c) => a + itemTotalPrice(c), 0);
+	const cartTotalPrice = cartItems.reduce((a, c) => a + itemTotalPrice(c), 0) ?? 0;
 
 	const increaseItemQuantity = (item) => {
 		setCartItems((cartItems) => {
