@@ -2,7 +2,7 @@ import useSWR from "swr";
 import { fetcher } from "../lib/fetcher";
 
 const useTax = (state) => {
-	const { data, error } = useSWR(`/api/tax/get?state=${state}`, fetcher);
+	const { data, error } = useSWR(state ? `/api/tax/get?state=${state}` : null, fetcher);
 	return {
 		tax: data?.rate,
 		loading: !error && !data,

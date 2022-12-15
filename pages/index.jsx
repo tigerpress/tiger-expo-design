@@ -121,8 +121,9 @@ const HomePage = ({ products }) => {
 						<div className="col-span-full bg-white p-12 md:col-span-6 md:shadow-lg lg:col-start-7 lg:row-start-1">
 							<Title level="h2">Do we have you convinced?</Title>
 							<p className="mt-4 mb-8 text-xl">
-								Whether you&apos;re ready to buy now or just want to chat about your project,
-								we&apos;re here to help.
+								Don&apos;t miss out on the opportunity to make a great impression at your next
+								tradeshow. Contact us today to learn more and start creating the perfect display for
+								your needs.
 							</p>
 							<div className="flex gap-4">
 								<Link href="/products" passHref>

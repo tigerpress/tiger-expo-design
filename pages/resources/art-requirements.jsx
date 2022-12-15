@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Button from "../../components/button";
-import Container from "../../components/container";
-import List from "../../components/list";
-import Paragraph from "../../components/paragraph";
-import Section from "../../components/section";
-import Title from "../../components/title";
+import { Link } from "next/link";
+import { Button } from "../../components/button";
+import { Container } from "../../components/container";
+import { List } from "../../components/list";
+import { Paragraph } from "../../components/paragraph";
+import { Section } from "../../components/section";
+import { Title } from "../../components/title";
 
 const ArtRequirementsPage = () => {
 	return (
@@ -51,17 +51,6 @@ const ArtRequirementsPage = () => {
 
 				<hr className="my-4" />
 				<Title level="h2" className="mt-9">
-					Color Management
-				</Title>
-				<Paragraph>
-					Please see our section on&nbsp;
-					<Link href="/resources/color-management">
-						<a>Color Management.</a>
-					</Link>
-				</Paragraph>
-
-				<hr className="my-4" />
-				<Title level="h2" className="mt-9">
 					Supporting Documents
 				</Title>
 				<Paragraph>
@@ -101,7 +90,9 @@ const ArtRequirementsPage = () => {
 				</Paragraph>
 
 				<div className="mt-12">
-					<Button>I need help!</Button>
+					<Button as="a" href="/contact">
+						I need help!
+					</Button>
 				</div>
 			</Container>
 		</Section>

@@ -1,8 +1,8 @@
-import Container from "../../components/container";
-import List from "../../components/list";
-import Paragraph from "../../components/paragraph";
-import Section from "../../components/section";
-import Title from "../../components/title";
+import { Container } from "../../components/container";
+import { List } from "../../components/list";
+import { Paragraph } from "../../components/paragraph";
+import { Section } from "../../components/section";
+import { Title } from "../../components/title";
 
 const FileInstructionsPage = () => {
 	return (
@@ -26,7 +26,7 @@ const FileInstructionsPage = () => {
 						"Go to File: Package.",
 						"Click the Package button at the bottom of the Summary window (This window was called the preflight window in older versions).",
 						"Click continue on the “Printing Instructions” window (most people ignore these instructions).",
-						"Browse to where you’d like to create the package folder (desktop would be fine) and enter the name of the folder.",
+						"Browse to where you'd like to create the package folder (desktop would be fine) and enter the name of the folder.",
 						"Make sure that the “Copy Fonts,” “Copy Linked Graphics,” “Update Graphic Links in Package,” and “Include Fonts and Links from Hidden….” are all checked. Other boxes should be unchecked.",
 						"Click the package button.",
 						"Find the new folder that InDesign created and verify that it contains copies of all required files.",
@@ -51,7 +51,7 @@ const FileInstructionsPage = () => {
 						"If possible, resolve any errors concerning missing links or fonts.",
 						"Go to File: Package.",
 						"Select all the check boxes.",
-						"Browse to where you’d like to create the package folder (desktop would be fine) and enter the name of the folder.",
+						"Browse to where you'd like to create the package folder (desktop would be fine) and enter the name of the folder.",
 						"Click the PACKAGE button.",
 						"Find the new folder that Illustrator created and verify that it contains copies of all required files.",
 						"Right click the folder and choose 'Compress' (Mac) or 'Send to ZIP' (Windows). This will set the file to be a format suitable for uploading on the web.",
@@ -74,7 +74,7 @@ const FileInstructionsPage = () => {
 						"If possible, resolve any errors concerning missing links or fonts.",
 						"Go to File: Collect for output.",
 						"Select all the check boxes EXCEPT report only.",
-						"Browse to where you’d like to create the package folder (desktop would be fine) and enter the name of the folder.",
+						"Browse to where you'd like to create the package folder (desktop would be fine) and enter the name of the folder.",
 						"Click the SAVE button.",
 						"Find the new folder that QuarkXPress created and verify that it contains copies of all required files.",
 						"Right click the folder and choose 'Compress' (Mac) or 'Send to ZIP' (Windows). This will set the file to be a format suitable for uploading on the web.",
@@ -98,7 +98,7 @@ const FileInstructionsPage = () => {
 						"If possible, resolve any errors concerning missing links or fonts.",
 						"Click the SAVE button.",
 						"Browse to where",
-						"Browse to where you’d like to create the package folder (desktop would be fine) and enter the name of the folder.",
+						"Browse to where you'd like to create the package folder (desktop would be fine) and enter the name of the folder.",
 						"Click the FINISH button.",
 						"Find the new folder that Publisher created and verify that it contains copies of all required files.",
 						"Right click the folder and choose 'Compress' (Mac) or 'Send to ZIP' (Windows). This will set the file to be a format suitable for uploading on the web.",

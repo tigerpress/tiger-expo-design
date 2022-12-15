@@ -1,9 +1,12 @@
+import { Menu, Transition } from "@headlessui/react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import * as Separator from "@radix-ui/react-separator";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Fragment } from "react";
 import { BiMenu } from "react-icons/bi";
+import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";
 import products from "../../pages/api/products.json";
@@ -54,7 +57,99 @@ const Header = () => {
 							<NavLink href="/quote">Quote Request</NavLink>
 						</li>
 						<li>
-							<NavLink href="/resources">Resources</NavLink>
+							<Menu as="div" className="relative inline-block text-left">
+								<div>
+									<Menu.Button className="flex items-center">
+										Resources
+										<BsChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+									</Menu.Button>
+								</div>
+
+								<Transition
+									as={Fragment}
+									enter="transition ease-out duration-100"
+									enterFrom="transform opacity-0 scale-95"
+									enterTo="transform opacity-100 scale-100"
+									leave="transition ease-in duration-75"
+									leaveFrom="transform opacity-100 scale-100"
+									leaveTo="transform opacity-0 scale-95"
+								>
+									<Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<div className="py-1">
+											<Menu.Item>
+												{({ active }) => (
+													<Link href="/resources/art-requirements">
+														<a
+															className={clsx(
+																active && "text-indigo-600",
+																"block px-4 py-2 text-sm"
+															)}
+														>
+															Art Requirements
+														</a>
+													</Link>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<Link href="/resources/tips">
+														<a
+															className={clsx(
+																active && "text-indigo-600",
+																"block px-4 py-2 text-sm"
+															)}
+														>
+															Tips
+														</a>
+													</Link>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<Link href="/resources/faq">
+														<a
+															className={clsx(
+																active && "text-indigo-600",
+																"block px-4 py-2 text-sm"
+															)}
+														>
+															FAQ
+														</a>
+													</Link>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<Link href="/resources/file-instructions">
+														<a
+															className={clsx(
+																active && "text-indigo-600",
+																"block px-4 py-2 text-sm"
+															)}
+														>
+															File Instructions
+														</a>
+													</Link>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<Link href="/resources/terms">
+														<a
+															className={clsx(
+																active && "text-indigo-600",
+																"block px-4 py-2 text-sm"
+															)}
+														>
+															Terms and Conditions
+														</a>
+													</Link>
+												)}
+											</Menu.Item>
+										</div>
+									</Menu.Items>
+								</Transition>
+							</Menu>
 						</li>
 						<li>
 							<NavLink href="/about">About</NavLink>
@@ -73,7 +168,7 @@ const Header = () => {
 								<NavigationMenu.Trigger>
 									<BiMenu className="text-5xl" />
 								</NavigationMenu.Trigger>
-								<NavigationMenu.Content className="absolute right-0 z-50 mt-2 flex w-72 flex-col rounded-lg p-8 shadow-md">
+								<NavigationMenu.Content className="absolute right-0 z-50 mt-2 flex w-72 flex-col rounded-lg bg-white p-8 shadow-md">
 									{products.map((product) => (
 										<Link href={`/products/${product.id}`} passHref key={product.id}>
 											<NavigationMenu.Link>{product.name}</NavigationMenu.Link>

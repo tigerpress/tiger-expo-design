@@ -1,8 +1,8 @@
-import Container from "../../components/container";
-import List from "../../components/list";
-import Paragraph from "../../components/paragraph";
-import Section from "../../components/section";
-import Title from "../../components/title";
+import { Container } from "../../components/container";
+import { List } from "../../components/list";
+import { Paragraph } from "../../components/paragraph";
+import { Section } from "../../components/section";
+import { Title } from "../../components/title";
 
 const TermsPage = () => {
 	return (

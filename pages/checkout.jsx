@@ -35,13 +35,44 @@ const CheckoutPage = () => {
 	} = useForm({ mode: "onBlur" });
 	const formData = watch();
 	const { tax } = useTax(formData.state);
-	const { shippingCost } = useShippingCost(router.query.id, formData.zip);
-	console.log(shippingCost);
+	const { shippingCost } = useShippingCost(router.query.id, useDebouncedValue(formData.zip, 1000));
 
-	const handlePayment = async () => {};
+	const handlePayment = async () => {
+		try {
+			return Promise.resolve("Payment Success!");
+		} catch (error) {
+			setPaymentError(error.message);
+			return Promise.reject(error);
+		}
+	};
 
-	const onSubmit = async (event) => {
-		event.preventDefault();
+	const addJob = async () => {
+		try {
+			if (paymentError) {
+				throw new Error("An error occurred during payment processing, please try again.");
+			}
+			// const response = await fetch("", {
+			// 	method: "POST",
+			// 	headers: {
+			// 		"Content-Type": "application/json",
+			// 		authorization: "",
+			// 	},
+			// 	body: { jobData },
+			// });
+			// return await response.json();
+			console.log("job added");
+		} catch (error) {
+			setError(error.message);
+			return Promise.reject(error);
+		}
+	};
+
+	const onSubmit = async () => {
+		await handlePayment();
+
+		if (!paymentError) {
+			await addJob();
+		}
 	};
 
 	return (
