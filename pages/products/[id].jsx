@@ -13,10 +13,10 @@ import { ProductCard } from "../../components/product-card";
 import { Section } from "../../components/section";
 import { Title } from "../../components/title";
 import { useCart } from "../../context/cart-context";
+import productData from "../../data/products.json";
 import { currency } from "../../lib/utils";
-import products from "../api/products.json";
 
-const ProductPage = ({ product }) => {
+const ProductPage = ({ product, products }) => {
 	const router = useRouter();
 	const { increaseItemQuantity } = useCart();
 	const {
@@ -184,14 +184,15 @@ const ProductPage = ({ product }) => {
 };
 
 export async function getStaticPaths() {
-	const paths = products.map((product) => ({ params: { id: product.id } }));
+	const paths = productData.map((product) => ({ params: { id: product.id } }));
 	return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-	const product = products.find((product) => product.id === params.id);
+	const product = productData.find((product) => product.id === params.id);
 	return {
-		props: { product },
+		props: { product, products: productData },
+		revalidate: 10,
 	};
 }
 

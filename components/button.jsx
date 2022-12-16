@@ -1,20 +1,33 @@
 import clsx from "clsx";
+import Link from "next/link";
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import { Loader } from "./loader";
+
+const ButtonOrLink = ({ href, to, ...props }) => {
+	if (href) {
+		return <a href={href} target="_blank" rel="noreferrer noopener" {...props} />;
+	}
+
+	if (to) {
+		return (
+			<Link href={to}>
+				<a {...props}>{props.children}</a>
+			</Link>
+		);
+	}
+
+	return <button {...props} />;
+};
 
 const Button = ({
 	children,
 	variant = "primary",
 	size = "md",
-	as = "button",
 	isLoading,
 	isError,
 	isSuccess,
-	href,
-	onClick,
+	...props
 }) => {
-	const Tag = as;
-
 	const classes = {
 		variants: {
 			primary: "border border-transparent bg-indigo-700 text-white hover:bg-indigo-800",
@@ -28,44 +41,21 @@ const Button = ({
 		},
 		states: {
 			loading: "bg-yellow-700 hover:bg-yellow-700",
-			error: "bg-red-500 hover:bg-bg-red-500",
-			success: "bg-indigo-400 hover:bg-bg-indigo-400",
 		},
 	};
 
 	return (
-		<Tag
+		<ButtonOrLink
 			className={clsx(
 				classes.variants[variant],
 				classes.sizes[size],
-				isError && classes.states.error,
-				isLoading && classes.states.loading,
-				isSuccess && classes.states.success,
-				"inline-block cursor-pointer rounded-full text-center font-medium transition-all will-change-transform active:scale-95  disabled:cursor-not-allowed"
+				"inline-flex cursor-pointer items-center justify-center rounded-full text-center font-medium transition-all will-change-transform active:scale-95 disabled:cursor-not-allowed"
 			)}
-			{...(as === "a" ? (href = { href }) : null)}
-			disabled={isLoading || isError}
-			onClick={onClick}
+			disabled={props.disabled || isLoading}
+			{...props}
 		>
-			{isError ? (
-				<div className="flex items-center gap-2">
-					<Loader className="h-6 w-6" />
-					An error occurred...
-				</div>
-			) : isLoading ? (
-				<div className="flex items-center gap-2">
-					<Loader className="h-6 w-6" />
-					Loading...
-				</div>
-			) : isSuccess ? (
-				<div className="flex items-center gap-2">
-					<HiOutlineCheckCircle className="h-6 w-6" />
-					Success!
-				</div>
-			) : (
-				children
-			)}
-		</Tag>
+			{isLoading ? <Loader className="h-6 w-6" /> : children}
+		</ButtonOrLink>
 	);
 };
 

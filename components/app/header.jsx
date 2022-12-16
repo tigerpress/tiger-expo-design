@@ -9,7 +9,7 @@ import { BiMenu } from "react-icons/bi";
 import { BsChevronDown } from "react-icons/bs";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useCart } from "../../context/cart-context";
-import products from "../../pages/api/products.json";
+import productData from "../../data/products.json";
 import { Container } from "../container";
 
 const NavLink = ({ href, children }) => {
@@ -23,7 +23,7 @@ const NavLink = ({ href, children }) => {
 	);
 };
 
-const Header = () => {
+const Header = ({ products }) => {
 	const { cartQuantity } = useCart();
 
 	return (
@@ -169,11 +169,12 @@ const Header = () => {
 									<BiMenu className="text-5xl" />
 								</NavigationMenu.Trigger>
 								<NavigationMenu.Content className="absolute right-0 z-50 mt-2 flex w-72 flex-col rounded-lg bg-white p-8 shadow-md">
-									{products.map((product) => (
-										<Link href={`/products/${product.id}`} passHref key={product.id}>
-											<NavigationMenu.Link>{product.name}</NavigationMenu.Link>
-										</Link>
-									))}
+									{products &&
+										products.map((product) => (
+											<Link href={`/products/${product.id}`} passHref key={product.id}>
+												<NavigationMenu.Link>{product.name}</NavigationMenu.Link>
+											</Link>
+										))}
 									<Separator.Root className="my-4 h-[1px] bg-white opacity-50" />
 									<Link href="/" passHref>
 										<NavigationMenu.Link>Quote Request</NavigationMenu.Link>
@@ -212,5 +213,12 @@ const Header = () => {
 		</header>
 	);
 };
+
+export async function getStaticProps() {
+	return {
+		props: { products: productData },
+		revalidate: 10,
+	};
+}
 
 export { Header };

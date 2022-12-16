@@ -85,9 +85,7 @@ const CheckoutPage = () => {
 						<p className="text-xl font-bold">
 							Oh no! You don&apos;t have anything in your cart yet!
 						</p>
-						<Button href="/products" as="a">
-							Shop Now
-						</Button>
+						<Button to="/products">Shop Now</Button>
 					</div>
 				)}
 
@@ -198,12 +196,10 @@ const CheckoutPage = () => {
 								</div>
 
 								<div className="flex gap-4">
-									<Button variant="ghost" href="/cart" as="a">
+									<Button variant="ghost" to="/cart">
 										Return to cart
 									</Button>
-									<Button isLoading={processing} isSuccess={success}>
-										Buy now
-									</Button>
+									<Button isLoading={processing}>Buy now</Button>
 								</div>
 							</div>
 						</div>

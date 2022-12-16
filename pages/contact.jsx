@@ -57,9 +57,7 @@ const ContactPage = () => {
 					<TextArea name="body" label="Message" {...register("body", { required: true })} />
 
 					<div className="mt-9">
-						<Button isLoading={submitting} loadingMessage="Sending your message">
-							Send Message
-						</Button>
+						<Button isLoading={submitting}>Send Message</Button>
 					</div>
 				</form>
 

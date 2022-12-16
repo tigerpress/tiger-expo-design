@@ -10,7 +10,7 @@ import { Container } from "../components/container";
 import { ProductCard } from "../components/product-card";
 import { Section } from "../components/section";
 import { Title } from "../components/title";
-import products from "./api/products.json";
+import productData from "../data/products.json";
 
 const features = [
 	{
@@ -52,11 +52,7 @@ const HomePage = ({ products }) => {
 								banner stands, portable signs, light boxes, table throws, popup displays, outdoor
 								displays and exhibit kits and accessories!
 							</p>
-							<Link href="/products" passHref>
-								<Button size="md" as="a">
-									Shop now
-								</Button>
-							</Link>
+							<Button to="/products">Shop now</Button>
 						</div>
 						<div className="col-span-full row-start-1 lg:col-span-7 lg:col-start-6">
 							<img src="hero-img.webp" />
@@ -126,14 +122,10 @@ const HomePage = ({ products }) => {
 								your needs.
 							</p>
 							<div className="flex gap-4">
-								<Link href="/products" passHref>
-									<Button as="a">Shop now</Button>
-								</Link>
-								<Link href="/contact" passHref>
-									<Button as="a" variant="outline">
-										Contact us
-									</Button>
-								</Link>
+								<Button to="/products">Shop now</Button>
+								<Button to="/contact" variant="outline">
+									Contact us
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -145,7 +137,8 @@ const HomePage = ({ products }) => {
 
 export async function getStaticProps() {
 	return {
-		props: { products },
+		props: { products: productData },
+		revalidate: 10,
 	};
 }
 

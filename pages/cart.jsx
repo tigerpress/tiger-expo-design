@@ -21,8 +21,6 @@ const CartPage = () => {
 		clearCart,
 	} = useCart();
 	const [loading, setLoading] = useState(false);
-	const [success, setSuccess] = useState(false);
-	const [error, setError] = useState(false);
 	const router = useRouter();
 
 	const {
@@ -53,6 +51,7 @@ const CartPage = () => {
 
 	const createEstimate = async (e) => {
 		try {
+			setLoading(true);
 			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/estimate/add", {
 				method: "POST",
 				headers: {
@@ -67,12 +66,12 @@ const CartPage = () => {
 			setLoading(false);
 
 			if (response.ok) {
-				setSuccess(true);
 				router.push(`/checkout?id=${estimate}`);
 			}
 		} catch (error) {
-			setError(true);
 			console.error(error);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -160,7 +159,7 @@ const CartPage = () => {
 							<Button variant="ghost" onClick={clearCart}>
 								Clear cart
 							</Button>
-							<Button as="a" isLoading={loading} isSuccess={success} onClick={createEstimate}>
+							<Button onClick={createEstimate} isLoading={loading}>
 								Check out
 							</Button>
 						</div>
