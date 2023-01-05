@@ -192,7 +192,6 @@ export async function getStaticProps({ params }) {
 	const product = productData.find((product) => product.id === params.id);
 	return {
 		props: { product, products: productData },
-		revalidate: 10,
 	};
 }
 

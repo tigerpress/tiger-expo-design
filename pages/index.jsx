@@ -138,7 +138,6 @@ const HomePage = ({ products }) => {
 export async function getStaticProps() {
 	return {
 		props: { products: productData },
-		revalidate: 10,
 	};
 }
 
